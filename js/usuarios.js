@@ -1,0 +1,22 @@
+let users = [
+    {
+        name:'manolo',
+        pass:'manolito25'
+    },
+    {
+        name:'Gavela',
+        pass:'Gavelinchis'
+    },
+    {
+        name:'luisito',
+        pass:'Elchiquito'
+    },
+    {
+        name:'carlitos',
+        pass:'doncarlitos'
+    },
+    {
+        name:'valdu',
+        pass:'azeudlav15'
+    }
+]

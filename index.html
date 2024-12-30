@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Tapas</title>
+      <!-- Enlace al archivo CSS -->
+      <link rel="stylesheet" href="css/font-awesome.css">
+      <link rel="stylesheet" href="css/landingPage.css">
+      <link rel="shortcut icon" href="./svg/logoTapasFavicon.svg" type="image/x-icon">
+   </head>
+   <body>
+      <!-- Barra de Navegación -->
+      <header>
+         <nav class="nav">
+            <a href="./landingPage.html"><img src="./svg/logoTapas.svg" alt='logos'/></a>
+            <div>
+               <input type="text" placeholder="🔎 Buscar...">
+               <ul class="nav-list" id="menu">
+                  <li class="dropdown">
+                     <a href="#">Acceder</a>
+                     <ul class="dropdown-menu">
+                        <li><a href="#">Loguearse</a></li>
+                        <li><a href="#">Registrarse</a></li>
+                     </ul>
+                  <li><a href="#tapas">Tapas</a></li>
+                  <li><a href="#contact">Contacto</a></li>
+               </ul>
+               <ul class="dropdown" id="hamburguesa">
+                  <hr>
+                  <hr>
+                  <hr>
+                  <ul class="nav-list">
+                     <li class="dropdown">
+                     <ul class="dropdown-menu">
+                        <li><a href="#">Loguearse</a></li>
+                        <li><a href="#">Registrarse</a></li>
+                        <li><a href="#">Buscar</a></li>
+                        <li><a href="#tapas">Tapas</a></li>
+                        <li><a href="#contact">Contacto</a></li>
+                  </ul>
+               </div>
+            </div>
+         </nav>
+      </header>
+      <main>
+      <div id="carousel-container">
+         <button class="carousel-prev">←</button>
+         <div class="carousel-slide active">
+            <picture>
+               <source
+                   srcset="./img/croquetas-330x220.webp 480w"
+                   media="(max-width: 480px)"
+                   type="image/webp">
+       
+               <source
+                   srcset="./img/croquetas-600x400.webp 768w"
+                   media="(max-width: 768px)"
+                   type="image/webp">
+       
+               <source
+                   srcset="./img/croquetas-1200x600.webp 1200w"
+                   media="(max-width: 1200px)"
+                   type="image/webp">
+
+               <img src="./img/croquetas-1.webp	" loading="lazy">
+           </picture>
+            <!-- <img src="./img/croquetas.webp" alt="Imagen 1" loading="lazy"> -->
+         </div>
+         <div class="carousel-slide">
+            <picture>
+               <source
+                   srcset="./img/calamares-330x220.webp 480w"
+                   media="(max-width: 480px)"
+                   type="image/webp">
+
+               <source
+                   srcset="./img/calamares-600x400.webp 768w"
+                   media="(max-width: 768px)"
+                   type="image/webp">
+       
+               <source
+                   srcset="./img/calamares-1200x600.webp 1200w"
+                   media="(max-width: 1200px)"
+                   type="image/webp">
+       
+              
+                   
+               <img src="./img/calamares-1.webp" loading="lazy">
+           </picture>
+         </div>
+         <div class="carousel-slide">
+            <picture>
+               <source
+                   srcset="./img/sandwich-330x220.webp 480w"
+                   media="(max-width: 480px)"
+                   type="image/webp">
+       
+               <source
+                   srcset="./img/sandwich-600x400.webp 768w"
+                   media="(max-width: 768px)"
+                   type="image/webp">
+       
+               <source
+                   srcset="./img/sandwich-1200x600.webp 1200w"
+                   media="(max-width: 1200px)"
+                   type="image/webp">
+       
+               
+                   
+               <img src="./img/sandwich.webp" loading="lazy">
+           </picture>
+         </div>
+         <button class="carousel-next">→</button>
+      </div>
+      
+      <!-- Sección de Tapas -->
+      <section id="tapas">
+         <h2>Tapas</h2>
+         <div class="tapasGrid" id="tapasGrid">
+            
+         </div>
+      </section>
+   </main>
+      
+      <!-- Pie de Página -->
+      <footer id="contact">
+         <div>&copy; Todos los derechos reservados. Concurso tapas de León, Tapas Gavela.</div>
+         <div class="iconos">
+            <a href="#"><img src="./svg/insta.svg" alt="Logo Instagram"></a>
+            <a href="#"><img src="./svg/yt2.svg" alt="Logo Instagram"></a>
+            <a href="#"><img src="./svg/X.svg" alt="Logo Instagram"></a>
+            <a href="#"><img src="./svg/facebook.svg" alt="Logo Instagram"></a>
+         </div>
+         <div id="contacto"><div>Telefono: 612215421</div> <div> Correo: tapasGavela@gmail.com</div></div>
+      </footer>
+      <script src="./js/landingPage.js"></script>
+      <script src="./js/creadorTapas.js"></script>
+      <script src="./json/datos.json"></script>
+   </body>
+</html>
