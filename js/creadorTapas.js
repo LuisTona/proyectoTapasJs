@@ -1,13 +1,11 @@
-// import file from '../json/datos.json' with {type: "json"};
-// const json = file.toString();
-// const datos = JSON.parse(json);
-// console.log(file.datos);
+import { dataBares } from "./data.js";
+import { dataUsuarios } from "./data.js";
 
-let datos = '';
+let datos = dataBares;
+
 let gridTapas = document.getElementById('tapasGrid');
-let miBaseBares =(data)=>{
-    render(data)
-}
+
+render(datos);
 
 function render(data){
     data.forEach(element => {
