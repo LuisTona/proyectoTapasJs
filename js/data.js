@@ -1,4 +1,4 @@
-export const dataBares = [
+export let dataBares = [
     {
     "nombreBar":"Bar Manolo",
     "tapas":[
@@ -82,25 +82,35 @@ export const dataBares = [
 }
 ];
 
-export const dataUsuarios = [
+export let dataUsuarios = [
     {
         name:'manolo',
-        pass:'manolito25'
+        pass:'manolito25',
+        mail:'manolito25@gmail.com',
+        rol:'admin'
     },
     {
         name:'Gavela',
-        pass:'Gavelinchis'
+        pass:'Gavelinchis',
+        mail:'Gavelinchis@gmail.com',
+        rol:'user'
     },
     {
         name:'luisito',
-        pass:'Elchiquito'
+        pass:'Elchiquito',
+        mail:'Elchiquito@gmail.com',
+        rol:'user'
     },
     {
         name:'carlitos',
-        pass:'doncarlitos'
+        pass:'doncarlitos',
+        mail:'doncarlitos@gmail.com',
+        rol:'admin'
     },
     {
         name:'valdu',
-        pass:'azeudlav15'
+        pass:'azeudlav15',
+        mail:'azeudlav15@gmail.com',
+        rol:'user'
     }
 ]

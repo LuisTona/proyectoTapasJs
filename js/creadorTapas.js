@@ -1,11 +1,9 @@
 import { dataBares } from "./data.js";
 import { dataUsuarios } from "./data.js";
 
-let datos = dataBares;
-
 let gridTapas = document.getElementById('tapasGrid');
 
-render(datos);
+render(dataBares);
 
 function render(data){
     data.forEach(element => {
@@ -26,6 +24,7 @@ function creadorTarjeta(nombreBar, tapas){
         tarjetaTapa.append(creadorImagenTapa(tapas[i]));
         tarjetaTapa.append(creadorDescripcion(tapas[i]));
         gridTapas.append(tarjetaTapa);
+        
     }
 }
 
@@ -34,6 +33,7 @@ function creadorLike(){
     imgSvg.src = './svg/corazon.svg';
     imgSvg.alt = 'Me gusta';
     imgSvg.className = 'like';
+    
     return imgSvg;
 }
 
