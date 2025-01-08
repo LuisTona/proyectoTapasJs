@@ -41,9 +41,6 @@ correo.addEventListener('blur', ()=>{
 });
 
 contraseña.addEventListener('blur', ()=>{
-    // if(contraseña.value < 8){
-    //     console.log('hola');
-    // }
     validacionExpresiones(contraseña, passExp, 8);
 });
 
@@ -92,12 +89,12 @@ document.querySelector('#formulario').addEventListener('submit', function(event)
                     rol:'user'
                 };
                 dataUsuarios.push(dataUser);
-                console.log(dataUsuarios);
-                // localStorage.setItem('usuario', JSON.stringify(data));
+                
+                localStorage.setItem('userInfo', dataUser);
                 // localStorage.setItem('log', data.nombre)
         } 
     }
-    // manejadorErrores(valido);
+    manejadorErrores(valido);
     
 });
 

@@ -2,13 +2,14 @@ import { dataBares } from "./data.js";
 import { dataUsuarios } from "./data.js";
 
 let gridTapas = document.getElementById('tapasGrid');
+// comprobar si esta logeado
+// let userData = localStorage.getItem(userInfo);
 
 render(dataBares);
 
 function render(data){
     data.forEach(element => {
         let name = element.nombreBar; 
-        console.log(element);
         creadorTarjeta(name, element.tapas);
     });
 }
@@ -24,7 +25,7 @@ function creadorTarjeta(nombreBar, tapas){
         tarjetaTapa.append(creadorImagenTapa(tapas[i]));
         tarjetaTapa.append(creadorDescripcion(tapas[i]));
         gridTapas.append(tarjetaTapa);
-        
+        tarjetaTapa.addEventListener('click', (e)=>{meGusta(e, tapas[i].nombreTapa, nombreBar)});
     }
 }
 
@@ -64,9 +65,27 @@ function creadorDescripcion(descripcion){
 
     div.className = 'descripcionTapas';
     strong.innerText = descripcion.nombreTapa;
+
+    strong.setAttribute('id',`${descripcion.nombreTapa.split(' ').join('')}`);
+
     div.append(strong);
     div.append(br);
     div.append(`${descripcion.descripcion}`);
     return div;
 }
 
+function meGusta(e, nombreTapa, nombreBar){
+    // normalizar id junto el getElement, juntar nombreBar y nombreTapa
+    console.log(document.getElementById(`${nombreTapa}`));
+    if(e.target.attributes[0].value == './svg/corazon.svg'){
+        e.target.src= './svg/heart-solid.svg';
+    }else{
+        e.target.src = './svg/corazon.svg';
+    }
+    for(let user of dataUsuarios){
+        // if(user.name == userData.name){
+            
+        // }
+    }
+    console.log(nombreTapa);
+}

@@ -87,30 +87,35 @@ export let dataUsuarios = [
         name:'manolo',
         pass:'manolito25',
         mail:'manolito25@gmail.com',
-        rol:'admin'
+        rol:'admin',
+        favoritos:['se introduce nombre de tapa', 'otra tapa favorita']
     },
     {
         name:'Gavela',
         pass:'Gavelinchis',
         mail:'Gavelinchis@gmail.com',
-        rol:'user'
+        rol:'user',
+        favoritos:['se introduce nombre de tapa', 'otra tapa favorita']
     },
     {
         name:'luisito',
         pass:'Elchiquito',
         mail:'Elchiquito@gmail.com',
-        rol:'user'
+        rol:'user',
+        favoritos:['se introduce nombre de tapa', 'otra tapa favorita']
     },
     {
         name:'carlitos',
         pass:'doncarlitos',
         mail:'doncarlitos@gmail.com',
-        rol:'admin'
+        rol:'admin',
+        favoritos:['se introduce nombre de tapa', 'otra tapa favorita']
     },
     {
         name:'valdu',
         pass:'azeudlav15',
         mail:'azeudlav15@gmail.com',
-        rol:'user'
+        rol:'user',
+        favoritos:['se introduce nombre de tapa', 'otra tapa favorita']
     }
 ]
