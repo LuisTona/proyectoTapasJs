@@ -3,7 +3,9 @@ import { dataUsuarios } from "./data.js";
 
 let gridTapas = document.getElementById('tapasGrid');
 // comprobar si esta logeado
+// localStorage.setItem('invitado', 'userAnonimo');
 // let userData = localStorage.getItem(userInfo);
+
 
 render(dataBares);
 
@@ -20,12 +22,14 @@ function creadorTarjeta(nombreBar, tapas){
     for(let i in tapas){
         let tarjetaTapa = document.createElement('div');
         tarjetaTapa.className = 'tapasTitle'
-        tarjetaTapa.append(creadorLike()); 
+        if(comprobarUsuario()){
+            tarjetaTapa.append(creadorLike()); 
+            tarjetaTapa.addEventListener('click', (e)=>{meGusta(e, (tapas[i].nombreTapa + nombreBar).split(' ').join(''))});
+        }
         tarjetaTapa.append(creadorNombreBar(nombreBar)); 
         tarjetaTapa.append(creadorImagenTapa(tapas[i]));
-        tarjetaTapa.append(creadorDescripcion(tapas[i]));
+        tarjetaTapa.append(creadorDescripcion(tapas[i], nombreBar));
         gridTapas.append(tarjetaTapa);
-        tarjetaTapa.addEventListener('click', (e)=>{meGusta(e, tapas[i].nombreTapa, nombreBar)});
     }
 }
 
@@ -58,7 +62,7 @@ function creadorImagenTapa(imagen){
     
 }
 
-function creadorDescripcion(descripcion){
+function creadorDescripcion(descripcion, nombreBar){
     let div = document.createElement('div');
     let strong = document.createElement('strong');
     let br = document.createElement('br');
@@ -66,7 +70,7 @@ function creadorDescripcion(descripcion){
     div.className = 'descripcionTapas';
     strong.innerText = descripcion.nombreTapa;
 
-    strong.setAttribute('id',`${descripcion.nombreTapa.split(' ').join('')}`);
+    strong.setAttribute('id',`${(descripcion.nombreTapa + nombreBar).split(' ').join('')}`);
 
     div.append(strong);
     div.append(br);
@@ -74,9 +78,8 @@ function creadorDescripcion(descripcion){
     return div;
 }
 
-function meGusta(e, nombreTapa, nombreBar){
-    // normalizar id junto el getElement, juntar nombreBar y nombreTapa
-    console.log(document.getElementById(`${nombreTapa}`));
+function meGusta(e, nombreTapa){
+    
     if(e.target.attributes[0].value == './svg/corazon.svg'){
         e.target.src= './svg/heart-solid.svg';
     }else{
@@ -87,5 +90,14 @@ function meGusta(e, nombreTapa, nombreBar){
             
         // }
     }
-    console.log(nombreTapa);
+}
+
+export function comprobarUsuario(){
+    // let invitado = localStorage.getItem(invitado);
+    if(localStorage.getItem('userInfo') === undefined || localStorage.getItem('userInfo') === null){
+        localStorage.setItem('invitado', 'invitado');
+        return false;
+    }else{
+        return true;
+    }
 }

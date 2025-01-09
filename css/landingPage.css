@@ -86,11 +86,12 @@ footer {
         position: absolute;
         top: 100%;
         left: 0;
-        background-color: #be3144;
+        background-color: #ce4343;
         padding: 0;
         margin: 0;
         list-style-type: none;
         z-index: 1000;
+        min-width: 265px;
     }
 
     & .dropdown-menu li a {
@@ -110,6 +111,10 @@ footer {
 
     & .dropdown:hover .dropdown-menu {
         display: block;
+    }
+
+    & #userIdentificado{
+        display: none;
     }
     
 }

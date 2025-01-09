@@ -90,7 +90,7 @@ document.querySelector('#formulario').addEventListener('submit', function(event)
                 };
                 dataUsuarios.push(dataUser);
                 
-                localStorage.setItem('userInfo', dataUser);
+                localStorage.setItem('userInfo', JSON.stringify(dataUser));
                 // localStorage.setItem('log', data.nombre)
         } 
     }
