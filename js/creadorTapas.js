@@ -2,15 +2,11 @@ import { dataBares } from "./data.js";
 import { dataUsuarios } from "./data.js";
 
 let gridTapas = document.getElementById('tapasGrid');
-// comprobar si esta logeado
-// localStorage.setItem('invitado', 'userAnonimo');
-// let userData = localStorage.getItem(userInfo);
 
+render();
 
-render(dataBares);
-
-function render(data){
-    data.forEach(element => {
+export function render(){
+    dataBares.forEach(element => {
         let name = element.nombreBar; 
         creadorTarjeta(name, element.tapas);
     });
@@ -22,9 +18,9 @@ function creadorTarjeta(nombreBar, tapas){
     for(let i in tapas){
         let tarjetaTapa = document.createElement('div');
         tarjetaTapa.className = 'tapasTitle'
+        tarjetaTapa.setAttribute('tpsId', `${tapas[i].id}`)
         if(comprobarUsuario()){
             tarjetaTapa.append(creadorLike()); 
-            tarjetaTapa.addEventListener('click', (e)=>{meGusta(e, (tapas[i].nombreTapa + nombreBar).split(' ').join(''))});
         }
         tarjetaTapa.append(creadorNombreBar(nombreBar)); 
         tarjetaTapa.append(creadorImagenTapa(tapas[i]));
@@ -38,7 +34,8 @@ function creadorLike(){
     imgSvg.src = './svg/corazon.svg';
     imgSvg.alt = 'Me gusta';
     imgSvg.className = 'like';
-    
+    imgSvg.addEventListener('click', (e)=>{meGusta(e)});
+
     return imgSvg;
 }
 
@@ -70,15 +67,13 @@ function creadorDescripcion(descripcion, nombreBar){
     div.className = 'descripcionTapas';
     strong.innerText = descripcion.nombreTapa;
 
-    strong.setAttribute('id',`${(descripcion.nombreTapa + nombreBar).split(' ').join('')}`);
-
     div.append(strong);
     div.append(br);
     div.append(`${descripcion.descripcion}`);
     return div;
 }
 
-function meGusta(e, nombreTapa){
+function meGusta(e){
     
     if(e.target.attributes[0].value == './svg/corazon.svg'){
         e.target.src= './svg/heart-solid.svg';
@@ -86,17 +81,21 @@ function meGusta(e, nombreTapa){
         e.target.src = './svg/corazon.svg';
     }
     for(let user of dataUsuarios){
-        // if(user.name == userData.name){
-            
-        // }
+        if(user.name == JSON.parse(localStorage.getItem('userInfo')).name){
+            user.favoritos.push(e.target.parentNode.getAttribute('tpsId'));
+        }
+        console.log(user);
     }
 }
 
 export function comprobarUsuario(){
+    
     let acceso = document.getElementById('acceso');
-    if(localStorage.getItem('userInfo') === undefined || localStorage.getItem('userInfo') === null){
+
+    if(localStorage.getItem('userInfo') === null){
         localStorage.setItem('invitado', 'invitado');
         acceso.style.display = 'block'
+        console.log('si');
         return false;
     }else{
         return true;

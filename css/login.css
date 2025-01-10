@@ -25,12 +25,6 @@ header {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
- img {
-    /* height: 10px; */
-    width: 100px;
-    /* margin-left: 20px; */
-}
-
 #tituloPag {
     font-size: 36px;
     font-weight: bold;

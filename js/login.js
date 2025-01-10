@@ -17,18 +17,10 @@ form.addEventListener('submit', (e)=>{
             }
 
             localStorage.setItem('userInfo', JSON.stringify(dataUser));
+            localStorage.removeItem('invitado');
             window.location.replace('./index.html');
 
-            break;
+            // break;
         }   
     }
-    // let datos = JSON.parse(localStorage.usuario);
-    // const formData = new FormData(form);
-    // const data = Object.fromEntries(formData);
-    // if(datos.nombre == data.user && datos.pass == data.contraseña){
-        // localStorage.setItem('log', datos.nombre);
-        
-    // }else{
-    //     alert("Nombre o Contraseña Incorrectos");
-    // }
 })

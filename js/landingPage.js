@@ -1,4 +1,4 @@
-import { comprobarUsuario } from "./creadorTapas.js";
+import { render } from "./creadorTapas.js";
 
 document.addEventListener('DOMContentLoaded', function () {
     const slides = document.querySelectorAll('.carousel-slide');
@@ -31,16 +31,22 @@ document.addEventListener('DOMContentLoaded', function () {
 if(localStorage.getItem('userInfo') !== null){
     let acceso = document.getElementById('acceso');
     acceso.style.display = 'none';
+
     let userIdentificado = document.getElementById('userIdentificado');
     let identificador = document.getElementById('identificador');
-
+    let logout = document.getElementById('logOut');
+    
     identificador.textContent = JSON.parse(localStorage.getItem('userInfo')).name;
     userIdentificado.style.display = 'block';
-
-    document.getElementById('logOut').addEventListener('click', logOut());
+    logout.addEventListener('click', logOut);
+    
 }
 
 function logOut(){
+    let userIdentificado = document.getElementById('userIdentificado');
+    userIdentificado.style.display = 'none';
+    
     localStorage.removeItem('userInfo');
-    comprobarUsuario();
+    window.location.reload();
+    render();    
 }
