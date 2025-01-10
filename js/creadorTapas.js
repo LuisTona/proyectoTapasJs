@@ -93,9 +93,10 @@ function meGusta(e, nombreTapa){
 }
 
 export function comprobarUsuario(){
-    // let invitado = localStorage.getItem(invitado);
+    let acceso = document.getElementById('acceso');
     if(localStorage.getItem('userInfo') === undefined || localStorage.getItem('userInfo') === null){
         localStorage.setItem('invitado', 'invitado');
+        acceso.style.display = 'block'
         return false;
     }else{
         return true;

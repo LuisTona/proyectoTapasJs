@@ -28,18 +28,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-
-if(localStorage.getItem('userInfo') !== undefined || localStorage.getItem('userInfo') !== null){
+if(localStorage.getItem('userInfo') !== null){
     let acceso = document.getElementById('acceso');
-    acceso.style.display = 'none'
-
+    acceso.style.display = 'none';
     let userIdentificado = document.getElementById('userIdentificado');
     let identificador = document.getElementById('identificador');
 
-    identificador.textContent = JSON.parse(localStorage.getItem('userInfo')).name
-    userIdentificado.style.display = 'block'
+    identificador.textContent = JSON.parse(localStorage.getItem('userInfo')).name;
+    userIdentificado.style.display = 'block';
 
-    document.getElementById('logOut').addEventListener('click', logOut())
+    document.getElementById('logOut').addEventListener('click', logOut());
 }
 
 function logOut(){

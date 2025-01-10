@@ -42,9 +42,12 @@ form {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #d8d8d8;
     border: solid 1px rgba(128, 128, 128, 0.735);
-    width: 400px;
+    width: 50%;
     height: 75%;
+    max-width: 400px;
+    min-width: 250px;
     min-height: 550px;
+    max-height: 550px;
     text-align: center;
     justify-self: center;
     align-self: center;
@@ -146,12 +149,12 @@ form {
     }  
 }
 
-@media screen and (max-width: 1560px){
+/* @media screen and (max-width: 1560px){
     body{
         display: grid;
         grid-template-rows: 15vh 120vh 13vh;
     }
-}
+} */
 footer {
     display: flex;
     justify-content: space-between;
