@@ -75,14 +75,15 @@ function creadorDescripcion(descripcion, nombreBar){
 
 function meGusta(e){
     
-    if(e.target.attributes[0].value == './svg/corazon.svg'){
-        e.target.src= './svg/heart-solid.svg';
-    }else{
-        e.target.src = './svg/corazon.svg';
-    }
     for(let user of dataUsuarios){
         if(user.name == JSON.parse(localStorage.getItem('userInfo')).name){
-            user.favoritos.push(e.target.parentNode.getAttribute('tpsId'));
+            if(e.target.attributes[0].value == './svg/corazon.svg'){
+                e.target.src= './svg/heart-solid.svg';
+                user.favoritos.push(e.target.parentNode.getAttribute('tpsId'));
+            }else{
+                e.target.src = './svg/corazon.svg';
+                user.favoritos.pop(e.target.parentNode.getAttribute('tpsId'));
+            }
         }
         console.log(user);
     }
