@@ -28,19 +28,39 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-if(localStorage.getItem('userInfo') !== null){
+if(JSON.parse(localStorage.getItem('userInfo')).rol === 'admin'){
     let acceso = document.getElementById('acceso');
     acceso.style.display = 'none';
 
     let userIdentificado = document.getElementById('userIdentificado');
     let identificador = document.getElementById('identificador');
     let logout = document.getElementById('logOut');
+   
     
     identificador.textContent = JSON.parse(localStorage.getItem('userInfo')).name;
     userIdentificado.style.display = 'block';
     logout.addEventListener('click', logOut);
     
+}else if(JSON.parse(localStorage.getItem('userInfo')).rol === 'user'){
+    let acceso = document.getElementById('acceso');
+    acceso.style.display = 'none';
+
+    let userIdentificado = document.getElementById('userIdentificado');
+    let identificador = document.getElementById('identificador');
+    let logout = document.getElementById('logOut');
+    let insertar = document.getElementById('insertar');
+    let modificar = document.getElementById('modificar');
+    let eliminar = document.getElementById('eliminar');
+
+    identificador.textContent = JSON.parse(localStorage.getItem('userInfo')).name;
+    userIdentificado.style.display = 'block';
+    insertar.style.display = 'none';
+    modificar.style.display = 'none';
+    eliminar.style.display = 'none';
+    logout.addEventListener('click', logOut);
 }
+
+
 
 function logOut(){
     let userIdentificado = document.getElementById('userIdentificado');

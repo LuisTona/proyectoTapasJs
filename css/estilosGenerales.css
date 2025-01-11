@@ -1,8 +1,10 @@
 :root {
     --color-primary: #be3144;
+    --color-secondary: white;
 }
 nav, footer {
     background-color: var(--color-primary);
+    color: var(--color-secondary);
 }
 body {
     font-family: Arial, sans-serif;
@@ -44,8 +46,8 @@ footer {
     justify-content: center;
     align-items: center;
     width: 100%;
-    /* height: 100px; */
-    /* padding: 20px; */
+    height: 150px;
+    padding: 20px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     & a{
         margin:0px;
