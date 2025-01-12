@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/landingPage.css">
+    <link rel="stylesheet" href="./css/insertar.css">
     <link rel="shortcut icon" href="./svg/logoTapasFavicon.svg" type="image/x-icon">
     <title>Insertar Tapa</title>
 </head>
@@ -53,8 +54,29 @@
         </nav>
      </header>
      <main>
-       
+        <form action="" method="post" id="formulario">
+            <h2>Insertar Tapas</h2>
+            <label for="nomber">Nombre del Bar:</label><br>
+            <input type="text" id="nombreBar" class="nombreBar" name="nombreBar"><br>
+            <label for="nombreTapa">Nombre Tapa:</label><br>
+            <input type="text" id="nombreTapa" class="nombreTapa" name="nombreTapa"><br>
+            <label for="imagen">Imagen de la Tapa:</label><br>
+            <input type="file" name="imagen" id="imagen" class="imagen"><br>
+            <label for="descripcion">Decripcion de la tapa</label><br>
+            <textarea name="descripcion" id="descripcion"></textarea>
+            <input type="submit" value="Enviar" name="enviar" class="enviar">
+        </form>
      </main>
+     <footer id="contact">
+        <div>&copy; Todos los derechos reservados. Concurso tapas de León, Tapas Gavela.</div>
+        <div class="iconos">
+           <a href="#"><img src="./svg/insta.svg" alt="Logo Instagram"></a>
+           <a href="#"><img src="./svg/yt2.svg" alt="Logo Instagram"></a>
+           <a href="#"><img src="./svg/X.svg" alt="Logo Instagram"></a>
+           <a href="#"><img src="./svg/facebook.svg" alt="Logo Instagram"></a>
+        </div>
+        <div id="contacto"><div>Telefono: 612215421</div> <div> Correo: tapasGavela@gmail.com</div></div>
+     </footer>
 </body>
    <script type="module" src="./js/comprobacionUser.js"></script>
    <script type="module" src="./js/insertar.js"></script>
