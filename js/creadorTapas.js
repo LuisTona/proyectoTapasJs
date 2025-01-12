@@ -1,7 +1,6 @@
 import { dataBares } from "./data.js";
 import { dataUsuarios } from "./data.js";
-
-let gridTapas = document.getElementById('tapasGrid');
+import { comprobarUsuario } from "./comprobacionUser.js";
 
 render();
 
@@ -14,7 +13,7 @@ export function render(){
 
 export function creadorTarjeta(nombreBar, tapas){
     // vamos a crear las tarjetas
-
+    let gridTapas = document.getElementById('tapasGrid');
     for(let i in tapas){
         let tarjetaTapa = document.createElement('div');
         tarjetaTapa.className = 'tapasTitle'
@@ -89,15 +88,4 @@ function meGusta(e){
     }
 }
 
-export function comprobarUsuario(){
-    
-    let acceso = document.getElementById('acceso');
 
-    if(localStorage.getItem('userInfo') === null){
-        localStorage.setItem('invitado', 'invitado');
-        acceso.style.display = 'block';
-        return false;
-    }else{
-        return true;
-    }
-}
