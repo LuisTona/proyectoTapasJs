@@ -12,7 +12,7 @@ export function render(){
     });
 }
 
-function creadorTarjeta(nombreBar, tapas){
+export function creadorTarjeta(nombreBar, tapas){
     // vamos a crear las tarjetas
 
     for(let i in tapas){
@@ -95,8 +95,7 @@ export function comprobarUsuario(){
 
     if(localStorage.getItem('userInfo') === null){
         localStorage.setItem('invitado', 'invitado');
-        acceso.style.display = 'block'
-        console.log('si');
+        acceso.style.display = 'block';
         return false;
     }else{
         return true;

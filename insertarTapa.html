@@ -3,9 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/landingPage.css">
+    <link rel="shortcut icon" href="./svg/logoTapasFavicon.svg" type="image/x-icon">
     <title>Insertar Tapa</title>
 </head>
 <body>
-    
+    <header>
+        <nav class="nav">
+           <a href="./index.html"><img src="./svg/logoTapas.svg" alt='logos'/></a>
+           <div>
+              <input type="text" placeholder="🔎 Buscar...">
+              <ul class="nav-list" id="menu">
+                 <li class="dropdown" id="acceso">
+                    <a href="#">Acceder</a>
+                    <ul class="dropdown-menu">
+                       <li><a href="./login.html">Loguearse</a></li>
+                       <li><a href="./registro.html">Registrarse</a></li>
+                    </ul>
+                 </li>
+
+                 <li class="dropdown" id="userIdentificado">
+                    <a href="#" id="identificador"></a>
+                    <ul class="dropdown-menu">
+                       <li><a href="insertarTapa.html" id="insertar">Insertar Tapa</a></li>
+                       <li><a href="modificarTapa.html" id="modificar">Modificar Tapa</a></li>
+                       <li><a href="eliminarTapa.html" id="eliminar">Eliminar Tapa</a></li>
+                       <li><a href="#" id="logOut">Cerrar sesion</a></li>
+                    </ul>
+                 </li>
+
+                 <li><a href="#tapas">Tapas</a></li>
+                 <li><a href="#contact">Contacto</a></li>
+              </ul>
+              <ul class="dropdown" id="hamburguesa">
+                 <hr>
+                 <hr>
+                 <hr>
+                 <ul class="nav-list">
+                    <li class="dropdown">
+                    <ul class="dropdown-menu">
+                       <li><a href="#">Loguearse</a></li>
+                       <li><a href="#">Registrarse</a></li>
+                       <li><a href="#">Buscar</a></li>
+                       <li><a href="#tapas">Tapas</a></li>
+                       <li><a href="#contact">Contacto</a></li>
+                 </ul>
+              </div>
+           </div>
+        </nav>
+     </header>
+     <main>
+       
+     </main>
 </body>
+<script type="module" src="./js/insertar.js"></script>
+<script type="module" src="./js/landingPage.js"></script>
 </html>
