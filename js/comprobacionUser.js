@@ -35,14 +35,10 @@ export function controlUsuarios(){
         let identificador = document.getElementById('identificador');
         let logout = document.getElementById('logOut');
         let insertar = document.getElementById('insertar');
-        let modificar = document.getElementById('modificar');
-        let eliminar = document.getElementById('eliminar');
         
         identificador.textContent = JSON.parse(localStorage.getItem('userInfo')).name;
         userIdentificado.style.display = 'block';
         insertar.style.display = 'none';
-        modificar.style.display = 'none';
-        eliminar.style.display = 'none';
         logout.addEventListener('click', logOut);
     }
 }

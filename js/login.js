@@ -19,8 +19,6 @@ form.addEventListener('submit', (e)=>{
             localStorage.setItem('userInfo', JSON.stringify(dataUser));
             localStorage.removeItem('invitado');
             window.location.replace('./index.html');
-
-            // break;
         }   
     }
 })

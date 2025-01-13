@@ -14,6 +14,7 @@ export function render(){
 export function creadorTarjeta(nombreBar, tapas){
     // vamos a crear las tarjetas
     let gridTapas = document.getElementById('tapasGrid');
+    
     for(let i in tapas){
         let tarjetaTapa = document.createElement('div');
         tarjetaTapa.className = 'tapasTitle'
@@ -24,10 +25,22 @@ export function creadorTarjeta(nombreBar, tapas){
         tarjetaTapa.append(creadorNombreBar(nombreBar)); 
         tarjetaTapa.append(creadorImagenTapa(tapas[i]));
         tarjetaTapa.append(creadorDescripcion(tapas[i], nombreBar));
+        tarjetaTapa.append(creadorBoton());
+        tarjetaTapa.addEventListener('click', (e)=>{
+            modalContenido(e.target.parentNode, tapas, nombreBar);
+        })
         gridTapas.append(tarjetaTapa);
     }
 }
-
+function creadorBoton(){
+    let button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'btn btn-primary';
+    button.setAttribute('data-bs-toggle', 'modal');
+    button.setAttribute('data-bs-target', '#exampleModal');
+    button.textContent ='Mas informacion';
+    return button;
+}
 function creadorLike(){
     let imgSvg = document.createElement('img');
     imgSvg.src = './svg/corazon.svg';
@@ -44,11 +57,9 @@ function creadorNombreBar(name){
     strong.innerText = name;
     nombreBar.append(strong);
     return nombreBar;
-    
 }
 
 function creadorImagenTapa(imagen){
-    
     let a = document.createElement('a');
     let img = document.createElement('img');
     img.src = imagen.imagenTapa;
@@ -86,6 +97,11 @@ function meGusta(e){
         }
         console.log(user);
     }
+}
+
+function modalContenido(elemento, tapa, nombreBar){
+    console.log(element);
+    // let 
 }
 
 

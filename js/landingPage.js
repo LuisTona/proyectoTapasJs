@@ -28,3 +28,12 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+let insertar = document.getElementById('insertar');
+
+insertar.addEventListener('click', ()=>{
+    let formInsertar = document.getElementById('formInsertar');
+    let tapas = document.getElementById('tapas');
+    console.log('a');
+    formInsertar.style.display = 'flex';
+    tapas.style.display = 'none';
+})
