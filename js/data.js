@@ -6,13 +6,15 @@ export let dataBares = [
             "id":"tp1",
             "nombreTapa":"Alitas",
             "imagenTapa":"./img/alitas.webp",
-            "descripcion":"Alitas crujientes por fuera y jugosas por dentro"
+            "descripcion":"Alitas crujientes por fuera y jugosas por dentro",
+            ingredientes:['alitas', 'salsa barbacoa']
         },
         {
             "id":"tp2",
             "nombreTapa":"Albondigas",
             "imagenTapa":"./img/almondigas.webp",
-            "descripcion":"Jugosas albondigas con una salsa casera irresistible"
+            "descripcion":"Jugosas albondigas con una salsa casera irresistible",
+            ingredientes:['carne picada de vaca', 'salsa tomate casera', 'pan rallado']
         }
     ]
 },
@@ -23,13 +25,15 @@ export let dataBares = [
             "id":"tp3",
             "nombreTapa":"Tortilla",
             "imagenTapa":"./img/tortilla.webp",
-            "descripcion":"Una tortilla con cebolla hecha al punto justo"
+            "descripcion":"Una tortilla con cebolla hecha al punto justo",
+            ingredientes:['patatas', 'huevos', 'cebolla', 'sal']
         },
         {
             "id":"tp4",
             "nombreTapa":"Morcilla",
             "imagenTapa":"./img/morcilla.webp",
-            "descripcion":"Morcilla suave con un toque intenso de sabor"
+            "descripcion":"Morcilla suave con un toque intenso de sabor",
+            ingredientes:['arroz', 'cebolla', 'manteca', 'especias', 'sangre']
         }
     ]
     
@@ -41,13 +45,15 @@ export let dataBares = [
             "id":"tp5",
             "nombreTapa":"Ensaladilla",
             "imagenTapa":"./img/ensaladilla.webp",
-            "descripcion":"Una cremosa mezcla de patatas, verduras y mayonesa"
+            "descripcion":"Una cremosa mezcla de patatas, verduras y mayonesa",
+            ingredientes:['patatas', 'verduras', 'mayonesa', 'huevo']
         },
         {
             "id":"tp6",
             "nombreTapa":"Pulpo",
             "imagenTapa":"./img/pulpo-300x200.webp",
-            "descripcion":"Un sabroso pulpo de las rias de galicia, con un toque de pimenton dulce"
+            "descripcion":"Un sabroso pulpo de las rias de galicia, con un toque de pimenton dulce",
+            ingredientes:['pulpo', 'pimenton', 'huevos', 'patatas']
         }
     ]
 },
@@ -58,13 +64,15 @@ export let dataBares = [
             "id":"tp7",
             "nombreTapa":"Patatas alioli",
             "imagenTapa":"./img/patatasAlioli-300x200.webp",
-            "descripcion":"Crujientes patatas con una salsa alioli casera"
+            "descripcion":"Crujientes patatas con una salsa alioli casera",
+            ingredientes:['patatas', 'salsa alioli']
         },
         {
             "id":"tp8",
             "nombreTapa":"Sopas de ajo",
             "imagenTapa":"./img/sopasAjo-300x200.webp",
-            "descripcion":"Sopas tradicionales de ajo con un caldo espeso y reconfortante"
+            "descripcion":"Sopas tradicionales de ajo con un caldo espeso y reconfortante",
+            ingredientes:['pan', 'pimenton', 'ajo']
         }
     ]
 },
@@ -75,7 +83,8 @@ export let dataBares = [
             "id":"tp9",
             "nombreTapa":"Salmonejo",
             "imagenTapa":"./img/salmonejo-300x200.webp",
-            "descripcion":"Suave crema de tomate fria con un toque de aceite de oliva"
+            "descripcion":"Suave crema de tomate fria con un toque de aceite de oliva",
+            ingredientes:['tomate', 'ajo', 'aceite', 'sal']
         }
     ]
 },
@@ -86,7 +95,8 @@ export let dataBares = [
             "id":"tp10",
             "nombreTapa":"Embutido",
             "imagenTapa":"./img/embutido.webp",
-            "descripcion":"Un plato de embutido tradicional de la comarca de León"
+            "descripcion":"Un plato de embutido tradicional de la comarca de León",
+            ingredientes:['queso', 'chorizo', 'salchichon', 'jamon serrano', 'cecina', 'lomo']
         }
     ]
 }

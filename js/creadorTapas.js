@@ -5,6 +5,8 @@ import { comprobarUsuario } from "./comprobacionUser.js";
 render();
 
 export function render(){
+    let grid = document.getElementById('tapasGrid');
+    grid.innerHTML = ' ';
     dataBares.forEach(element => {
         let name = element.nombreBar; 
         creadorTarjeta(name, element.tapas);
@@ -100,8 +102,22 @@ function meGusta(e){
 }
 
 function modalContenido(elemento, tapa, nombreBar){
-    console.log(element);
-    // let 
+    let tituloModal = document.getElementById('tituloModal');
+    tituloModal.textContent= nombreBar;
+
+    let contenidoModal = document.getElementById('modal-contenido');
+    let nombreTapaModal = document.getElementById('nombreTapaModal');
+    for(let i of tapa){
+        if(elemento.getAttribute('tpsid') == i.id){
+            nombreTapaModal.textContent = i.nombreTapa;
+            let ingredientes = document.getElementById('ingredientes');
+            for(let t of i.ingredientes){
+                let li = document.createElement('li');
+                li.innerHTML = t;
+                ingredientes.append(li)
+            }
+        }
+    }
 }
 
 

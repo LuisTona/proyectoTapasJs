@@ -1,6 +1,6 @@
 import { controlUsuarios } from "./comprobacionUser.js";
 import { dataBares } from "./data.js";
-
+import {render} from "./creadorTapas.js"
 
 controlUsuarios();
 
@@ -16,7 +16,6 @@ formulario.addEventListener('submit', (event)=>{
     let nTapas = 0;
     event.preventDefault();
     dataBares.forEach(element => {
-        console.log(element.tapas);
         element.tapas.forEach(() =>{
             nTapas += 1;
         })
@@ -24,31 +23,27 @@ formulario.addEventListener('submit', (event)=>{
     });
 
     let dataTapa = {
-        nombreTapa: nombreBar.value.trim(),
-        tapa: [
+        nombreBar: nombreBar.value.trim(),
+        tapas: [
             {
-                id: nTapas + 1,
+                id: 'tp' + (nTapas + 1),
                 nombreTapa: nombreTapa.value.trim(),
                 imagenTapa: imagen.value.trim(),
-                descricion: descripcion.value.trim(),
+                descripcion: descripcion.value.trim(),
             }
         ]
     };
     dataBares.push(dataTapa);
-
-    if(dataBares.push(dataTapa)){
-        alert("Tapa insertada correctamente");
-    }else{
-        alert("No se pudo insertar la tapa");
-    }
-    console.log(dataBares);
+    volver();
+    render();
 })
 
-button.addEventListener('click', ()=>{
+button.addEventListener('click', volver);
+
+function volver(){
     let formInsertar = document.getElementById('formInsertar');
     let tapas = document.getElementById('tapas');
-    console.log('a');
     formInsertar.style.display = 'none';
     tapas.style.display = 'block';
-})
 
+}
