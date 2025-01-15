@@ -1,6 +1,7 @@
 import { dataBares } from "./data.js";
 import { dataUsuarios } from "./data.js";
 import { comprobarUsuario } from "./comprobacionUser.js";
+import { eliminar } from "./eliminar.js";
 
 render();
 
@@ -104,15 +105,16 @@ function meGusta(e){
 
 function modalContenido(elemento, tapa, nombreBar){
     let tituloModal = document.getElementById('tituloModal');
-    let cerrar = document.getElementById('cerrar');
-    let btnCerrar = document.getElementById('close');
     tituloModal.textContent= nombreBar;
+    
+    let eliminarTapa = document.getElementById('eliminar');
+    let cerrar = document.getElementById('cerrar');
 
-    // let contenidoModal = document.getElementById('modal-contenido');
     let nombreTapaModal = document.getElementById('nombreTapaModal');
+
     for(let i of tapa){
         if(elemento.getAttribute('tpsid') == i.id){
-            localStorage.setItem('id', i.id);
+
             nombreTapaModal.textContent = i.nombreTapa;
             let ingredientes = document.getElementById('ingredientes');
             ingredientes.innerHTML = '';
@@ -122,18 +124,19 @@ function modalContenido(elemento, tapa, nombreBar){
                 ingredientes.append(li);
                 
             }
+            
+            eliminarTapa.addEventListener('click', ()=>{
+                if(eliminar(i.id, nombreBar)){
+                    cerrar.click();
+                }else{
+                    alert('ha ocurrido un error al eliminar la tapa');
+                }
+                
+            })
+            
         }
     }
 
-    cerrar.addEventListener('click', (event)=>{
-        event.preventDefault();
-        localStorage.removeItem('id');
-    });
-
-    btnCerrar.addEventListener('click', (event)=>{
-        event.preventDefault();
-        localStorage.removeItem('id');
-    })
 
 }
 
