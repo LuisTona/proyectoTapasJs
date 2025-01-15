@@ -99,7 +99,6 @@ function meGusta(e){
                 user.favoritos.pop(e.target.parentNode.getAttribute('tpsId'));
             }
         }
-        console.log(user);
     }
 }
 
@@ -109,12 +108,12 @@ function modalContenido(elemento, tapa, nombreBar){
     
     let eliminarTapa = document.getElementById('eliminar');
     let cerrar = document.getElementById('cerrar');
-
+    
     let nombreTapaModal = document.getElementById('nombreTapaModal');
-
+    
     for(let i of tapa){
         if(elemento.getAttribute('tpsid') == i.id){
-
+            
             nombreTapaModal.textContent = i.nombreTapa;
             let ingredientes = document.getElementById('ingredientes');
             ingredientes.innerHTML = '';
@@ -126,6 +125,7 @@ function modalContenido(elemento, tapa, nombreBar){
             }
             
             eliminarTapa.addEventListener('click', ()=>{
+                console.log(i.id);
                 if(eliminar(i.id, nombreBar)){
                     cerrar.click();
                 }else{

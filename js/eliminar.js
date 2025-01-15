@@ -2,7 +2,6 @@ import { dataBares } from "./data.js";
 import { render } from "./creadorTapas.js";
 
 export function eliminar (id, nombreBar){
-    
     for(let bares of dataBares){
 
         if(bares.nombreBar === nombreBar){
@@ -12,11 +11,14 @@ export function eliminar (id, nombreBar){
                 if(bares.tapas[tapaId].id === id){
 
                     bares.tapas.splice(tapaId, 1);
+
                     if(comprobarEliminacion(id)){
                         render();
                         console.log("eliminado correctamente");
-                        return true
-                    };
+                        return true;
+                    }else{
+                        return false;
+                    }
                 }
             }
         }
@@ -34,6 +36,5 @@ function comprobarEliminacion(id){
             }
         })
     })
-
     return true;
 }
