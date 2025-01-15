@@ -34,12 +34,13 @@ export function creadorTarjeta(nombreBar, tapas){
         gridTapas.append(tarjetaTapa);
     }
 }
-function creadorBoton(){
+export function creadorBoton(){
     let button = document.createElement('button');
     button.type = 'button';
     button.className = 'btn btn-primary';
     button.setAttribute('data-bs-toggle', 'modal');
     button.setAttribute('data-bs-target', '#exampleModal');
+    button.setAttribute('id', 'informacion')
     button.textContent ='Mas informacion';
     return button;
 }
@@ -103,21 +104,37 @@ function meGusta(e){
 
 function modalContenido(elemento, tapa, nombreBar){
     let tituloModal = document.getElementById('tituloModal');
+    let cerrar = document.getElementById('cerrar');
+    let btnCerrar = document.getElementById('close');
     tituloModal.textContent= nombreBar;
 
-    let contenidoModal = document.getElementById('modal-contenido');
+    // let contenidoModal = document.getElementById('modal-contenido');
     let nombreTapaModal = document.getElementById('nombreTapaModal');
     for(let i of tapa){
         if(elemento.getAttribute('tpsid') == i.id){
+            localStorage.setItem('id', i.id);
             nombreTapaModal.textContent = i.nombreTapa;
             let ingredientes = document.getElementById('ingredientes');
+            ingredientes.innerHTML = '';
             for(let t of i.ingredientes){
                 let li = document.createElement('li');
                 li.innerHTML = t;
-                ingredientes.append(li)
+                ingredientes.append(li);
+                
             }
         }
     }
+
+    cerrar.addEventListener('click', (event)=>{
+        event.preventDefault();
+        localStorage.removeItem('id');
+    });
+
+    btnCerrar.addEventListener('click', (event)=>{
+        event.preventDefault();
+        localStorage.removeItem('id');
+    })
+
 }
 
 
