@@ -123,17 +123,16 @@ function modalContenido(elemento, tapa, nombreBar){
                 ingredientes.append(li);
                 
             }
-            
-            eliminarTapa.addEventListener('click', ()=>{
-                console.log(i.id);
+            const borrar = ()=>{
                 if(eliminar(i.id, nombreBar)){
                     cerrar.click();
+                    eliminarTapa.removeEventListener('click', borrar);
                 }else{
                     alert('ha ocurrido un error al eliminar la tapa');
                 }
-                
-            })
+            }
             
+            eliminarTapa.addEventListener('click', borrar);
         }
     }
 
