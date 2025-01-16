@@ -12,6 +12,7 @@ export function placeholderModificacion(id, nombreBar){
             if(bares.nombreBar === nombreBar){
                 for(let tapaId in bares.tapas){
                     
+                    nombreDeBar.value = nombreBar;
                     if(bares.tapas[tapaId].id === id){
     
                         bares.tapas.splice(tapaId, 1, );
