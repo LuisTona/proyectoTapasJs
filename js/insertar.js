@@ -1,8 +1,7 @@
-import { controlUsuarios } from "./comprobacionUser.js";
 import { dataBares } from "./data.js";
 import {render} from "./creadorTapas.js"
 
-controlUsuarios();
+
 
 let formulario = document.getElementById('formulario');
 let nombreBar = document.getElementById('nombreBar');
@@ -10,6 +9,7 @@ let nombreTapa = document.getElementById('nombreTapa');
 let imagen = document.getElementById('imagen');
 let descripcion = document.getElementById('descripcion');
 let button = document.getElementById('volver');
+
 
 let añadirIngrediente = document.getElementById('masIngredientes')
 let insertarIngredientes = document.getElementById('insertarIngredientes');

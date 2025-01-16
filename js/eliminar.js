@@ -5,7 +5,6 @@ export function eliminar (id, nombreBar){
     for(let bares of dataBares){
 
         if(bares.nombreBar === nombreBar){
-
             for(let tapaId in bares.tapas){
                 
                 if(bares.tapas[tapaId].id === id){

@@ -2,6 +2,7 @@ import { dataBares } from "./data.js";
 import { dataUsuarios } from "./data.js";
 import { comprobarUsuario } from "./comprobacionUser.js";
 import { eliminar } from "./eliminar.js";
+import { placeholderModificacion } from "./modificar.js";
 
 render();
 
@@ -103,11 +104,18 @@ function meGusta(e){
 }
 
 function modalContenido(elemento, tapa, nombreBar){
+    let footerModal = document.getElementById('modalFooter');
+    let infoModal ='<button type="button" class="btn btn-danger" id="eliminar">Eliminar</button><button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close">Cerrar</button><button type="button" class="btn btn-primary" id="modificarModal">Modificar</button>'
+    footerModal.innerHTML = ' ';
+    footerModal.innerHTML = infoModal;
+
     let tituloModal = document.getElementById('tituloModal');
     tituloModal.textContent= nombreBar;
     
     let eliminarTapa = document.getElementById('eliminar');
     let cerrar = document.getElementById('cerrar');
+    
+    let modificar = document.getElementById('modificarModal');
     
     let nombreTapaModal = document.getElementById('nombreTapaModal');
     
@@ -123,6 +131,7 @@ function modalContenido(elemento, tapa, nombreBar){
                 ingredientes.append(li);
                 
             }
+            
             const borrar = ()=>{
                 if(eliminar(i.id, nombreBar)){
                     cerrar.click();
@@ -133,10 +142,23 @@ function modalContenido(elemento, tapa, nombreBar){
             }
             
             eliminarTapa.addEventListener('click', borrar);
+            
+            modificar.addEventListener('click', ()=>{
+                
+                let formInsertar = document.getElementById('formInsertar');
+                let tapas = document.getElementById('tapas');
+                let btnModificar = document.getElementById('modificar');
+                let enviar = document.getElementById('enviar');
+
+                cerrar.click();
+                btnModificar.style.display = 'block';
+                enviar.style.display = 'none';
+                formInsertar.style.display = 'flex';
+                tapas.style.display = 'none';
+                placeholderModificacion(i.id, nombreBar)
+            })
         }
     }
-
-
 }
 
 

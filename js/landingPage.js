@@ -1,4 +1,5 @@
-
+import { dataBares } from "./data.js";
+import { placeholderModificacion } from "./modificar.js";
 document.addEventListener('DOMContentLoaded', function () {
     const slides = document.querySelectorAll('.carousel-slide');
     let currentSlide = 0;
@@ -29,11 +30,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 let insertar = document.getElementById('insertar');
+let modificar = document.getElementById('modificar');
+let enviar = document.getElementById('enviar');
 
 insertar.addEventListener('click', ()=>{
     let formInsertar = document.getElementById('formInsertar');
     let tapas = document.getElementById('tapas');
-    console.log('a');
+    
+    modificar.style.display = 'none';
+    enviar.style.display = 'block';
+    
     formInsertar.style.display = 'flex';
     tapas.style.display = 'none';
 })
+

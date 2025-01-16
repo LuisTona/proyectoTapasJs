@@ -5,6 +5,11 @@ export function comprobarUsuario(){
     if(localStorage.getItem('userInfo') === null){
         localStorage.setItem('invitado', 'invitado');
         acceso.style.display = 'block';
+        let eliminar = document.getElementById('eliminar');
+        let modificar = document.getElementById('modificar');
+
+        eliminar.style.display = 'none';
+        modificar.style.display = 'none';
         return false;
     }else{
         controlUsuarios();
@@ -35,10 +40,14 @@ export function controlUsuarios(){
         let identificador = document.getElementById('identificador');
         let logout = document.getElementById('logOut');
         let insertar = document.getElementById('insertar');
-        
+        let eliminar = document.getElementById('eliminar');
+        let modificar = document.getElementById('modificar');
+
         identificador.textContent = JSON.parse(localStorage.getItem('userInfo')).name;
         userIdentificado.style.display = 'block';
         insertar.style.display = 'none';
+        eliminar.style.display = 'none';
+        modificar.style.display = 'none';
         logout.addEventListener('click', logOut);
     }
 }
