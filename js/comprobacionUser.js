@@ -6,8 +6,9 @@ export function comprobarUsuario(){
         localStorage.setItem('invitado', 'invitado');
         acceso.style.display = 'block';
         let eliminar = document.getElementById('eliminar');
-        let modificar = document.getElementById('modificar');
-
+        let modificar = document.getElementById('modificarModal');
+        let favoritos = document.getElementById('filtroFav');
+        favoritos.style.display = 'none';
         eliminar.style.display = 'none';
         modificar.style.display = 'none';
         return false;
@@ -41,7 +42,7 @@ export function controlUsuarios(){
         let logout = document.getElementById('logOut');
         let insertar = document.getElementById('insertar');
         let eliminar = document.getElementById('eliminar');
-        let modificar = document.getElementById('modificar');
+        let modificar = document.getElementById('modificarModal');
 
         identificador.textContent = JSON.parse(localStorage.getItem('userInfo')).name;
         userIdentificado.style.display = 'block';

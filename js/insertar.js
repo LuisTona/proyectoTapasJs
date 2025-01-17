@@ -39,7 +39,7 @@ formulario.addEventListener('submit', (event)=>{
         };
         dataBares.push(dataTapa);
         volver();
-        render();
+        render(dataBares);
     }
 })
 

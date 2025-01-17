@@ -44,7 +44,7 @@ export function modificar(id, barNombre){
                     }
                     bares.nombreBar = nombreDeBar.value.trim();
                     bares.tapas.splice(tapaId, 1, nuevaTapa);
-                    render();
+                    render(dataBares);
                     document.getElementById('volver').click();
                 }
             }

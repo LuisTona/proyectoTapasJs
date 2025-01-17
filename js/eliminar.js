@@ -12,7 +12,7 @@ export function eliminar (id, nombreBar){
                     bares.tapas.splice(tapaId, 1);
 
                     if(comprobarEliminacion(id)){
-                        render();
+                        render(dataBares);
                         console.log("eliminado correctamente");
                         return true;
                     }else{

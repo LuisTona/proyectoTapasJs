@@ -3,6 +3,7 @@ import { dataUsuarios } from "./data.js";
 import { comprobarUsuario } from "./comprobacionUser.js";
 import { eliminar } from "./eliminar.js";
 import { modificar, placeholderModificacion } from "./modificar.js";
+import { misFavoritos } from "./landingPage.js";
 
 
 render(dataBares);
@@ -14,6 +15,7 @@ export function render(data){
         let name = element.nombreBar; 
         creadorTarjeta(name, element.tapas);
     });
+    misFavoritos()
 }
 
 export function creadorTarjeta(nombreBar, tapas){
@@ -170,7 +172,7 @@ function modalContenido(elemento, tapa, nombreBar){
             })
         }
     }
-    render();
+    render(dataBares);
     
 }
 

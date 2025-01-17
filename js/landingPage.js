@@ -47,37 +47,58 @@ insertar.addEventListener('click', ()=>{
     tapas.style.display = 'none';
     limpiarFormulario();
 })
+let favoritos = false;
 
 filtrarFav.addEventListener('click', ()=>{
     let user = JSON.parse(localStorage.getItem('userInfo')).name
     let arregloFav = [];
-    for(let users of dataUsuarios){
-    
-        if(users.name == user){
-            
-            dataBares.forEach(e=>{
-                for(let tapaId of e.tapas){
-                    for(let k = 0; k < users.favoritos.length; k++){
-                        
-                        if(users.favoritos[k] == tapaId.id){
-                            let bar={
-                                nombreBar:e.nombreBar,
-                                tapas:[tapaId]
+    if(favoritos == false){
+        favoritos = true;
+        for(let users of dataUsuarios){
+        
+            if(users.name == user){
+                
+                dataBares.forEach(e=>{
+                    for(let tapaId of e.tapas){
+                        for(let k = 0; k < users.favoritos.length; k++){
+                            
+                            if(users.favoritos[k] == tapaId.id){
+                                let bar={
+                                    nombreBar:e.nombreBar,
+                                    tapas:[tapaId]
+                                }
+                                arregloFav.push(bar);
                             }
-                            arregloFav.push(bar);
-                        }
 
+                        }
+                        
                     }
                     
+                })
+            }
+        }
+        render(arregloFav);
+        misFavoritos()
+
+    }else{
+        favoritos = false;
+        render(dataBares);
+        
+    }
+})
+
+export function misFavoritos(){
+    let tapas = document.querySelectorAll('.tapasTitle');
+    for(let user of dataUsuarios){
+        if(user.name == JSON.parse(localStorage.getItem('userInfo')).name){
+            for(let k = 0; k< user.favoritos.length; k++){
+                for(let w = 0; w < tapas.length; w++){
+                    if(tapas[w].attributes.tpsid.value == user.favoritos[k]){
+                        tapas[w].firstElementChild.src = './svg/heart-solid.svg';
+                    }
                 }
-                
-            })
+            }
         }
     }
-    render(arregloFav)
-    let img = document.querySelectorAll('.like');
-    img.src= './svg/heart-solid.svg';
-    console.log(img);
-    console.log(arregloFav);
-})
+}
 
