@@ -4,7 +4,7 @@ README - Conocimiento de JS, DOM y estructuración de proyectos WEB
 
 Luis Alberto, Adrián Gavela, Alejandro Martínez
 
-Este repositorio contiene el poder registrarse como administrador o como usuario, dependiendo de como sea el registro podrás añadir, modificar y eliminar tapas o solo añadirlas a favoritos.
+Este repositorio contiene la funcionalidad de añadir, modificar y eliminar tapas o solo añadirlas a favoritos, dependiendo del tipo de usuario que sea.
 
 # Requisitos previos:
 
@@ -19,6 +19,7 @@ El proyecto consiste en una galería interactiva de bares de tapas, donde los us
 # Funcionalidades:
 
 El proyecto tiene las siguientes funcionalidades, basadas en las historias de usuario:
+Ya que ahora mismo no se pide que se pueda registrar un usuario o un administrador, el archivo data.js contiene varios registros tanto de usuarios como de administradores para que se pueda comprobar la funcionalidad dependiendo de que tipo de usuario sea 
 
 ## Historia de Usuario 1: Mostrar Galería de Bares de Tapas
 
@@ -28,7 +29,7 @@ Se genera una galería de bares y tapas a partir de un array de objetos. Cada ta
 	- Nombre de la tapa
 	- Imagen de la tapa (si no se proporciona una imagen se mostrará una genérica
 	- Botón para añadir a favoritos (corazón)
-	- Modal con más información, donde aparecerá de nuevo el nombre del bar, el nombre de la tapa y los ingredientes que está tiene
+	- Modal con más información, donde aparecerá de nuevo el nombre del bar, el nombre de la tapa y los ingredientes que esta tiene
 
 ## Historia de Usuario 2: Añadir Nuevos Bares
 
@@ -40,9 +41,9 @@ Los usuarios pueden marcar sus tapas como favoritas.
 Cada tarjeta tiene un botón para marcarla como favorita con el icono de un corazón.
 
 ## Historia de Usuario 4: Editar o Eliminar Bares
-Como administrador se puede modificar los datos del bar y la tapa, accediendo a esta opción desde el modal de más información situado en cada carta de bar. Este nos llevará a un formulario en el cual al cambiar los datos nos permitirá cambiárselos a la tapa en cuestiñón.
-
-También podemos eliminar tapas que ya no queramos tener en nuestra página. Al igual que para modificar, accediendo al modal de más información en cada tapa, se desplegará el modal en el que aparecerá el botón de Eliminar.
+Como administrador se puede modificar los datos del bar y la tapa, accediendo a esta opción desde el modal de más información situado en cada carta de bar. Este nos llevará a un formulario en el cual al cambiar los datos nos permitirá cambiárselos a la tapa en cuestión.
+galeria
+También podemos eliminar tapas que ya no queramos tener en nuestra galeria. Al igual que para modificar, accediendo al modal de más información en cada tapa, se desplegará el modal en el que aparecerá el botón de Eliminar.
 
 ## Historia de Usuario 5: Filtrar Favoritos
 
