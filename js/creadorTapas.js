@@ -2,7 +2,8 @@ import { dataBares } from "./data.js";
 import { dataUsuarios } from "./data.js";
 import { comprobarUsuario } from "./comprobacionUser.js";
 import { eliminar } from "./eliminar.js";
-import { placeholderModificacion } from "./modificar.js";
+import { modificar, placeholderModificacion } from "./modificar.js";
+
 
 render();
 
@@ -68,7 +69,7 @@ function creadorImagenTapa(imagen){
     let a = document.createElement('a');
     let img = document.createElement('img');
     img.src = imagen.imagenTapa;
-    img.alt = 'foto de tapas de ' + imagen.nombreTapa.toLowerCase();
+    img.alt = 'foto de tapas de ' + imagen.nombreTapa;
     a.append(img);
     return a;
     
@@ -115,11 +116,12 @@ function modalContenido(elemento, tapa, nombreBar){
     let eliminarTapa = document.getElementById('eliminar');
     let cerrar = document.getElementById('cerrar');
     
-    let modificar = document.getElementById('modificarModal');
-    
+    let btnModalmodificar = document.getElementById('modificarModal');
+
     let nombreTapaModal = document.getElementById('nombreTapaModal');
     
     for(let i of tapa){
+
         if(elemento.getAttribute('tpsid') == i.id){
             
             nombreTapaModal.textContent = i.nombreTapa;
@@ -143,22 +145,29 @@ function modalContenido(elemento, tapa, nombreBar){
             
             eliminarTapa.addEventListener('click', borrar);
             
-            modificar.addEventListener('click', ()=>{
+            let btnModificar = document.getElementById('modificar');
+            btnModalmodificar.addEventListener('click', ()=>{
                 
                 let formInsertar = document.getElementById('formInsertar');
                 let tapas = document.getElementById('tapas');
-                let btnModificar = document.getElementById('modificar');
                 let enviar = document.getElementById('enviar');
-
-                cerrar.click();
+                
                 btnModificar.style.display = 'block';
                 enviar.style.display = 'none';
                 formInsertar.style.display = 'flex';
                 tapas.style.display = 'none';
                 placeholderModificacion(i.id, nombreBar)
+                btnModificar.addEventListener('click', ()=>{
+                    modificar(i.id, nombreBar);
+                })
+                cerrar.click();
             })
         }
     }
+    render();
+
 }
+
+
 
 
