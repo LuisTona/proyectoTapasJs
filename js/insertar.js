@@ -1,7 +1,5 @@
 import { dataBares, imagenesTapas } from "./data.js";
 import {render} from "./creadorTapas.js"
-import { modificar } from "./modificar.js";
-
 
 let formulario = document.getElementById('formulario');
 let nombreBar = document.getElementById('nombreBar');
@@ -24,7 +22,6 @@ formulario.addEventListener('submit', (event)=>{
                 nTapas += 1;
             })
         });
-        // console.log(imagen.value);
         let dataTapa = {
             nombreBar: nombreBar.value.trim(),
             tapas: [

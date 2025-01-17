@@ -244,6 +244,9 @@ h2 {
     transform: translateY(-10px);
     background-color: #ebebeb;
 }
+#botones{
+    width: 100%;
+}
 /* Pie de Página */
 
 footer {

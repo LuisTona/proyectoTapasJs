@@ -32,16 +32,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 let insertar = document.getElementById('insertar');
-let modificar = document.getElementById('modificar');
-let enviar = document.getElementById('enviar');
+// let modificar = document.getElementById('modificar');
 let filtrarFav = document.getElementById('filtroFav');
 
 insertar.addEventListener('click', ()=>{
     let formInsertar = document.getElementById('formInsertar');
+    let insertarBotones = document.getElementById('botones');
     let tapas = document.getElementById('tapas');
+    let titulo = document.getElementById('titulo');
+    let insertarIngredientes = document.getElementById('insertarIngredientes');
     
-    modificar.style.display = 'none';
-    enviar.style.display = 'block';
+    while(insertarBotones.firstChild){
+        insertarBotones.firstChild.remove();
+    }
+    
+    let enviar = document.createElement('input');
+    enviar.type = 'submit';
+    enviar.name = 'enviar';
+    enviar.value = 'Enviar';
+    enviar.class = 'enviar';
+    enviar.setAttribute('id', 'enviar');
+    insertarBotones.append(enviar);
+
+    while(insertarIngredientes.firstChild){
+        insertarIngredientes.firstChild.remove();
+    }
+    titulo.textContent = 'Insertar tapa';
     
     formInsertar.style.display = 'flex';
     tapas.style.display = 'none';

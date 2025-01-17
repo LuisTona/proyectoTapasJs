@@ -7,7 +7,8 @@ import { misFavoritos } from "./landingPage.js";
 
 
 render(dataBares);
-
+//La principal funcion de render es crear todas las tapas que esten almacenadas
+//en databares que es la "base de datos" usada
 export function render(data){
     let grid = document.getElementById('tapasGrid');
     grid.innerHTML = ' ';
@@ -17,7 +18,7 @@ export function render(data){
     });
     misFavoritos()
 }
-
+//La principal funcionalidad es la creacion de las targetas de cada tapa
 export function creadorTarjeta(nombreBar, tapas){
     // vamos a crear las tarjetas
     let gridTapas = document.getElementById('tapasGrid');
@@ -41,6 +42,8 @@ export function creadorTarjeta(nombreBar, tapas){
         gridTapas.append(tarjetaTapa);
     }
 }
+
+//La principal funcionalidad es la creacion de los botones de la modal
 export function creadorBoton(){
     let button = document.createElement('button');
     button.type = 'button';
@@ -51,6 +54,8 @@ export function creadorBoton(){
     button.textContent ='Mas informacion';
     return button;
 }
+
+//Su funcion es crear el corazon de los favoritos 
 function creadorLike(){
     let imgSvg = document.createElement('img');
     imgSvg.src = './svg/corazon.svg';
@@ -61,6 +66,7 @@ function creadorLike(){
     return imgSvg;
 }
 
+//Su funcion es crear el nombre de cada bar en negrita
 function creadorNombreBar(name){
     let nombreBar = document.createElement('p');
     let strong = document.createElement('strong');
@@ -69,6 +75,7 @@ function creadorNombreBar(name){
     return nombreBar;
 }
 
+//Esta funcion realiza la creacion de las imagenes de cada tapa
 function creadorImagenTapa(imagen){
     let a = document.createElement('a');
     let img = document.createElement('img');
@@ -79,7 +86,8 @@ function creadorImagenTapa(imagen){
     
 }
 
-function creadorDescripcion(descripcion, nombreBar){
+//Esta funcion crea la descripcion  de cada tapa
+function creadorDescripcion(descripcion){
     let div = document.createElement('div');
     let strong = document.createElement('strong');
     let br = document.createElement('br');
@@ -93,6 +101,9 @@ function creadorDescripcion(descripcion, nombreBar){
     return div;
 }
 
+//La funcionalidad de esta funcion es el control de los corazones.
+//si el corzon esta en blanco quiere decir que no esta añadida a favoritos 
+//si el corazon esta relleno quiere decir que esta añadido a favoritos 
 function meGusta(e){
     for(let user of dataUsuarios){
         if(user.name == JSON.parse(localStorage.getItem('userInfo')).name){
@@ -107,6 +118,8 @@ function meGusta(e){
     }
 }
 
+
+//Esta funcion crea la modal de cada tapa 
 function modalContenido(elemento, tapa, nombreBar){
     let footerModal = document.getElementById('modalFooter');
     let infoModal ='<button type="button" class="btn btn-danger" id="eliminar">Eliminar</button><button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close">Cerrar</button><button type="button" class="btn btn-primary" id="modificarModal">Modificar</button>'
@@ -148,21 +161,30 @@ function modalContenido(elemento, tapa, nombreBar){
             
             eliminarTapa.addEventListener('click', borrar);
             
-            let btnModificar = document.getElementById('modificar');
-
+            
             btnModalmodificar.addEventListener('click', ()=>{
                 
                 let formInsertar = document.getElementById('formInsertar');
+                let insertarBotones = document.getElementById('botones');
+
                 let tapas = document.getElementById('tapas');
                 let enviar = document.getElementById('enviar');
+                while(insertarBotones.firstChild){
+                    insertarBotones.firstChild.remove();
+                }
 
                 let modificacion= ()=>{
                     modificar(i.id, nombreBar);
                     btnModificar.removeEventListener('click', modificacion);
                 }
+                let btnModificar = document.createElement('input')
+                btnModificar.type = 'submit';
+                btnModificar.name = 'modificar';
+                btnModificar.value = 'Modificar';
+                btnModificar.class = 'modificar';
+                btnModificar.setAttribute('id', 'modificar');
+                insertarBotones.append(btnModificar);
 
-                btnModificar.style.display = 'block';
-                enviar.style.display = 'none';
                 formInsertar.style.display = 'flex';
                 tapas.style.display = 'none';
                 placeholderModificacion(i.id, nombreBar)

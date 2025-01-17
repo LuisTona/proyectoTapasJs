@@ -4,7 +4,6 @@ import { imagenSeleccionada, ingredientesAñadidos } from "./insertar.js";
 
 let nombreDeBar = document.getElementById('nombreBar');
 let nombreDeTapa = document.getElementById('nombreTapa');
-let imagen = document.getElementById('imagen');
 let descripcion = document.getElementById('descripcion');
 let titulo = document.getElementById('titulo');
 

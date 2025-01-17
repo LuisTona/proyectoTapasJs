@@ -1,6 +1,8 @@
 import { dataBares } from "./data.js";
 import { render } from "./creadorTapas.js";
 
+
+//La funcionalidad de esta funcion es eliminar la tapa seleccionada 
 export function eliminar (id, nombreBar){
     for(let bares of dataBares){
 
@@ -13,7 +15,7 @@ export function eliminar (id, nombreBar){
 
                     if(comprobarEliminacion(id)){
                         render(dataBares);
-                        console.log("eliminado correctamente");
+                        alert("eliminado correctamente");
                         return true;
                     }else{
                         return false;
@@ -23,6 +25,8 @@ export function eliminar (id, nombreBar){
         }
     }
 }
+
+//En esta funcion comprobamos 
 function comprobarEliminacion(id){
     
     dataBares.forEach(bares=>{
@@ -30,7 +34,7 @@ function comprobarEliminacion(id){
         
             let idTapas = element.id;
             if(id === idTapas){
-                console.log('no se puedo eliminar');
+                alert.log('no se puedo eliminar');
                 return false;
             }
         })
