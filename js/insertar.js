@@ -1,6 +1,6 @@
-import { dataBares } from "./data.js";
+import { dataBares, imagenesTapas } from "./data.js";
 import {render} from "./creadorTapas.js"
-
+import { modificar } from "./modificar.js";
 
 
 let formulario = document.getElementById('formulario');
@@ -15,30 +15,32 @@ let añadirIngrediente = document.getElementById('masIngredientes')
 let insertarIngredientes = document.getElementById('insertarIngredientes');
 
 formulario.addEventListener('submit', (event)=>{
-    let nTapas = 0;
     event.preventDefault();
-    
-    dataBares.forEach(element => {
-        element.tapas.forEach(() =>{
-            nTapas += 1;
-        })
-    });
-
-    let dataTapa = {
-        nombreBar: nombreBar.value.trim(),
-        tapas: [
-            {
-                id: 'tp' + (nTapas + 1),
-                nombreTapa: nombreTapa.value.trim(),
-                imagenTapa: imagen.value.trim(),
-                descripcion: descripcion.value.trim(),
-                ingredientes: ingredientesAñadidos()
-            }
-        ]
-    };
-    dataBares.push(dataTapa);
-    volver();
-    render();
+    if(event.submitter.getAttribute('id') === 'enviar'){
+        let nTapas = 0;
+        
+        dataBares.forEach(element => {
+            element.tapas.forEach(() =>{
+                nTapas += 1;
+            })
+        });
+        // console.log(imagen.value);
+        let dataTapa = {
+            nombreBar: nombreBar.value.trim(),
+            tapas: [
+                {
+                    id: 'tp' + (nTapas + 1),
+                    nombreTapa: nombreTapa.value.trim(),
+                    imagenTapa: imagenSeleccionada(),
+                    descripcion: descripcion.value.trim(),
+                    ingredientes: ingredientesAñadidos()
+                }
+            ]
+        };
+        dataBares.push(dataTapa);
+        volver();
+        render();
+    }
 })
 
 button.addEventListener('click', volver);
@@ -46,8 +48,10 @@ button.addEventListener('click', volver);
 function volver(){
     let formInsertar = document.getElementById('formInsertar');
     let tapas = document.getElementById('tapas');
+    let btnModificar = document.getElementById('modificar');
     formInsertar.style.display = 'none';
     tapas.style.display = 'block';
+    btnModificar.click();
 }
 
 añadirIngrediente.addEventListener('click', (e)=>{
@@ -68,14 +72,29 @@ function añadidorIngredientes(){
     insertarIngredientes.append(input);
 }
 
-function ingredientesAñadidos(){
+export function ingredientesAñadidos(){
     let lista = insertarIngredientes.children
     let arreglo = []
     for(let k = 1; k < lista.length; k +=2){
-        
-        arreglo.push(lista[k].value)
+        if(lista[k].value.trim() !== ''){
+            arreglo.push(lista[k].value)
+        }
         
     }
-
     return arreglo;
+}
+
+export function limpiarFormulario(){
+    nombreBar.value = ' ';
+    nombreTapa.value = ' ';
+    imagen.value = '';
+    descripcion.value = ' ';
+}
+
+export function imagenSeleccionada(){
+    for(let imagenData in imagenesTapas){
+        if(imagenData == imagen.value){
+           return imagenesTapas[imagenData];
+        }
+    }
 }

@@ -139,3 +139,16 @@ export let dataUsuarios = [
         favoritos:[]
     }
 ]
+
+export let imagenesTapas ={
+    alitas:'./img/alitas.webp',
+    almondigas:'./img/almondigas.webp',
+    tortilla:'./img/tortilla.webp',
+    morcilla:'./img/morcilla.webp',
+    ensaladilla:'./img/ensaladilla.webp',
+    pulpo:'./img/pulpo-300x200.webp',
+    patatas:'./img/patatasAlioli-300x200.webp',
+    sopa:'./img/sopasAjo-300x200.webp',
+    salmonejo:'./img/salmonejo-300x200.webp',
+    embutido:'./img/embutido.webp'
+}

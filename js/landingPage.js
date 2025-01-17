@@ -1,5 +1,5 @@
-import { dataBares } from "./data.js";
-import { placeholderModificacion } from "./modificar.js";
+import { limpiarFormulario } from "./insertar.js";
+
 document.addEventListener('DOMContentLoaded', function () {
     const slides = document.querySelectorAll('.carousel-slide');
     let currentSlide = 0;
@@ -42,5 +42,8 @@ insertar.addEventListener('click', ()=>{
     
     formInsertar.style.display = 'flex';
     tapas.style.display = 'none';
+    limpiarFormulario();
 })
+
+
 

@@ -32,7 +32,9 @@ export function creadorTarjeta(nombreBar, tapas){
         tarjetaTapa.append(creadorDescripcion(tapas[i], nombreBar));
         tarjetaTapa.append(creadorBoton());
         tarjetaTapa.addEventListener('click', (e)=>{
-            modalContenido(e.target.parentNode, tapas, nombreBar);
+            if(e.target.getAttribute('id') == 'informacion'){
+                modalContenido(e.target.parentNode, tapas, nombreBar);
+            }
         })
         gridTapas.append(tarjetaTapa);
     }
@@ -90,7 +92,6 @@ function creadorDescripcion(descripcion, nombreBar){
 }
 
 function meGusta(e){
-    
     for(let user of dataUsuarios){
         if(user.name == JSON.parse(localStorage.getItem('userInfo')).name){
             if(e.target.attributes[0].value == './svg/corazon.svg'){
@@ -146,26 +147,31 @@ function modalContenido(elemento, tapa, nombreBar){
             eliminarTapa.addEventListener('click', borrar);
             
             let btnModificar = document.getElementById('modificar');
+
             btnModalmodificar.addEventListener('click', ()=>{
                 
                 let formInsertar = document.getElementById('formInsertar');
                 let tapas = document.getElementById('tapas');
                 let enviar = document.getElementById('enviar');
-                
+
+                let modificacion= ()=>{
+                    modificar(i.id, nombreBar);
+                    btnModificar.removeEventListener('click', modificacion);
+                }
+
                 btnModificar.style.display = 'block';
                 enviar.style.display = 'none';
                 formInsertar.style.display = 'flex';
                 tapas.style.display = 'none';
                 placeholderModificacion(i.id, nombreBar)
-                btnModificar.addEventListener('click', ()=>{
-                    modificar(i.id, nombreBar);
-                })
+                btnModificar.addEventListener('click', modificacion)
                 cerrar.click();
+
             })
         }
     }
     render();
-
+    
 }
 
 

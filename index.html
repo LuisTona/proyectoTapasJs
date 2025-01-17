@@ -137,7 +137,19 @@
                <label for="nombreTapa">Nombre Tapa:</label>
                <input type="text" id="nombreTapa" class="nombreTapa" name="nombreTapa">
                <label for="imagen">Imagen de la Tapa:</label>
-               <input type="file" name="imagen" id="imagen" class="imagen">
+               <select name="imagen" id="imagen">
+                  <option value="" selected disabled>--Seleccione una opcion--</option>
+                  <option value="alitas">Alitas</option>
+                  <option value="almondigas">Albondigas</option>
+                  <option value="tortilla">Tortilla</option>
+                  <option value="morcilla">Morcilla</option>
+                  <option value="ensaladilla">Ensaladilla</option>
+                  <option value="pulpo">Pulpo</option>
+                  <option value="patatas">Patatas Alioli</option>
+                  <option value="sopa">Sopas de ajo</option>
+                  <option value="salmonejo">Salmonejo</option>
+                  <option value="embutido">Embutido</option>
+               </select>
                <label for="descripcion">Decripcion de la tapa</label>
                <textarea name="descripcion" id="descripcion" cols="25"></textarea>
                <div id="insertarIngredientes">
