@@ -1,3 +1,5 @@
+import { render } from "./creadorTapas.js";
+import { dataUsuarios, dataBares } from "./data.js";
 import { limpiarFormulario } from "./insertar.js";
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -32,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
 let insertar = document.getElementById('insertar');
 let modificar = document.getElementById('modificar');
 let enviar = document.getElementById('enviar');
+let filtrarFav = document.getElementById('filtroFav');
 
 insertar.addEventListener('click', ()=>{
     let formInsertar = document.getElementById('formInsertar');
@@ -45,5 +48,36 @@ insertar.addEventListener('click', ()=>{
     limpiarFormulario();
 })
 
+filtrarFav.addEventListener('click', ()=>{
+    let user = JSON.parse(localStorage.getItem('userInfo')).name
+    let arregloFav = [];
+    for(let users of dataUsuarios){
+    
+        if(users.name == user){
+            
+            dataBares.forEach(e=>{
+                for(let tapaId of e.tapas){
+                    for(let k = 0; k < users.favoritos.length; k++){
+                        
+                        if(users.favoritos[k] == tapaId.id){
+                            let bar={
+                                nombreBar:e.nombreBar,
+                                tapas:[tapaId]
+                            }
+                            arregloFav.push(bar);
+                        }
 
+                    }
+                    
+                }
+                
+            })
+        }
+    }
+    render(arregloFav)
+    let img = document.querySelectorAll('.like');
+    img.src= './svg/heart-solid.svg';
+    console.log(img);
+    console.log(arregloFav);
+})
 

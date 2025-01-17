@@ -5,12 +5,12 @@ import { eliminar } from "./eliminar.js";
 import { modificar, placeholderModificacion } from "./modificar.js";
 
 
-render();
+render(dataBares);
 
-export function render(){
+export function render(data){
     let grid = document.getElementById('tapasGrid');
     grid.innerHTML = ' ';
-    dataBares.forEach(element => {
+    data.forEach(element => {
         let name = element.nombreBar; 
         creadorTarjeta(name, element.tapas);
     });

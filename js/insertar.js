@@ -92,9 +92,13 @@ export function limpiarFormulario(){
 }
 
 export function imagenSeleccionada(){
-    for(let imagenData in imagenesTapas){
-        if(imagenData == imagen.value){
-           return imagenesTapas[imagenData];
+    if(imagen.value == ''){
+        return imagenesTapas['alitas'];
+    }else{
+        for(let imagenData in imagenesTapas){
+            if(imagenData == imagen.value){
+               return imagenesTapas[imagenData];
+            }
         }
     }
 }

@@ -177,6 +177,19 @@ h1 {
 
 #tapas {
     text-align: center;
+    & h2{
+        padding: 10px;
+        box-shadow:0px 1px 15px 1px rgb(207, 207, 207);
+    }
+    & #filtroFav{
+        background-color: #30384162;
+        border-radius: 15px;
+        border: none;
+        padding: 5px;
+    }
+    & #filtroFav:hover{
+        background-color: #303841c0;
+    }
 }
 
 h2 {
@@ -190,6 +203,7 @@ h2 {
     grid-template-columns: auto auto auto;
     justify-content: center;
     gap: 20px;
+    margin-top: 20px;
 }
 
 .tapasTitle {
@@ -204,7 +218,7 @@ h2 {
     max-height: 650px;
     font-family: var(--font-main);
     text-align: center;
-    
+    box-shadow: 2px 5px 15px 0px;
     & a img {
         width: 90%;
         max-width: 250px;
@@ -220,9 +234,14 @@ h2 {
 
     & button{
         margin: 15px;
+        max-height: 38px;
     }
 }
 
+.tapasTitle:hover{
+    transform: translateY(-10px);
+    background-color: #ebebeb;
+}
 /* Pie de Página */
 
 footer {

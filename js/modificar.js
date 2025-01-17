@@ -29,7 +29,6 @@ export function placeholderModificacion(id, barNombre){
 }
 
 export function modificar(id, barNombre){
-    console.log(barNombre);
     for(let bares of dataBares){
         
         if(bares.nombreBar === barNombre){
