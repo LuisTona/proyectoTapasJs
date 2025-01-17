@@ -61,3 +61,13 @@ git clone https://github.com/LuisTona/proyectoTapasJs.git
 ## Utilización del proyecto
 
 Una vez clonado el repositorio, abre el archivo index.html en tu navegador. Ahí tendrás todo lo explicado anteriormente.
+
+### Facilitamos dos usuarios, un administrador y un usuario normal:
+
+Administrador:
+-username: manolo
+-password: manolito25
+
+Usuario normal:
+-username:valdu
+-password:1
