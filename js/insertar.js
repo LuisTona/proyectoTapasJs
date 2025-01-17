@@ -42,6 +42,7 @@ formulario.addEventListener('submit', (event)=>{
 
 button.addEventListener('click', volver);
 
+//Con esta funcion podemos volver a la galeria de tapas
 function volver(){
     let formInsertar = document.getElementById('formInsertar');
     let tapas = document.getElementById('tapas');
@@ -56,6 +57,7 @@ añadirIngrediente.addEventListener('click', (e)=>{
     añadidorIngredientes();
 });
 
+//Esta funcion permite añadir ingredientes a las tapas que queramos insertar
 function añadidorIngredientes(){
     
     let label = document.createElement('label');
@@ -69,6 +71,7 @@ function añadidorIngredientes(){
     insertarIngredientes.append(input);
 }
 
+//Con esta funcion confirmamos los ingredientes que se han añadido
 export function ingredientesAñadidos(){
     let lista = insertarIngredientes.children
     let arreglo = []
@@ -81,6 +84,7 @@ export function ingredientesAñadidos(){
     return arreglo;
 }
 
+//Con esta funcion limpiamos el formulario
 export function limpiarFormulario(){
     nombreBar.value = ' ';
     nombreTapa.value = ' ';
@@ -88,6 +92,8 @@ export function limpiarFormulario(){
     descripcion.value = ' ';
 }
 
+
+//Con esta funcion seleccionsmos una imagen predeterminada
 export function imagenSeleccionada(){
     if(imagen.value == ''){
         return imagenesTapas['alitas'];

@@ -10,15 +10,16 @@ export function eliminar (id, nombreBar){
             for(let tapaId in bares.tapas){
                 
                 if(bares.tapas[tapaId].id === id){
-
-                    bares.tapas.splice(tapaId, 1);
-
-                    if(comprobarEliminacion(id)){
-                        render(dataBares);
-                        alert("eliminado correctamente");
-                        return true;
-                    }else{
-                        return false;
+                    if(confirm("¿Seguro que quieres eliminarlo?")){
+                        bares.tapas.splice(tapaId, 1);
+    
+                        if(comprobarEliminacion(id)){
+                            render(dataBares);
+                            alert("eliminado correctamente");
+                            return true;
+                        }else{
+                            return false;
+                        }
                     }
                 }
             }
@@ -26,7 +27,7 @@ export function eliminar (id, nombreBar){
     }
 }
 
-//En esta funcion comprobamos 
+//En esta funcion comprobamos que se a realizado la eliminacion 
 function comprobarEliminacion(id){
     
     dataBares.forEach(bares=>{
@@ -34,7 +35,7 @@ function comprobarEliminacion(id){
         
             let idTapas = element.id;
             if(id === idTapas){
-                alert.log('no se puedo eliminar');
+                alert.log('no se pudo eliminar');
                 return false;
             }
         })

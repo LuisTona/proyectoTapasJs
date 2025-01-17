@@ -155,7 +155,7 @@ function modalContenido(elemento, tapa, nombreBar){
                     cerrar.click();
                     eliminarTapa.removeEventListener('click', borrar);
                 }else{
-                    alert('ha ocurrido un error al eliminar la tapa');
+                    alert('No se ha eliminado la tapa');
                 }
             }
             

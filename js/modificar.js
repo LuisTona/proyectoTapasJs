@@ -10,7 +10,8 @@ let titulo = document.getElementById('titulo');
 let insertarIngredientes = document.getElementById('insertarIngredientes');
 let ingredientesNuevos = '';
 
-
+//Con esta funcion hacemos que el formulario se rellene con los datos de cada tapa
+//para que el usuario pueda modificarla
 export function placeholderModificacion(id, barNombre){
     titulo.textContent = 'Modificar Tapa';
     for(let bares of dataBares){
@@ -27,6 +28,7 @@ export function placeholderModificacion(id, barNombre){
     }
 }
 
+//En esta funcion implementamos la logica para modificar la tapa
 export function modificar(id, barNombre){
     for(let bares of dataBares){
         
@@ -52,6 +54,7 @@ export function modificar(id, barNombre){
 
 }
 
+//Con esta funcion podemos modificar los ingredientes de la tapa que queremos modificar
 function ingredientes(tapa){
     insertarIngredientes.innerHTML = ' ';
     for(let k = 0; k < tapa.ingredientes.length; k++){
