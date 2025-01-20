@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const slides = document.querySelectorAll('.carousel-slide');
     let currentSlide = 0;
-    console.log("hola");
 
     function showSlide(index) {
         slides[currentSlide].classList.remove('active');

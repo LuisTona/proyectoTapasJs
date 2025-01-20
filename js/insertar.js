@@ -1,11 +1,17 @@
 import { dataBares, imagenesTapas } from "./data.js";
-import {render} from "./creadorTapas.js"
+// import {render} from "./creadorTapas.js"
 
 let formulario = document.getElementById('formulario');
 let nombreBar = document.getElementById('nombreBar');
 let nombreTapa = document.getElementById('nombreTapa');
 let imagen = document.getElementById('imagen');
 let descripcion = document.getElementById('descripcion');
+let direccion = document.getElementById('direccion');
+let telefono = document.getElementById('telefono');
+let latitud = document.getElementById('latitud');
+let longitud = document.getElementById('longitud');
+let horaApertura = document.getElementById('hora_apertura');
+let HoraCierre = document.getElementById('hora_cierre');
 let button = document.getElementById('volver');
 
 
@@ -15,28 +21,33 @@ let insertarIngredientes = document.getElementById('insertarIngredientes');
 formulario.addEventListener('submit', (event)=>{
     event.preventDefault();
     if(event.submitter.getAttribute('id') === 'enviar'){
-        let nTapas = 0;
+        const formData = new FormData(formulario);
+        const data = Object.fromEntries(formData);
         
-        dataBares.forEach(element => {
-            element.tapas.forEach(() =>{
-                nTapas += 1;
-            })
-        });
-        let dataTapa = {
-            nombreBar: nombreBar.value.trim(),
-            tapas: [
-                {
-                    id: 'tp' + (nTapas + 1),
-                    nombreTapa: nombreTapa.value.trim(),
-                    imagenTapa: imagenSeleccionada(),
-                    descripcion: descripcion.value.trim(),
-                    ingredientes: ingredientesAñadidos()
-                }
-            ]
-        };
-        dataBares.push(dataTapa);
+        let option = {
+            method: 'post',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        }
+
+        fetch('http://localhost/DWES/www/proyectoTapasJs/php/insertar.php', option)
+        .then(res=>{
+            if(res.status === 201){
+                return res.json();
+            }else{
+                alert('No se pudo añadir la tapa');
+            }
+        })
+
+        .then(data =>{
+            console.log(data);
+        })
+       
         volver();
-        render(dataBares);
+        
     }
 })
 
@@ -49,7 +60,7 @@ function volver(){
     let btnModificar = document.getElementById('modificar');
     formInsertar.style.display = 'none';
     tapas.style.display = 'block';
-    btnModificar.click();
+    // btnModificar.click();
 }
 
 añadirIngrediente.addEventListener('click', (e)=>{

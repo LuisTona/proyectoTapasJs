@@ -177,6 +177,7 @@ h1 {
 
 #tapas {
     text-align: center;
+    
     & h2{
         padding: 10px;
         box-shadow:0px 1px 15px 1px rgb(207, 207, 207);
@@ -189,6 +190,31 @@ h1 {
     }
     & #filtroFav:hover{
         background-color: #303841c0;
+    }
+
+    & .botones{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        
+        & #btnAnterior{
+            margin: 10px;
+            padding: 10px;
+            border: none;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        & #btnSiguiente{
+            margin: 10px;
+            padding: 10px;
+            border: none;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+        }
     }
 }
 
