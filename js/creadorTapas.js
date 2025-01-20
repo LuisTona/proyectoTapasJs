@@ -26,7 +26,7 @@ let tapasPerPage = 6;
 // //La principal funcionalidad es la creacion de las targetas de cada tapa
 function creadorTarjeta(data){
     // vamos a crear las tarjetas
-    console.log(data);
+    // console.log(data);
     let gridTapas = document.getElementById('tapasGrid');
 
     gridTapas.innerHTML = '';
@@ -43,7 +43,7 @@ function creadorTarjeta(data){
         
         tarjetaTapa.append(creadorNombreBar(element.nombre_bar)); 
         tarjetaTapa.append(creadorImagenTapa(element));
-        tarjetaTapa.append(creadorDescripcion(element.nombre, element.descripcion));
+        tarjetaTapa.append(creadorDescripcion(element.nombre_tapa, element.descripcion));
         tarjetaTapa.append(creadorBoton());
         tarjetaTapa.addEventListener('click', (e)=>{
             if(e.target.getAttribute('id') == 'informacion'){
@@ -118,20 +118,20 @@ function creadorDescripcion(nombre, descripcion){
 // //La funcionalidad de esta funcion es el control de los corazones.
 // //si el corzon esta en blanco quiere decir que no esta añadida a favoritos 
 // //si el corazon esta relleno quiere decir que esta añadido a favoritos 
-// function meGusta(e){
-//     console.log(e);
-//     for(let user of dataUsuarios){
-//         if(user.name == localStorage.getItem('nombre')){
-//             if(e.target.attributes[0].value == './svg/corazon.svg'){
-//                 e.target.src= './svg/heart-solid.svg';
-//                 user.favoritos.push(e.target.parentNode.getAttribute('tpsId'));
-//             }else{
-//                 e.target.src = './svg/corazon.svg';
-//                 user.favoritos.pop(e.target.parentNode.getAttribute('tpsId'));
-//             }
-//         }
-//     }
-// }
+function meGusta(e){
+    console.log(e);
+    for(let user of dataUsuarios){
+        if(user.name == localStorage.getItem('nombre')){
+            if(e.target.attributes[0].value == './svg/corazon.svg'){
+                e.target.src= './svg/heart-solid.svg';
+                user.favoritos.push(e.target.parentNode.getAttribute('tpsId'));
+            }else{
+                e.target.src = './svg/corazon.svg';
+                user.favoritos.pop(e.target.parentNode.getAttribute('tpsId'));
+            }
+        }
+    }
+}
 
 
 // //Esta funcion crea la modal de cada tapa 
@@ -243,7 +243,7 @@ fetch('http://localhost/DWES/www/proyectoTapasJs/php/landingpage.php', option)
 
 .then(data =>{
     // console.log(data);
-    console.log(data);
+    // console.log(data[0].nombre_tapa);
     creadorTarjeta(data);
     let btnAnterior = document.getElementById('btnAnterior');
     let btnSiguiente = document.getElementById('btnSiguiente');

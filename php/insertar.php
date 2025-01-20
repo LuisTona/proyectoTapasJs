@@ -26,51 +26,41 @@
             }
 
             $ingredienteTexto = implode(',', $ingrediente);
-
+            print_r($ingredienteTexto);
             try{
-                $sql = "SELECT id_bar FROM bares WHERE nombre_bar = '$nombreBar'";
+                $sql = "SELECT id_bar FROM bares WHERE nombre = '$nombreBar'";
                 $resultado = $con->query($sql);
         
                 if($resultado->num_rows > 0){
                     $row = $resultado->fetch_assoc();
                     $idBar = $row['id_bar'];
                 }else{
-                    $sqlInsertar = "INSERT INTO bares (nombre_bar, direccion, telefono, latitud, longitud, hora_apertura, hora_cierre) VALUES ('$nombreBar', '$direccion', '$telefono', '$latitud', '$longitud', '$hora_apertura', '$hora_cierre')";
+                    $sqlInsertar = "INSERT INTO bares (nombre, direccion, telefono, latitud, longitud, hora_apertura, hora_cierre) VALUES ('$nombreBar', '$direccion', '$telefono', '$latitud', '$longitud', '$hora_apertura', '$hora_cierre')";
                     $result = $con->query($sqlInsertar);
                     $idBar = $con->insert_id;
-                    var_dump($idBar);
+                    
                     header("HTTP/1.1 201 Created");
                     header("Content-type:Application/json");
                     echo json_encode(["id" => $con->insert_id]);
                     
                 }
-                try{
-
-                    $sqlTapa = "INSERT INTO tapas (nombre, descripcion, ingredientes, bar) VALUES ('$nombreTapa', '$descripcion', '$ingredienteTexto', '$idBar')";
-                    $result2 = $con->query($sqlTapa);
-                    $id_tapa = $con->insert_id;
-                    header("HTTP/1.1 201 Created");
-                    header("Content-type:Application/json");
-                    echo json_encode(["id" => $con->insert_id]);
-                }catch(mysqli_sql_exception $e){
-                    header("HTTP/1.1 500 Interval server Error");
-                    exit;
-                }
-
-                try{
-                    $slqTapaBares = "INSERT INTO bar_tapa (id_bar, id_tapa) VALUES ('$idBar', '$id_tapa')";
-                    $result3 = $con->query($slqTapaBares);
-                    header("HTTP/1.1 201 Created");
-                    header("Content-type:Application/json");
-                    echo json_encode(['id' => $con->insert_id]);
-                }catch(mysqli_sql_exception $e){
-                    header("HTTP/1.1 500 Interval Server error");
-                    exit;
-                }
+                
+                
             }catch(mysqli_sql_exception $e){
-                header("HTTP/1.1 500 Interval Server Error");
+                header("HTTP/1.1 500 interval Server Error");
                 exit;
             }
+        }
+        try{
+            $sqlTapa = "INSERT INTO tapas (nombre, descripcion, ingredientes, bar) VALUES ('$nombreTapa', '$descripcion', '$ingredienteTexto', '$idBar')";
+            $result2 = $con->query($sqlTapa);
+            $id_tapa = $con->insert_id;
+            header("HTTP/1.1 201 Created");
+            header("Content-type:Application/json");
+            echo json_encode(["id" => $con->insert_id]);
+        }catch(mysqli_sql_exception $e){
+            header("HTTP/1.1 500 Interval server Error");
+            exit;
         }
         
     }
