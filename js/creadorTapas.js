@@ -26,7 +26,7 @@ let tapasPerPage = 6;
 // //La principal funcionalidad es la creacion de las targetas de cada tapa
 function creadorTarjeta(data){
     // vamos a crear las tarjetas
-
+    console.log(data);
     let gridTapas = document.getElementById('tapasGrid');
 
     gridTapas.innerHTML = '';
@@ -243,7 +243,8 @@ fetch('http://localhost/DWES/www/proyectoTapasJs/php/landingpage.php', option)
 
 .then(data =>{
     // console.log(data);
-    creadorTarjeta(data)
+    console.log(data);
+    creadorTarjeta(data);
     let btnAnterior = document.getElementById('btnAnterior');
     let btnSiguiente = document.getElementById('btnSiguiente');
 

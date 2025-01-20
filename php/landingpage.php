@@ -7,11 +7,11 @@
 
     if($_SERVER['REQUEST_METHOD'] === 'GET'){
         try{
-            $sql = "SELECT b.nombre_bar, t.nombre , t.descripcion, t.ingredientes, t.id_tapa
-                    FROM bar_tapa bt
-                    JOIN bares b ON bt.id_bar = b.id_bar
-                    JOIN tapas t ON bt.id_tapa = t.id_tapa";
+            $sql = "SELECT b.nombre AS nombre_bar, t.nombre AS nombre_tapa , t.descripcion, t.ingredientes, t.id_tapa FROM tapas t JOIN bares b ON b.id_bar = t.bar"; 
+                    
             $result = $con->query($sql);
+
+            
             if($result->num_rows > 0){
                 $tapas = array();
                 while($row = $result->fetch_assoc()){

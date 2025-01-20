@@ -121,7 +121,7 @@ export function controlUsuarios(){
         identificadorUsuario();
 
     }else if(localStorage.getItem('tipo') === 'user'){
-        console.log("hola");
+        
         identificadorUsuario();
 
         let insertar = document.getElementById('insertar');
