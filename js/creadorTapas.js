@@ -9,30 +9,32 @@ comprobarUsuario();
 
 let numPage = 0;
 let tapasPerPage = 6;
+
 // controlUsuarios();
-// render();
+
 //La principal funcion de render es crear todas las tapas que esten almacenadas
 //en databares que es la "base de datos" usada
 // export function render(data){
-//     console.log(data);
+ 
 //     let grid = document.getElementById('tapasGrid');
 //     grid.innerHTML = ' ';
-//     data.forEach(element => {
-//         let name = element.nombreBar; 
-//         creadorTarjeta(name, element.tapas);
-//     });
-//     misFavoritos()
+//     // data.forEach(element => {
+//     //     // console.log(element);
+//     // });
+//     creadorTarjeta(data)
+//     // misFavoritos()
 // }
-// //La principal funcionalidad es la creacion de las targetas de cada tapa
-function creadorTarjeta(data){
+//La principal funcionalidad es la creacion de las targetas de cada tapa
+export function creadorTarjeta(data){
     // vamos a crear las tarjetas
-    // console.log(data);
+    
     let gridTapas = document.getElementById('tapasGrid');
 
-    gridTapas.innerHTML = '';
+    gridTapas.innerHTML = ''; 
+
     let inicio = numPage * tapasPerPage;
     let final = (numPage * tapasPerPage) + tapasPerPage;
-
+    
     data.slice(inicio, final).forEach(element => {
         let tarjetaTapa = document.createElement('div');
         tarjetaTapa.className = 'tapasTitle'
@@ -44,7 +46,7 @@ function creadorTarjeta(data){
         tarjetaTapa.append(creadorNombreBar(element.nombre_bar)); 
         tarjetaTapa.append(creadorImagenTapa(element));
         tarjetaTapa.append(creadorDescripcion(element.nombre_tapa, element.descripcion));
-        tarjetaTapa.append(creadorBoton());
+        tarjetaTapa.append(creadorBoton(data));
         tarjetaTapa.addEventListener('click', (e)=>{
             if(e.target.getAttribute('id') == 'informacion'){
                 modalContenido(e.target.parentNode, data);
@@ -55,8 +57,8 @@ function creadorTarjeta(data){
       
 }
 
-// // // //La principal funcionalidad es la creacion de los botones de la modal
-export function creadorBoton(){
+//La principal funcionalidad es la creacion de los botones de la modal
+export function creadorBoton(data){
     let button = document.createElement('button');
     button.type = 'button';
     button.className = 'btn btn-primary';
@@ -64,10 +66,11 @@ export function creadorBoton(){
     button.setAttribute('data-bs-target', '#exampleModal');
     button.setAttribute('id', 'informacion')
     button.textContent ='Mas informacion';
+    
     return button;
 }
 
-// // // //Su funcion es crear el corazon de los favoritos 
+//Su funcion es crear el corazon de los favoritos 
 function creadorLike(){
     let imgSvg = document.createElement('img');
     imgSvg.src = './svg/corazon.svg';
@@ -78,17 +81,17 @@ function creadorLike(){
     return imgSvg;
 }
 
-// // // //Su funcion es crear el nombre de cada bar en negrita
+//Su funcion es crear el nombre de cada bar en negrita
 function creadorNombreBar(name){
     
     let nombreBar = document.createElement('p');
     let strong = document.createElement('strong');
-    strong.innerText = name;
+    strong.innerText = name.trim();
     nombreBar.append(strong);
     return nombreBar;
 }
 
-// // // //Esta funcion realiza la creacion de las imagenes de cada tapa
+//Esta funcion realiza la creacion de las imagenes de cada tapa
 function creadorImagenTapa(imagen){
     
     let a = document.createElement('a');
@@ -100,7 +103,7 @@ function creadorImagenTapa(imagen){
     
 }
 
-// // // //Esta funcion crea la descripcion  de cada tapa
+//Esta funcion crea la descripcion  de cada tapa
 function creadorDescripcion(nombre, descripcion){
     let div = document.createElement('div');
     let strong = document.createElement('strong');
@@ -115,23 +118,23 @@ function creadorDescripcion(nombre, descripcion){
     return div;
 }
 
-// //La funcionalidad de esta funcion es el control de los corazones.
-// //si el corzon esta en blanco quiere decir que no esta añadida a favoritos 
-// //si el corazon esta relleno quiere decir que esta añadido a favoritos 
-function meGusta(e){
-    console.log(e);
-    for(let user of dataUsuarios){
-        if(user.name == localStorage.getItem('nombre')){
-            if(e.target.attributes[0].value == './svg/corazon.svg'){
-                e.target.src= './svg/heart-solid.svg';
-                user.favoritos.push(e.target.parentNode.getAttribute('tpsId'));
-            }else{
-                e.target.src = './svg/corazon.svg';
-                user.favoritos.pop(e.target.parentNode.getAttribute('tpsId'));
-            }
-        }
-    }
-}
+// La funcionalidad de esta funcion es el control de los corazones.
+// si el corzon esta en blanco quiere decir que no esta añadida a favoritos 
+// si el corazon esta relleno quiere decir que esta añadido a favoritos 
+// function meGusta(e){
+//     console.log(e);
+//     for(let user of dataUsuarios){
+//         if(user.name == localStorage.getItem('nombre')){
+//             if(e.target.attributes[0].value == './svg/corazon.svg'){
+//                 e.target.src= './svg/heart-solid.svg';
+//                 user.favoritos.push(e.target.parentNode.getAttribute('tpsId'));
+//             }else{
+//                 e.target.src = './svg/corazon.svg';
+//                 user.favoritos.pop(e.target.parentNode.getAttribute('tpsId'));
+//             }
+//         }
+//     }
+// }
 
 
 // //Esta funcion crea la modal de cada tapa 
@@ -153,16 +156,17 @@ function modalContenido(elemento, data){
         
     }
     
-    // let eliminarTapa = document.getElementById('eliminar');
-    // let cerrar = document.getElementById('cerrar');
+    let eliminarTapa = document.getElementById('eliminar');
+    let cerrar = document.getElementById('cerrar');
     
     // let btnModalmodificar = document.getElementById('modificarModal');
-
+   
     let nombreTapaModal = document.getElementById('nombreTapaModal');
-    
     for(let i of data){
+        let id_tapa = elemento.getAttribute('tpsid', i.id_tapa)
+        localStorage.setItem('id_tapa', id_tapa);
 
-        if(elemento.getAttribute('tpsid') == i.id_tapa){
+        if(id_tapa == i.id_tapa){
             nombreTapaModal.textContent = i.nombre;
             let ingredientes = document.getElementById('ingredientes');
             ingredientes.innerHTML = '';
@@ -171,17 +175,37 @@ function modalContenido(elemento, data){
                 ingredientes.append(li);
                 
             
-            
-            // const borrar = ()=>{
-            //     if(eliminar(i.id, nombreBar)){
-            //         cerrar.click();
-            //         eliminarTapa.removeEventListener('click', borrar);
-            //     }else{
-            //         alert('No se ha eliminado la tapa');
-            //     }
-            // }
-            
-            // eliminarTapa.addEventListener('click', borrar);
+
+            let id = localStorage.getItem('id_tapa');
+            console.log(id);
+            eliminarTapa.addEventListener('click', () =>{
+                let option = {
+                    method: 'DELETE',
+                    mode: 'cors',
+                    headers: {
+                        'Content-type': 'application/json',
+                    }
+                }
+    
+                fetch(`http://localhost/DWES/www/proyectoTapasJs/php/eliminar.php?id=${id}`, option)
+                .then(res =>{
+                    if(res.status === 200){
+                        return res.json();
+                    }else{
+                        alert("No se pudo eliminar la tapa")
+                    }
+                })
+                .then(data=>{
+                    console.log(data);
+                    cerrar.click();
+                    localStorage.removeItem('id_tapa');
+                    
+                })
+               
+                
+            })
+           
+     
             
             
             // btnModalmodificar.addEventListener('click', ()=>{
@@ -216,7 +240,7 @@ function modalContenido(elemento, data){
             // })
         }
     }
-    // render(dataBares);
+    // render(data);
     
 }
 
@@ -242,15 +266,16 @@ fetch('http://localhost/DWES/www/proyectoTapasJs/php/landingpage.php', option)
 })
 
 .then(data =>{
-    // console.log(data);
-    // console.log(data[0].nombre_tapa);
-    creadorTarjeta(data);
+    creadorTarjeta(data)
+    
     let btnAnterior = document.getElementById('btnAnterior');
     let btnSiguiente = document.getElementById('btnSiguiente');
-
+    let numeroPagina = document.getElementById('numPage');
+    
     btnSiguiente.addEventListener('click', ()=>{
         if(data.slice((numPage + 1) * tapasPerPage, ((numPage + 1) * tapasPerPage) + tapasPerPage).length > 0){
             numPage++;
+            numeroPagina.textContent++;
             creadorTarjeta(data);
         }
     })
@@ -258,10 +283,11 @@ fetch('http://localhost/DWES/www/proyectoTapasJs/php/landingpage.php', option)
     btnAnterior.addEventListener('click', ()=>{
         if(numPage > 0){
             numPage--;
+            numeroPagina.textContent--;
             creadorTarjeta(data);
         }
     })
-    
+    // render(data)
 })
 
 

@@ -41,7 +41,7 @@
                     
                     header("HTTP/1.1 201 Created");
                     header("Content-type:Application/json");
-                    echo json_encode(["id" => $con->insert_id]);
+                    // echo json_encode(["id" => $con->insert_id]);
                     
                 }
                 

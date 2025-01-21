@@ -1,5 +1,5 @@
 import { dataBares, imagenesTapas } from "./data.js";
-// import {render} from "./creadorTapas.js"
+import {creadorTarjeta} from "./creadorTapas.js"
 
 let formulario = document.getElementById('formulario');
 let nombreBar = document.getElementById('nombreBar');
@@ -44,6 +44,7 @@ formulario.addEventListener('submit', (event)=>{
 
         .then(data =>{
             console.log(data);
+            creadorTarjeta(data)
         })
        
         volver();

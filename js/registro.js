@@ -72,7 +72,9 @@ document.querySelector('#formulario').addEventListener('submit', function(event)
                 
                 .then(data=>{
                     console.log(data);
-                    window.location.href = 'login.html'
+                    if(data){
+                        window.location.href = 'login.html'
+                    }
                     // localStorage.setItem('usuario', JSON.stringify(data));
                     // localStorage.setItem('log', data.nombre)
                 })
