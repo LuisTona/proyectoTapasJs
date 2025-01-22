@@ -36,6 +36,7 @@ export function creadorTarjeta(data){
     let final = (numPage * tapasPerPage) + tapasPerPage;
     
     data.slice(inicio, final).forEach(element => {
+        console.log(element);
         let tarjetaTapa = document.createElement('div');
         tarjetaTapa.className = 'tapasTitle'
         tarjetaTapa.setAttribute('tpsId', `${element.id_tapa}`);
@@ -167,7 +168,7 @@ function modalContenido(elemento, data){
         localStorage.setItem('id_tapa', id_tapa);
 
         if(id_tapa == i.id_tapa){
-            nombreTapaModal.textContent = i.nombre;
+            nombreTapaModal.textContent = i.nombre_tapa;
             let ingredientes = document.getElementById('ingredientes');
             ingredientes.innerHTML = '';
                 let li = document.createElement('li');
@@ -197,6 +198,7 @@ function modalContenido(elemento, data){
                 })
                 .then(data=>{
                     console.log(data);
+                    alert("Se a eliminado la tapa correctamente");
                     cerrar.click();
                     localStorage.removeItem('id_tapa');
                     

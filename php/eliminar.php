@@ -16,7 +16,7 @@
                     exit;
                 }
             }catch(mysqli_sql_exception $e){
-                header("HTTP/1.1 500 Interval Server Error");
+                header("HTTP/1.1 400 Bad Request");
                 exit;
             }
         }

@@ -1,4 +1,4 @@
-import { dataBares, imagenesTapas } from "./data.js";
+
 import {creadorTarjeta} from "./creadorTapas.js"
 
 let formulario = document.getElementById('formulario');

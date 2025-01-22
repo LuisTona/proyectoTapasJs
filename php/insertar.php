@@ -47,7 +47,7 @@
                 
                 
             }catch(mysqli_sql_exception $e){
-                header("HTTP/1.1 500 interval Server Error");
+                header("HTTP/1.1 400 Bad Request");
                 exit;
             }
         }
@@ -59,10 +59,10 @@
             header("Content-type:Application/json");
             echo json_encode(["id" => $con->insert_id]);
         }catch(mysqli_sql_exception $e){
-            header("HTTP/1.1 500 Interval server Error");
+            header("HTTP/1.1 400 Bad Request");
             exit;
         }
-        
+
     }
 
 ?>
