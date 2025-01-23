@@ -6,7 +6,8 @@
 
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $datos = json_decode(file_get_contents("php://input"), true);
-
+        $imagen = $_FILES;
+        print_r($imagen);
         if($datos != null){
             $nombreBar = $datos['nombreBar'];
             $nombreTapa = $datos['nombreTapa'];
@@ -18,7 +19,9 @@
             $hora_apertura = $datos['hora_apertura'];
             $hora_cierre = $datos['hora_cierre'];
             
-
+            $uploadDir = './fotosUsuario/'; // El directorio donde quieres guardar la imagen
+            $uploadPath = $uploadDir . basename($imagen['name']);
+            
             $ingrediente = [];
             foreach($datos as $key => $value){
                 if(preg_match('/^~ingredientes\d+$/', $key)){
@@ -26,7 +29,7 @@
                 }
             }
 
-            $ingredienteTexto = implode(',', $ingrediente);
+            $ingredienteTexto = implode(', ', $ingrediente);
             print_r($ingredienteTexto);
             try{
                 $sql = "SELECT id_bar FROM bares WHERE nombre = '$nombreBar'";
@@ -51,12 +54,14 @@
             }
         }
         try{
+
             $sqlTapa = "INSERT INTO tapas (nombre, descripcion, ingredientes, bar) VALUES ('$nombreTapa', '$descripcion', '$ingredienteTexto', '$idBar')";
             $result2 = $con->query($sqlTapa);
             $id_tapa = $con->insert_id;
-            header("HTTP/1.1 201 Created");
-            header("Content-type:Application/json");
-            
+            if(move_uploaded_file($imagen['tmp_name'], $uploadPath)){
+                header("HTTP/1.1 201 Created");
+                header("Content-type:Application/json");
+            }
            
         }catch(mysqli_sql_exception $e){
             header("HTTP/1.1 400 Bad Request");

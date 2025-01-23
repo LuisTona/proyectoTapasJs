@@ -1,30 +1,11 @@
-// import { dataBares } from "./data.js";
-// import { dataUsuarios } from "./data.js";
 import { comprobarUsuario, controlUsuarios } from "./landingPage.js";
-// import { eliminar } from "./eliminar.js";
 import { placeholderModificacion } from "./modificar.js";
-// import {  añadidorIngredientes } from "./insertar.js";
-// import { misFavoritos } from "./landingPage.js";
 
 comprobarUsuario();
 
 let numPage = 0;
 let tapasPerPage = 6;
 
-// controlUsuarios();
-
-//La principal funcion de render es crear todas las tapas que esten almacenadas
-//en databares que es la "base de datos" usada
-// export function render(data){
- 
-//     let grid = document.getElementById('tapasGrid');
-//     grid.innerHTML = ' ';
-//     // data.forEach(element => {
-//     //     // console.log(element);
-//     // });
-//     creadorTarjeta(data)
-//     // misFavoritos()
-// }
 //La principal funcionalidad es la creacion de las targetas de cada tapa
 export function creadorTarjeta(data){
     // vamos a crear las tarjetas
@@ -122,20 +103,20 @@ function creadorDescripcion(nombre, descripcion){
 // La funcionalidad de esta funcion es el control de los corazones.
 // si el corzon esta en blanco quiere decir que no esta añadida a favoritos 
 // si el corazon esta relleno quiere decir que esta añadido a favoritos 
-// function meGusta(e){
-//     console.log(e);
-//     for(let user of dataUsuarios){
-//         if(user.name == localStorage.getItem('nombre')){
-//             if(e.target.attributes[0].value == './svg/corazon.svg'){
-//                 e.target.src= './svg/heart-solid.svg';
-//                 user.favoritos.push(e.target.parentNode.getAttribute('tpsId'));
-//             }else{
-//                 e.target.src = './svg/corazon.svg';
-//                 user.favoritos.pop(e.target.parentNode.getAttribute('tpsId'));
-//             }
-//         }
-//     }
-// }
+function meGusta(e){
+    fetch()
+    // for(let user of dataUsuarios){
+    //     if(user.name == localStorage.getItem('nombre')){
+    //         if(e.target.attributes[0].value == './svg/corazon.svg'){
+    //             e.target.src= './svg/heart-solid.svg';
+    //             user.favoritos.push(e.target.parentNode.getAttribute('tpsId'));
+    //         }else{
+    //             e.target.src = './svg/corazon.svg';
+    //             user.favoritos.pop(e.target.parentNode.getAttribute('tpsId'));
+    //         }
+    //     }
+    // }
+}
 
 
 // //Esta funcion crea la modal de cada tapa 
@@ -168,7 +149,6 @@ function modalContenido(elemento, data){
         let id_tapa = elemento.getAttribute('tpsid', i.id_tapa)
         localStorage.setItem('id_tapa', id_tapa);
         
-
         if(id_tapa == i.id_tapa){
             nombreTapaModal.textContent = i.nombre_tapa;
             let ingredientes = document.getElementById('ingredientes');
@@ -176,11 +156,8 @@ function modalContenido(elemento, data){
                 let li = document.createElement('li');
                 li.innerHTML = i.ingredientes;
                 ingredientes.append(li);
-                
-            
 
             let id = localStorage.getItem('id_tapa');
-            console.log(id);
             eliminarTapa.addEventListener('click', () =>{
                 let option = {
                     method: 'DELETE',
@@ -193,24 +170,15 @@ function modalContenido(elemento, data){
                 fetch(`http://localhost/DWES/www/proyectoTapasJs/php/eliminar.php?id=${id}`, option)
                 .then(res =>{
                     if(res.status === 200){
-                        return res.json();
+                        cerrar.click();
+                        alert("Se a eliminado la tapa correctamente");
+                        localStorage.removeItem('id_tapa');
+                        render();
                     }else{
                         alert("No se pudo eliminar la tapa")
                     }
                 })
-                .then(data=>{
-                    console.log(data);
-                    alert("Se a eliminado la tapa correctamente");
-                    cerrar.click();
-                    localStorage.removeItem('id_tapa');
-                    
-                })
-               
-                
             })
-           
-     
-            
             
             btnModalmodificar.addEventListener('click', ()=>{
                 
@@ -233,11 +201,7 @@ function modalContenido(elemento, data){
                 while(insertarBotones.firstChild){
                     insertarBotones.firstChild.remove();
                 }
-              
-                // let modificacion= ()=>{
-                //     modificar(i.id, nombreBar);
-                //     btnModificar.removeEventListener('click', modificacion);
-                // }
+
                 let btnModificar = document.createElement('input')
                 btnModificar.type = 'submit';
                 btnModificar.name = 'modificar';
@@ -246,14 +210,14 @@ function modalContenido(elemento, data){
                 btnModificar.setAttribute('id', 'modificar');
                 insertarBotones.append(btnModificar);
 
-                formInsertar.style.display = 'block';
+                formInsertar.style.display = 'flex';
                 tapas.style.display = 'none';
                 
                 // btnModificar.addEventListener('click', modificacion)
                 formulario.addEventListener('submit', (event)=>{
                     event.preventDefault();
                     if(event.submitter.getAttribute('id') === 'modificar'){
-                        console.log("hola");
+
                         // const formData = new FormData(formulario);
                         // const data = Object.fromEntries(formData);
                         let tapa_modificada = {
@@ -269,8 +233,6 @@ function modalContenido(elemento, data){
                             'hora_cierre': HoraCierre.value.trim(),
                         }
                         
-                        console.log(tapa_modificada);
-
                         let option = {
                             method: 'put',
                             mode: 'cors',
@@ -288,12 +250,6 @@ function modalContenido(elemento, data){
                                 alert("No se pudo modificar la tapa");
                             }
                         })
-
-                        .then(data =>{
-                            console.log(data);
-                           
-                            
-                        })
                     }else{
                         console.log("no");
                     }
@@ -305,8 +261,6 @@ function modalContenido(elemento, data){
             })
         }
     }
-    // render(data);
-    
 }
 
 
@@ -319,41 +273,41 @@ let option = {
     },
     body: JSON.stringify(),
 }
+export function render(){
+    fetch('http://localhost/DWES/www/proyectoTapasJs/php/landingpage.php', option)
 
-fetch('http://localhost/DWES/www/proyectoTapasJs/php/landingpage.php', option)
-
-.then(res =>{
-    if(res.status == 200){
-        return res.json();
-    }else{
-        alert('No se pudo encontrar ninguna tapa');
-    }
-})
-
-.then(data =>{
-    creadorTarjeta(data)
-
-    let btnAnterior = document.getElementById('btnAnterior');
-    let btnSiguiente = document.getElementById('btnSiguiente');
-    let numeroPagina = document.getElementById('numPage');
-    
-    btnSiguiente.addEventListener('click', ()=>{
-        if(data.slice((numPage + 1) * tapasPerPage, ((numPage + 1) * tapasPerPage) + tapasPerPage).length > 0){
-            numPage++;
-            numeroPagina.textContent++;
-            creadorTarjeta(data);
+    .then(res =>{
+        if(res.status == 200){
+            return res.json();
+        }else{
+            alert('No se pudo encontrar ninguna tapa');
         }
     })
 
-    btnAnterior.addEventListener('click', ()=>{
-        if(numPage > 0){
-            numPage--;
-            numeroPagina.textContent--;
-            creadorTarjeta(data);
+    .then(data =>{
+        creadorTarjeta(data)
+        let btnAnterior = document.getElementById('btnAnterior');
+        let btnSiguiente = document.getElementById('btnSiguiente');
+        let numeroPagina = document.getElementById('numPage');
+        
+        btnSiguiente.onclick = function(){
+            if(data.slice((numPage + 1) * tapasPerPage, ((numPage + 1) * tapasPerPage) + tapasPerPage).length > 0){
+                numPage++;
+                numeroPagina.textContent++;
+                creadorTarjeta(data);
+            }
         }
+
+        btnAnterior.onclick = function(){
+            if(numPage > 0){
+                numPage--;
+                numeroPagina.textContent--;
+                creadorTarjeta(data);
+            }
+        }
+        
     })
-    // render(data)
-})
+}
 
 
-
+render();

@@ -1,17 +1,10 @@
-
-import {creadorTarjeta} from "./creadorTapas.js"
+import {render} from "./creadorTapas.js"
 
 let formulario = document.getElementById('formulario');
 let nombreBar = document.getElementById('nombreBar');
 let nombreTapa = document.getElementById('nombreTapa');
-let imagen = document.getElementById('imagen');
+let imagen = document.getElementById('foto');
 let descripcion = document.getElementById('descripcion');
-let direccion = document.getElementById('direccion');
-let telefono = document.getElementById('telefono');
-let latitud = document.getElementById('latitud');
-let longitud = document.getElementById('longitud');
-let horaApertura = document.getElementById('hora_apertura');
-let HoraCierre = document.getElementById('hora_cierre');
 let button = document.getElementById('volver');
 
 
@@ -22,32 +15,28 @@ formulario.addEventListener('submit', (event)=>{
     event.preventDefault();
     if(event.submitter.getAttribute('id') === 'enviar'){
         const formData = new FormData(formulario);
-        const data = Object.fromEntries(formData);
-        
+        const foto = new FormData();
+        foto.append("foto", imagen.files[0]);
+        let data = Object.fromEntries(formData);
+        delete data.foto;
         let option = {
             method: 'post',
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify(data), foto,
         }
 
         fetch('http://localhost/DWES/www/proyectoTapasJs/php/insertar.php', option)
         .then(res=>{
             if(res.status === 201){
-                return res.json();
+                render();
+                volver();
             }else{
                 alert('No se pudo añadir la tapa');
             }
-        })
-
-        .then(data =>{
-            console.log(data);
-            creadorTarjeta(data)
-        })
-       
-        volver();
+        })       
         
     }
 })
@@ -58,10 +47,8 @@ button.addEventListener('click', volver);
 function volver(){
     let formInsertar = document.getElementById('formInsertar');
     let tapas = document.getElementById('tapas');
-    let btnModificar = document.getElementById('modificar');
     formInsertar.style.display = 'none';
     tapas.style.display = 'block';
-    btnModificar.click();
 }
 
 añadirIngrediente.addEventListener('click', (e)=>{
@@ -100,7 +87,6 @@ export function ingredientesAñadidos(){
 export function limpiarFormulario(){
     nombreBar.value = ' ';
     nombreTapa.value = ' ';
-    imagen.value = '';
     descripcion.value = ' ';
 }
 

@@ -1,7 +1,3 @@
-// // import { render } from "./creadorTapas.js";
-// import { dataBares } from "./data.js";
-
-
 let nombreDeBar = document.getElementById('nombreBar');
 let nombreDeTapa = document.getElementById('nombreTapa');
 let descripcion = document.getElementById('descripcion');
@@ -21,16 +17,18 @@ let HoraCierre = document.getElementById('hora_cierre');
 export function placeholderModificacion(data){
     titulo.textContent = 'Modificar Tapa';
     for(let bares of data){
-        // nombreDeBar.value = bares.nombre_bar;
-        // nombreDeTapa.value = bares.nombre_tapa;
-        // descripcion.value = bares.descripcion;
-        // direccion.value = bares.direccion;
-        // telefono.value = bares.telefono;
-        // latitud.value = bares.latitud;
-        // longitud.value = bares.longitud;
-        // horaApertura.value = bares.hora_apertura;
-        // HoraCierre.value = bares.hora_cierre
-        // ingredientes(bares.ingredientes);
+        if(localStorage.getItem('id_tapa') === bares.id_tapa){
+            nombreDeBar.value = bares.nombre_bar;
+            nombreDeTapa.value = bares.nombre_tapa;
+            descripcion.value = bares.descripcion;
+            direccion.value = bares.direccion;
+            telefono.value = bares.telefono;
+            latitud.value = bares.latitud;
+            longitud.value = bares.longitud;
+            horaApertura.value = bares.hora_apertura;
+            HoraCierre.value = bares.hora_cierre
+            ingredientes(bares.ingredientes);
+        }
     }
 }
 
@@ -62,9 +60,9 @@ export function placeholderModificacion(data){
 
 // //Con esta funcion podemos modificar los ingredientes de la tapa que queremos modificar
 export function ingredientes(tapa){
- 
+    let tapas = tapa.split(',');
     insertarIngredientes.innerHTML = ' ';
-    for(let k = 0; k < tapa.ingredientes.length; k++){
+    for(let k = 0; k < tapas.length; k++){
         let label = document.createElement('label');
         label.for = `ingrediente${Math.floor((insertarIngredientes.children.length + 1)/2)+1}`;
         label.textContent = 'ingrediente ' + (Math.floor((insertarIngredientes.children.length + 1)/2)+1)
@@ -72,7 +70,7 @@ export function ingredientes(tapa){
         input.type = 'text';
         input.name = `ingrediente${Math.floor((insertarIngredientes.children.length + 1)/2)+1}`;
         input.setAttribute('id', 'ingrediente' + (Math.floor((insertarIngredientes.children.length + 1)/2)+1))
-        input.value = tapa.ingredientes;
+        input.value = tapas[k];
         insertarIngredientes.append(label);
         insertarIngredientes.append(input);
     }
