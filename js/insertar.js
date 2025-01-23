@@ -61,7 +61,7 @@ function volver(){
     let btnModificar = document.getElementById('modificar');
     formInsertar.style.display = 'none';
     tapas.style.display = 'block';
-    // btnModificar.click();
+    btnModificar.click();
 }
 
 añadirIngrediente.addEventListener('click', (e)=>{
@@ -70,7 +70,7 @@ añadirIngrediente.addEventListener('click', (e)=>{
 });
 
 //Esta funcion permite añadir ingredientes a las tapas que queramos insertar
-function añadidorIngredientes(){
+export function añadidorIngredientes(){
     
     let label = document.createElement('label');
     label.for = `ingrediente${Math.floor((insertarIngredientes.children.length + 1)/2)+1}`;

@@ -2,7 +2,8 @@
 // import { dataUsuarios } from "./data.js";
 import { comprobarUsuario, controlUsuarios } from "./landingPage.js";
 // import { eliminar } from "./eliminar.js";
-// import { modificar, placeholderModificacion } from "./modificar.js";
+import { placeholderModificacion } from "./modificar.js";
+// import {  añadidorIngredientes } from "./insertar.js";
 // import { misFavoritos } from "./landingPage.js";
 
 comprobarUsuario();
@@ -36,7 +37,6 @@ export function creadorTarjeta(data){
     let final = (numPage * tapasPerPage) + tapasPerPage;
     
     data.slice(inicio, final).forEach(element => {
-        console.log(element);
         let tarjetaTapa = document.createElement('div');
         tarjetaTapa.className = 'tapasTitle'
         tarjetaTapa.setAttribute('tpsId', `${element.id_tapa}`);
@@ -140,7 +140,7 @@ function creadorDescripcion(nombre, descripcion){
 
 // //Esta funcion crea la modal de cada tapa 
 function modalContenido(elemento, data){
-    
+
     let footerModal = document.getElementById('modalFooter');
     let infoModal ='<button type="button" class="btn btn-danger" id="eliminar">Eliminar</button><button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close">Cerrar</button><button type="button" class="btn btn-primary" id="modificarModal">Modificar</button>'
     footerModal.innerHTML = ' ';
@@ -160,12 +160,14 @@ function modalContenido(elemento, data){
     let eliminarTapa = document.getElementById('eliminar');
     let cerrar = document.getElementById('cerrar');
     
-    // let btnModalmodificar = document.getElementById('modificarModal');
-   
+    let btnModalmodificar = document.getElementById('modificarModal');
+
     let nombreTapaModal = document.getElementById('nombreTapaModal');
     for(let i of data){
+        
         let id_tapa = elemento.getAttribute('tpsid', i.id_tapa)
         localStorage.setItem('id_tapa', id_tapa);
+        
 
         if(id_tapa == i.id_tapa){
             nombreTapaModal.textContent = i.nombre_tapa;
@@ -210,36 +212,97 @@ function modalContenido(elemento, data){
      
             
             
-            // btnModalmodificar.addEventListener('click', ()=>{
+            btnModalmodificar.addEventListener('click', ()=>{
                 
-                // let formInsertar = document.getElementById('formInsertar');
-                // let insertarBotones = document.getElementById('botones');
+                let formInsertar = document.getElementById('formInsertar');
+                let insertarBotones = document.getElementById('botones');
+                let formulario = document.getElementById('formulario');
+                let nombreBar = document.getElementById('nombreBar');
+                let nombreTapa = document.getElementById('nombreTapa');
+                let imagen = document.getElementById('imagen');
+                let descripcion = document.getElementById('descripcion');
+                let direccion = document.getElementById('direccion');
+                let telefono = document.getElementById('telefono');
+                let latitud = document.getElementById('latitud');
+                let longitud = document.getElementById('longitud');
+                let horaApertura = document.getElementById('hora_apertura');
+                let HoraCierre = document.getElementById('hora_cierre');
 
-                // let tapas = document.getElementById('tapas');
-                // let enviar = document.getElementById('enviar');
-                // while(insertarBotones.firstChild){
-                //     insertarBotones.firstChild.remove();
-                // }
-
+                let tapas = document.getElementById('tapas');
+                let enviar = document.getElementById('enviar');
+                while(insertarBotones.firstChild){
+                    insertarBotones.firstChild.remove();
+                }
+              
                 // let modificacion= ()=>{
                 //     modificar(i.id, nombreBar);
                 //     btnModificar.removeEventListener('click', modificacion);
                 // }
-                // let btnModificar = document.createElement('input')
-                // btnModificar.type = 'submit';
-                // btnModificar.name = 'modificar';
-                // btnModificar.value = 'Modificar';
-                // btnModificar.class = 'modificar';
-                // btnModificar.setAttribute('id', 'modificar');
-                // insertarBotones.append(btnModificar);
+                let btnModificar = document.createElement('input')
+                btnModificar.type = 'submit';
+                btnModificar.name = 'modificar';
+                btnModificar.value = 'Modificar';
+                btnModificar.class = 'modificar';
+                btnModificar.setAttribute('id', 'modificar');
+                insertarBotones.append(btnModificar);
 
-                // formInsertar.style.display = 'flex';
-                // tapas.style.display = 'none';
-                // placeholderModificacion(i.id, nombreBar)
+                formInsertar.style.display = 'block';
+                tapas.style.display = 'none';
+                
                 // btnModificar.addEventListener('click', modificacion)
-                // cerrar.click();
+                formulario.addEventListener('submit', (event)=>{
+                    event.preventDefault();
+                    if(event.submitter.getAttribute('id') === 'modificar'){
+                        console.log("hola");
+                        // const formData = new FormData(formulario);
+                        // const data = Object.fromEntries(formData);
+                        let tapa_modificada = {
+                            'id_tapa': id,
+                            'nombreBar': nombreBar.value.trim(),
+                            'nombreTapa': nombreTapa.value.trim(),
+                            'descripcion': descripcion.value.trim(),
+                            'direccion': direccion.value.trim(),
+                            'telefono': telefono.value.trim(),
+                            'latitud': latitud.value.trim(),
+                            'longitud': longitud.value.trim(),
+                            'hora_apertura': horaApertura.value.trim(),
+                            'hora_cierre': HoraCierre.value.trim(),
+                        }
+                        
+                        console.log(tapa_modificada);
 
-            // })
+                        let option = {
+                            method: 'put',
+                            mode: 'cors',
+                            headers:{
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify(tapa_modificada),
+                        }
+
+                        fetch('http://localhost/DWES/www/proyectoTapasJs/php/modificar.php', option)
+                        .then(res =>{
+                            if(res.status === 200){
+                                return res.json();
+                            }else{
+                                alert("No se pudo modificar la tapa");
+                            }
+                        })
+
+                        .then(data =>{
+                            console.log(data);
+                           
+                            
+                        })
+                    }else{
+                        console.log("no");
+                    }
+                }) 
+
+                cerrar.click();
+                placeholderModificacion(data);
+                
+            })
         }
     }
     // render(data);
@@ -269,7 +332,7 @@ fetch('http://localhost/DWES/www/proyectoTapasJs/php/landingpage.php', option)
 
 .then(data =>{
     creadorTarjeta(data)
-    
+
     let btnAnterior = document.getElementById('btnAnterior');
     let btnSiguiente = document.getElementById('btnSiguiente');
     let numeroPagina = document.getElementById('numPage');

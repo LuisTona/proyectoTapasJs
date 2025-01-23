@@ -17,6 +17,7 @@
             $longitud = $datos['longitud'];
             $hora_apertura = $datos['hora_apertura'];
             $hora_cierre = $datos['hora_cierre'];
+            
 
             $ingrediente = [];
             foreach($datos as $key => $value){
@@ -38,11 +39,9 @@
                     $sqlInsertar = "INSERT INTO bares (nombre, direccion, telefono, latitud, longitud, hora_apertura, hora_cierre) VALUES ('$nombreBar', '$direccion', '$telefono', '$latitud', '$longitud', '$hora_apertura', '$hora_cierre')";
                     $result = $con->query($sqlInsertar);
                     $idBar = $con->insert_id;
-                    
                     header("HTTP/1.1 201 Created");
                     header("Content-type:Application/json");
-                    // echo json_encode(["id" => $con->insert_id]);
-                    
+                    echo json_encode($id);
                 }
                 
                 
@@ -57,7 +56,8 @@
             $id_tapa = $con->insert_id;
             header("HTTP/1.1 201 Created");
             header("Content-type:Application/json");
-            echo json_encode(["id" => $con->insert_id]);
+            
+           
         }catch(mysqli_sql_exception $e){
             header("HTTP/1.1 400 Bad Request");
             exit;

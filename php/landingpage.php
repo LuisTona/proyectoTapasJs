@@ -7,7 +7,7 @@
 
     if($_SERVER['REQUEST_METHOD'] === 'GET'){
         try{
-            $sql = "SELECT t.id_tapa, b.nombre AS nombre_bar, t.nombre AS nombre_tapa , t.descripcion, t.ingredientes, t.id_tapa FROM tapas t JOIN bares b ON b.id_bar = t.bar"; 
+            $sql = "SELECT t.id_tapa, b.nombre AS nombre_bar, t.nombre AS nombre_tapa , t.descripcion, t.ingredientes, t.id_tapa, b.direccion, b.telefono, b.latitud, .b.longitud, b.hora_apertura, b.hora_cierre FROM tapas t JOIN bares b ON b.id_bar = t.bar"; 
                     
             $result = $con->query($sql);
 
