@@ -15,17 +15,20 @@ formulario.addEventListener('submit', (event)=>{
     event.preventDefault();
     if(event.submitter.getAttribute('id') === 'enviar'){
         const formData = new FormData(formulario);
-        const foto = new FormData();
-        foto.append("foto", imagen.files[0]);
-        let data = Object.fromEntries(formData);
-        delete data.foto;
+        // let data = Object.fromEntries(formData);
+        delete formData.foto;
+        // data.foto = []
+        formData.append("foto", imagen.files[0])
+        let data = {};
+        let contador = 0;
+        for(let i of formData){
+            data[i] = i[1];
+        }
+
         let option = {
             method: 'post',
             mode: 'cors',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data), foto,
+            body: formData,
         }
 
         fetch('http://localhost/DWES/www/proyectoTapasJs/php/insertar.php', option)

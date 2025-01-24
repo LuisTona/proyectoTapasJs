@@ -5,8 +5,9 @@
     $con = new Conexion();
 
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
-        $datos = json_decode(file_get_contents("php://input"), true);
-        $imagen = $_FILES;
+        $datos = $_REQUEST;
+        $imagen = $_FILES['foto'];
+
         print_r($imagen);
         if($datos != null){
             $nombreBar = $datos['nombreBar'];
@@ -18,10 +19,11 @@
             $longitud = $datos['longitud'];
             $hora_apertura = $datos['hora_apertura'];
             $hora_cierre = $datos['hora_cierre'];
-            
-            $uploadDir = './fotosUsuario/'; // El directorio donde quieres guardar la imagen
-            $uploadPath = $uploadDir . basename($imagen['name']);
-            
+            $tiempo = time();
+            $uploadDir = '../fotosUsuario/'; // El directorio donde quieres guardar la imagen
+            $uploadPath = $uploadDir . basename($tiempo.$imagen['name']);
+
+            $loadDir = './fotosUsuario/' . basename($tiempo.$imagen['name']);
             $ingrediente = [];
             foreach($datos as $key => $value){
                 if(preg_match('/^~ingredientes\d+$/', $key)){
@@ -55,7 +57,7 @@
         }
         try{
 
-            $sqlTapa = "INSERT INTO tapas (nombre, descripcion, ingredientes, bar) VALUES ('$nombreTapa', '$descripcion', '$ingredienteTexto', '$idBar')";
+            $sqlTapa = "INSERT INTO tapas (nombre, descripcion, ingredientes, bar, foto) VALUES ('$nombreTapa', '$descripcion', '$ingredienteTexto', '$idBar', '$loadDir')";
             $result2 = $con->query($sqlTapa);
             $id_tapa = $con->insert_id;
             if(move_uploaded_file($imagen['tmp_name'], $uploadPath)){

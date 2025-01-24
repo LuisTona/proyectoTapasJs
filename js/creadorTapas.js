@@ -26,7 +26,7 @@ export function creadorTarjeta(data){
         }
         
         tarjetaTapa.append(creadorNombreBar(element.nombre_bar)); 
-        tarjetaTapa.append(creadorImagenTapa(element));
+        tarjetaTapa.append(creadorImagenTapa(element.foto));
         tarjetaTapa.append(creadorDescripcion(element.nombre_tapa, element.descripcion));
         tarjetaTapa.append(creadorBoton(data));
         tarjetaTapa.addEventListener('click', (e)=>{
@@ -75,10 +75,10 @@ function creadorNombreBar(name){
 
 //Esta funcion realiza la creacion de las imagenes de cada tapa
 function creadorImagenTapa(imagen){
-    
+    console.log(imagen);
     let a = document.createElement('a');
     let img = document.createElement('img');
-    // img.src = imagen.imagenTapa;
+    img.src = imagen;
     img.alt = 'foto de tapas de ' ;
     a.append(img);
     return a;
@@ -104,7 +104,7 @@ function creadorDescripcion(nombre, descripcion){
 // si el corzon esta en blanco quiere decir que no esta añadida a favoritos 
 // si el corazon esta relleno quiere decir que esta añadido a favoritos 
 function meGusta(e){
-    fetch()
+    // fetch()
     // for(let user of dataUsuarios){
     //     if(user.name == localStorage.getItem('nombre')){
     //         if(e.target.attributes[0].value == './svg/corazon.svg'){
@@ -285,6 +285,7 @@ export function render(){
     })
 
     .then(data =>{
+        console.log(data);
         creadorTarjeta(data)
         let btnAnterior = document.getElementById('btnAnterior');
         let btnSiguiente = document.getElementById('btnSiguiente');
