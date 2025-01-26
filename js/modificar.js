@@ -16,7 +16,6 @@ let ingredientes = document.getElementById('ingredientes');
 export function placeholderModificacion(data){
     titulo.textContent = 'Modificar Tapa';
     for(let bares of data){
-        console.log(bares);
         if(localStorage.getItem('id_tapa') === bares.id_tapa){
             nombreDeBar.value = bares.nombre_bar;
             nombreDeTapa.value = bares.nombre_tapa;

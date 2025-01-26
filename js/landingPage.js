@@ -1,6 +1,4 @@
-// import { render } from "./creadorTapas.js";
-// import { dataUsuarios, dataBares } from "./data.js";
-import { creadorTarjeta, render, renderPages } from "./creadorTapas.js";
+import { render, renderPages } from "./creadorTapas.js";
 import { limpiarFormulario } from "./insertar.js";
 
 let insertar = document.getElementById('insertar');
@@ -48,7 +46,6 @@ insertar.addEventListener('click', ()=>{
     let insertarBotones = document.getElementById('botones');
     let tapas = document.getElementById('tapas');
     let titulo = document.getElementById('titulo');
-    // let insertarIngredientes = document.getElementById('insertarIngredientes');
     
     while(insertarBotones.firstChild){
         insertarBotones.firstChild.remove();

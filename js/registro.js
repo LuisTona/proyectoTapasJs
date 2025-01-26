@@ -3,7 +3,6 @@ const nombre = document.getElementById('nombre');
 const correo = document.getElementById('mail');
 const contraseña = document.getElementById('pass');
 const errorMensaje = document.querySelectorAll('.error-message');
-console.log(errorMensaje);
 const regExp = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 const passExp = /[a-zA-Z0-9._%&@€]{8,}/;
 const nombreExp=/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/;
@@ -72,7 +71,6 @@ document.querySelector('#formulario').addEventListener('submit', function(event)
                 })
                 
                 .then(data=>{
-                    console.log(data);
                     if(data){
                         window.location.href = 'login.html'
                     }

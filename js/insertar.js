@@ -24,7 +24,6 @@ formulario.addEventListener('submit', (event)=>{
         for(let i of formData){
             data[i] = i[1];
         }
-        console.log(data);
         
             let option = {
                 method: 'post',

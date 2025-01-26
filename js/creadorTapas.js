@@ -15,10 +15,17 @@ export function renderPages(){
 //La principal funcionalidad es la creacion de las targetas de cada tapa
 export function creadorTarjeta(data){
     // vamos a crear las tarjetas
-    console.log(data);
     let btnAnterior = document.getElementById('btnAnterior');
     let btnSiguiente = document.getElementById('btnSiguiente');
     let numeroPagina = document.getElementById('numPage');
+    
+        function ocultarBoton(valor){
+            if(valor == 'siguiente'){
+                btnSiguiente.style.display = 'none';
+            }else if(valor == 'atras'){
+                btnAnterior.style.display = 'none';
+            }
+        }
     if(data.length < 8){
         btnAnterior.style.display = 'none'
         btnSiguiente.style.display = 'none';
@@ -35,7 +42,12 @@ export function creadorTarjeta(data){
 
     let inicio = numPage * tapasPerPage;
     let final = (numPage * tapasPerPage) + tapasPerPage;
-    
+    if(final >= data.length - 2){
+        final = data.length - 1;
+        ocultarBoton('siguiente');
+    }else if(inicio <= 0){
+        ocultarBoton('atras');
+    }
     data.slice(inicio, final).forEach(element => {
         let tarjetaTapa = document.createElement('div');
         tarjetaTapa.className = 'tapasTitle'
@@ -97,7 +109,6 @@ function creadorNombreBar(name){
 
 //Esta funcion realiza la creacion de las imagenes de cada tapa
 function creadorImagenTapa(imagen){
-    // console.log(imagen);
     let a = document.createElement('a');
     let img = document.createElement('img');
     img.src = imagen;
@@ -253,8 +264,6 @@ function modalContenido(elemento, data){
                             informacion[i] = i[1];
                         }
 
-                        console.log(formData);
-                        
                         let option = {
                             method: 'POST',
                             mode: 'cors',
