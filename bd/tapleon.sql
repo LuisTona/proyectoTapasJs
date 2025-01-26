@@ -35,7 +35,8 @@ CREATE TABLE `bares` (
   `latitud` decimal(10,8) DEFAULT NULL,
   `longitud` decimal(11,8) DEFAULT NULL,
   `hora_apertura` time DEFAULT NULL,
-  `hora_cierre` time DEFAULT NULL
+  `hora_cierre` time DEFAULT NULL,
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -134,7 +135,7 @@ CREATE TABLE `tapas` (
 -- Volcado de datos para la tabla `tapas`
 --
 
-INSERT INTO `tapas` (`id_tapa`, `nombre`, `ingredientes`, `bar`, `descripcion`) VALUES
+INSERT INTO `tapas` (`id_tapa`, `nombre`, `descripcion`, `ingredientes`, `bar`) VALUES
 (1, 'Patatas Bravas', 'Patatas, salsa brava, ajo, pimentón', 1, ''),
 (2, 'Tortilla de Patata', 'Huevos, patatas, cebolla, sal', 2, ''),
 (3, 'Calamares Fritos', 'Calamares, harina, limón', 3, ''),

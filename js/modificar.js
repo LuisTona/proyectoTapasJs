@@ -8,7 +8,7 @@ let latitud = document.getElementById('latitud');
 let longitud = document.getElementById('longitud');
 let horaApertura = document.getElementById('hora_apertura');
 let HoraCierre = document.getElementById('hora_cierre');
-
+let ingredientes = document.getElementById('ingredientes');
 // let insertarIngredientes = document.getElementById('insertarIngredientes');
 // let ingredientesNuevos = '';
 
@@ -17,6 +17,7 @@ let HoraCierre = document.getElementById('hora_cierre');
 export function placeholderModificacion(data){
     titulo.textContent = 'Modificar Tapa';
     for(let bares of data){
+        console.log(bares);
         if(localStorage.getItem('id_tapa') === bares.id_tapa){
             nombreDeBar.value = bares.nombre_bar;
             nombreDeTapa.value = bares.nombre_tapa;
@@ -26,8 +27,8 @@ export function placeholderModificacion(data){
             latitud.value = bares.latitud;
             longitud.value = bares.longitud;
             horaApertura.value = bares.hora_apertura;
-            HoraCierre.value = bares.hora_cierre
-            ingredientes(bares.ingredientes);
+            HoraCierre.value = bares.hora_cierre;
+            ingredientes.value = bares.ingredientes;
         }
     }
 }
@@ -59,19 +60,19 @@ export function placeholderModificacion(data){
 // }
 
 // //Con esta funcion podemos modificar los ingredientes de la tapa que queremos modificar
-export function ingredientes(tapa){
-    let tapas = tapa.split(',');
-    insertarIngredientes.innerHTML = ' ';
-    for(let k = 0; k < tapas.length; k++){
-        let label = document.createElement('label');
-        label.for = `ingrediente${Math.floor((insertarIngredientes.children.length + 1)/2)+1}`;
-        label.textContent = 'ingrediente ' + (Math.floor((insertarIngredientes.children.length + 1)/2)+1)
-        let input = document.createElement('input');
-        input.type = 'text';
-        input.name = `ingrediente${Math.floor((insertarIngredientes.children.length + 1)/2)+1}`;
-        input.setAttribute('id', 'ingrediente' + (Math.floor((insertarIngredientes.children.length + 1)/2)+1))
-        input.value = tapas[k];
-        insertarIngredientes.append(label);
-        insertarIngredientes.append(input);
-    }
-}
+// export function ingredientes(tapa){
+//     let tapas = tapa.split(',');
+//     insertarIngredientes.innerHTML = ' ';
+//     for(let k = 0; k < tapas.length; k++){
+//         let label = document.createElement('label');
+//         label.for = `ingrediente${Math.floor((insertarIngredientes.children.length + 1)/2)+1}`;
+//         label.textContent = 'ingrediente ' + (Math.floor((insertarIngredientes.children.length + 1)/2)+1)
+//         let input = document.createElement('input');
+//         input.type = 'text';
+//         input.name = `ingrediente${Math.floor((insertarIngredientes.children.length + 1)/2)+1}`;
+//         input.setAttribute('id', 'ingrediente' + (Math.floor((insertarIngredientes.children.length + 1)/2)+1))
+//         input.value = tapas[k];
+//         insertarIngredientes.append(label);
+//         insertarIngredientes.append(input);
+//     }
+// }

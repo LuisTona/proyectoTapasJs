@@ -134,37 +134,23 @@
                <label for="nombreTapa">Nombre Tapa:</label>
                <input type="text" id="nombreTapa" class="nombreTapa" name="nombreTapa" required>
                <label for="foto">Imagen de la Tapa:</label>
-               <!-- <select name="imagen" id="imagen">
-                  <option value="" selected disabled>--Seleccione una opcion--</option>
-                  <option value="alitas">Alitas</option>
-                  <option value="almondigas">Albondigas</option>
-                  <option value="tortilla">Tortilla</option>
-                  <option value="morcilla">Morcilla</option>
-                  <option value="ensaladilla">Ensaladilla</option>
-                  <option value="pulpo">Pulpo</option>
-                  <option value="patatas">Patatas Alioli</option>
-                  <option value="sopa">Sopas de ajo</option>
-                  <option value="salmonejo">Salmonejo</option>
-                  <option value="embutido">Embutido</option>
-               </select> -->
-               <input type="file" name ="foto" id="foto">
+               <input type="file" name ="foto" id="foto" required>
                <label for="descripcion">Decripcion de la tapa</label>
                <textarea name="descripcion" id="descripcion" cols="25"></textarea>
                <label for="direccion">Direcion del Bar</label>
-               <input type="text" name="direccion" id="direccion" class="direccion">
+               <input type="text" name="direccion" id="direccion" class="direccion" required>
                <label for="Telefono">Telefono del bar</label>
-               <input type="number" name="telefono" id="telefono" class="telefono">
+               <input type="number" name="telefono" id="telefono" class="telefono" required>
                <label for="latitud">latitud del bar</label>
-               <input type="number" name="latitud" id="latitud" class="latitud">
+               <input type="number" name="latitud" id="latitud" class="latitud" required>
                <label for="longitudf">Longitud del bar</label>
-               <input type="number" name="longitud" id="longitud" class="longitud">
+               <input type="number" name="longitud" id="longitud" class="longitud" required>
                <label for="hora_apertura">Hora de apertura</label>
-               <input type="time" name="hora_apertura" id="hora_apertura" class="hora_apertura">
+               <input type="time" name="hora_apertura" id="hora_apertura" class="hora_apertura" required>
                <label for="hora_cierre">Hora de cierre</label>
-               <input type="time" name="hora_cierre" id="hora_cierre" class="hora_cierre">
-               <div id="insertarIngredientes">
-               </div>
-               <button id="masIngredientes">Añadir ingrediente</button>
+               <input type="time" name="hora_cierre" id="hora_cierre" class="hora_cierre" required>
+               <label for="ingredientes">Ingredientes</label>
+               <textarea name="ingredientes" id=" ingredientes" cols="25"></textarea>
                <p id="mensaje"></p>
                <div id="botones">
                   <!-- <input type="submit" value="Enviar" name="enviar" class="enviar" id="enviar">

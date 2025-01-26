@@ -1,3 +1,4 @@
+import { volver } from "./insertar.js";
 import { comprobarUsuario, controlUsuarios } from "./landingPage.js";
 import { placeholderModificacion } from "./modificar.js";
 
@@ -75,7 +76,7 @@ function creadorNombreBar(name){
 
 //Esta funcion realiza la creacion de las imagenes de cada tapa
 function creadorImagenTapa(imagen){
-    console.log(imagen);
+    // console.log(imagen);
     let a = document.createElement('a');
     let img = document.createElement('img');
     img.src = imagen;
@@ -103,7 +104,8 @@ function creadorDescripcion(nombre, descripcion){
 // La funcionalidad de esta funcion es el control de los corazones.
 // si el corzon esta en blanco quiere decir que no esta añadida a favoritos 
 // si el corazon esta relleno quiere decir que esta añadido a favoritos 
-function meGusta(e){
+function meGusta(){
+    console.log();
     // fetch()
     // for(let user of dataUsuarios){
     //     if(user.name == localStorage.getItem('nombre')){
@@ -181,20 +183,10 @@ function modalContenido(elemento, data){
             })
             
             btnModalmodificar.addEventListener('click', ()=>{
-                
                 let formInsertar = document.getElementById('formInsertar');
                 let insertarBotones = document.getElementById('botones');
                 let formulario = document.getElementById('formulario');
-                let nombreBar = document.getElementById('nombreBar');
-                let nombreTapa = document.getElementById('nombreTapa');
-                let imagen = document.getElementById('imagen');
-                let descripcion = document.getElementById('descripcion');
-                let direccion = document.getElementById('direccion');
-                let telefono = document.getElementById('telefono');
-                let latitud = document.getElementById('latitud');
-                let longitud = document.getElementById('longitud');
-                let horaApertura = document.getElementById('hora_apertura');
-                let HoraCierre = document.getElementById('hora_cierre');
+                let imagen = document.getElementById('foto');
 
                 let tapas = document.getElementById('tapas');
                 let enviar = document.getElementById('enviar');
@@ -202,6 +194,7 @@ function modalContenido(elemento, data){
                     insertarBotones.firstChild.remove();
                 }
 
+                insertarBotones.innerHTML = ''
                 let btnModificar = document.createElement('input')
                 btnModificar.type = 'submit';
                 btnModificar.name = 'modificar';
@@ -213,48 +206,41 @@ function modalContenido(elemento, data){
                 formInsertar.style.display = 'flex';
                 tapas.style.display = 'none';
                 
-                // btnModificar.addEventListener('click', modificacion)
-                formulario.addEventListener('submit', (event)=>{
+               
+                formulario.onsubmit = (event)=>{
                     event.preventDefault();
+                    
                     if(event.submitter.getAttribute('id') === 'modificar'){
-
-                        // const formData = new FormData(formulario);
-                        // const data = Object.fromEntries(formData);
-                        let tapa_modificada = {
-                            'id_tapa': id,
-                            'nombreBar': nombreBar.value.trim(),
-                            'nombreTapa': nombreTapa.value.trim(),
-                            'descripcion': descripcion.value.trim(),
-                            'direccion': direccion.value.trim(),
-                            'telefono': telefono.value.trim(),
-                            'latitud': latitud.value.trim(),
-                            'longitud': longitud.value.trim(),
-                            'hora_apertura': horaApertura.value.trim(),
-                            'hora_cierre': HoraCierre.value.trim(),
+                        
+                        const formData = new FormData(formulario);
+                        delete formData.foto;
+                        formData.append('id_tapa', localStorage.getItem('id_tapa'));
+                        formData.append("foto", imagen.files[0]);
+                        let informacion = {}
+                        for(let i of formData){
+                            informacion[i] = i[1];
                         }
+
+                        console.log(formData);
                         
                         let option = {
-                            method: 'put',
+                            method: 'POST',
                             mode: 'cors',
-                            headers:{
-                                "Content-Type": "application/json",
-                            },
-                            body: JSON.stringify(tapa_modificada),
+                            body: formData,
                         }
 
                         fetch('http://localhost/DWES/www/proyectoTapasJs/php/modificar.php', option)
                         .then(res =>{
                             if(res.status === 200){
+                                volver();
+                                render();
                                 return res.json();
                             }else{
                                 alert("No se pudo modificar la tapa");
                             }
-                        })
-                    }else{
-                        console.log("no");
+                        });
                     }
-                }) 
-
+                }
                 cerrar.click();
                 placeholderModificacion(data);
                 
@@ -285,7 +271,6 @@ export function render(){
     })
 
     .then(data =>{
-        console.log(data);
         creadorTarjeta(data)
         let btnAnterior = document.getElementById('btnAnterior');
         let btnSiguiente = document.getElementById('btnSiguiente');

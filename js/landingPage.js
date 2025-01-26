@@ -11,7 +11,7 @@ insertar.addEventListener('click', ()=>{
     let insertarBotones = document.getElementById('botones');
     let tapas = document.getElementById('tapas');
     let titulo = document.getElementById('titulo');
-    let insertarIngredientes = document.getElementById('insertarIngredientes');
+    // let insertarIngredientes = document.getElementById('insertarIngredientes');
     
     while(insertarBotones.firstChild){
         insertarBotones.firstChild.remove();
@@ -25,9 +25,9 @@ insertar.addEventListener('click', ()=>{
     enviar.setAttribute('id', 'enviar');
     insertarBotones.append(enviar);
 
-    while(insertarIngredientes.firstChild){
-        insertarIngredientes.firstChild.remove();
-    }
+    // while(insertarIngredientes.firstChild){
+    //     insertarIngredientes.firstChild.remove();
+    // }
     titulo.textContent = 'Insertar tapa';
     
     formInsertar.style.display = 'flex';

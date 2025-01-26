@@ -4,10 +4,12 @@
 
     $con = new Conexion();
 
-    if($_SERVER['REQUEST_METHOD'] === 'PUT'){
-        $datos = json_decode(file_get_contents("php://input"), true);
+    if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        $datos = $_REQUEST;
+        $imagen = $_FILES['foto'];
 
-        if($datos !== null){
+        
+        if($datos != null){
             $nombreBar = $datos['nombreBar'];
             $nombreTapa = $datos['nombreTapa'];
             $descripcion = $datos['descripcion'];
@@ -17,16 +19,13 @@
             $longitud = $datos['longitud'];
             $hora_apertura = $datos['hora_apertura'];
             $hora_cierre = $datos['hora_cierre'];
+            $ingredientes = $datos['ingredientes'];
             $id = $datos['id_tapa'];
+            $tiempo = time();
+            $uploadDir = '../fotosUsuario/'; 
+            $uploadPath = $uploadDir . basename($tiempo.$imagen['name']);
+            $loadDir = './fotosUsuario/' . basename($tiempo.$imagen['name']);
 
-            $ingrediente = [];
-            foreach($datos as $key => $value){
-                if(preg_match('/^~ingredientes\d+$/', $key)){
-                    $ingrediente[] = $value;
-                }
-            }
-
-            $ingredienteTexto = implode(',', $ingrediente);
             
 
             try{
@@ -38,7 +37,7 @@
                 }
                 
             }catch(mysqli_sql_exception $e){
-                header("HTTP/1.1 400 Bad Request");
+                header("HTTP/1.1 400 BAd Request");
                 exit;
             }
             
@@ -49,20 +48,22 @@
                 header("Content-Type: application/json");
                 
             }catch(mysqli_sql_exception $e){
-                header("HTTP/1.1 400 Bad Request");
+                header("HTTP/1.1 400 Bad request");
                 exit;
             }
 
             try{
                 
-                $sql3 = "UPDATE tapas SET nombre = '$nombreTapa', descripcion = '$descripcion', ingredientes = '$ingrediente', bar = '$id_bar' WHERE id_tapa = '$id'";
+                $sql3 = "UPDATE tapas SET nombre = '$nombreTapa', descripcion = '$descripcion', ingredientes = '$ingredientes', bar = '$id_bar', foto = '$loadDir' WHERE id_tapa = '$id'";
                 $result = $con->query($sql3);
-                header("HTTP/1.1 200 Ok");
-                header("ContenT-Type: application/json");
-                exit;
+                if(move_uploaded_file($imagen['tmp_name'], $uploadPath)){
+                    header("HTTP/1.1 200 Ok");
+                    header("ContenT-Type: application/json");
+                    exit;
+                }
                 
             }catch(mysqli_sql_exception $e){
-                header("HTTP/1.1 400 Bad Request");
+                header("HTTP/1.1 400 bad Request");
                 exit;
             }
         }

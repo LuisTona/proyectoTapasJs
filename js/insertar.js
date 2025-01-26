@@ -24,22 +24,23 @@ formulario.addEventListener('submit', (event)=>{
         for(let i of formData){
             data[i] = i[1];
         }
-
-        let option = {
-            method: 'post',
-            mode: 'cors',
-            body: formData,
-        }
-
-        fetch('http://localhost/DWES/www/proyectoTapasJs/php/insertar.php', option)
-        .then(res=>{
-            if(res.status === 201){
-                render();
-                volver();
-            }else{
-                alert('No se pudo añadir la tapa');
+        console.log(data);
+        
+            let option = {
+                method: 'post',
+                mode: 'cors',
+                body: formData,
             }
-        })       
+    
+            fetch('http://localhost/DWES/www/proyectoTapasJs/php/insertar.php', option)
+            .then(res=>{
+                if(res.status === 201){
+                    render();
+                    volver();
+                }else{
+                    alert('No se pudo añadir la tapa, rellene los campos vacios');
+                }
+            })       
         
     }
 })
@@ -47,44 +48,44 @@ formulario.addEventListener('submit', (event)=>{
 button.addEventListener('click', volver);
 
 //Con esta funcion podemos volver a la galeria de tapas
-function volver(){
+export function volver(){
     let formInsertar = document.getElementById('formInsertar');
     let tapas = document.getElementById('tapas');
     formInsertar.style.display = 'none';
     tapas.style.display = 'block';
 }
 
-añadirIngrediente.addEventListener('click', (e)=>{
-    e.preventDefault();
-    añadidorIngredientes();
-});
+// añadirIngrediente.addEventListener('click', (e)=>{
+//     e.preventDefault();
+//     añadidorIngredientes();
+// });
 
 //Esta funcion permite añadir ingredientes a las tapas que queramos insertar
-export function añadidorIngredientes(){
+// export function añadidorIngredientes(){
     
-    let label = document.createElement('label');
-    label.for = `ingrediente${Math.floor((insertarIngredientes.children.length + 1)/2)+1}`;
-    label.textContent = 'ingrediente ' + (Math.floor((insertarIngredientes.children.length + 1)/2)+1)
-    let input = document.createElement('input');
-    input.type = 'text';
-    input.name = `ingrediente${Math.floor((insertarIngredientes.children.length + 1)/2)+1}`;
-    input.setAttribute('id', 'ingrediente' + (Math.floor((insertarIngredientes.children.length + 1)/2)+1))
-    insertarIngredientes.append(label);
-    insertarIngredientes.append(input);
-}
+//     let label = document.createElement('label');
+//     label.for = `ingrediente${Math.floor((insertarIngredientes.children.length + 1)/2)+1}`;
+//     label.textContent = 'ingrediente ' + (Math.floor((insertarIngredientes.children.length + 1)/2)+1)
+//     let input = document.createElement('input');
+//     input.type = 'text';
+//     input.name = `ingrediente${Math.floor((insertarIngredientes.children.length + 1)/2)+1}`;
+//     input.setAttribute('id', 'ingrediente' + (Math.floor((insertarIngredientes.children.length + 1)/2)+1))
+//     insertarIngredientes.append(label);
+//     insertarIngredientes.append(input);
+// }
 
 //Con esta funcion confirmamos los ingredientes que se han añadido
-export function ingredientesAñadidos(){
-    let lista = insertarIngredientes.children
-    let arreglo = []
-    for(let k = 1; k < lista.length; k +=2){
-        if(lista[k].value.trim() !== ''){
-            arreglo.push(lista[k].value)
-        }
+// export function ingredientesAñadidos(){
+//     let lista = insertarIngredientes.children
+//     let arreglo = []
+//     for(let k = 1; k < lista.length; k +=2){
+//         if(lista[k].value.trim() !== ''){
+//             arreglo.push(lista[k].value)
+//         }
         
-    }
-    return arreglo;
-}
+//     }
+//     return arreglo;
+// }
 
 //Con esta funcion limpiamos el formulario
 export function limpiarFormulario(){
