@@ -1,5 +1,6 @@
 // import { render } from "./creadorTapas.js";
 // import { dataUsuarios, dataBares } from "./data.js";
+import { creadorTarjeta } from "./creadorTapas.js";
 import { limpiarFormulario } from "./insertar.js";
 
 let insertar = document.getElementById('insertar');
@@ -34,61 +35,39 @@ insertar.addEventListener('click', ()=>{
     tapas.style.display = 'none';
     limpiarFormulario();
 })
-// let favoritos = false;
-
-// filtrarFav.addEventListener('click', ()=>{
-//     let user = localStorage.getItem('nombre')
-//     let arregloFav = [];
-//     if(favoritos == false){
-//         favoritos = true;
-//         for(let users of dataUsuarios){
-        
-//             if(users.name == user){
-                
-//                 dataBares.forEach(e=>{
-//                     for(let tapaId of e.tapas){
-//                         for(let k = 0; k < users.favoritos.length; k++){
-                            
-//                             if(users.favoritos[k] == tapaId.id){
-//                                 let bar={
-//                                     nombreBar:e.nombreBar,
-//                                     tapas:[tapaId]
-//                                 }
-//                                 arregloFav.push(bar);
-//                             }
-
-//                         }
-                        
-//                     }
-                    
-//                 })
-//             }
-//         }
-//         render(arregloFav);
-//         misFavoritos()
-
-//     }else{
-//         favoritos = false;
-//         render(dataBares);
-        
-//     }
-// })
-
-// //Con esta funcion obtenemos las tapas que se han seleccionado como favoritos
-// export function misFavoritos(){
-//     let tapas = document.querySelectorAll('.tapasTitle');
-//     for(let user of dataUsuarios){
-//         if(user.name == localStorage.getItem('nombre')){
-//             for(let k = 0; k< user.favoritos.length; k++){
-//                 for(let w = 0; w < tapas.length; w++){
-//                     if(tapas[w].attributes.tpsid.value == user.favoritos[k]){
-//                         tapas[w].firstElementChild.src = './svg/heart-solid.svg';
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }
+let favoritos = false;
+filtrarFav.addEventListener('click', ()=>{
+    const url = 'http://localhost/DWES/www/proyectoTapasJs/php/landingpage.php'
+    let formData = {
+        nombre : localStorage.getItem('nombre'),
+        enviar : 'enviar'
+    }
+    if(favoritos){
+       delete formData.enviar;    
+       favoritos = false;
+       filtrarFav.textContent = 'Ver mis favoritos';
+    }else{
+        favoritos = true;
+        filtrarFav.textContent = 'Ver todas las tapas';
+    }
+    let option = {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Content-type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+    }
+    fetch(url, option)
+    .then(res=>{
+        if(res.status == 200){
+            return res.json();
+        }
+    })
+    .then((data)=>{ 
+        creadorTarjeta(data);
+    })
+})
 
 export function comprobarUsuario(){
     

@@ -23,7 +23,7 @@ export function creadorTarjeta(data){
         tarjetaTapa.className = 'tapasTitle'
         tarjetaTapa.setAttribute('tpsId', `${element.id_tapa}`);
         if(comprobarUsuario()){
-            tarjetaTapa.append(creadorLike()); 
+            tarjetaTapa.append(creadorLike(data[data.length - 1], element.id_tapa)); 
         }
         
         tarjetaTapa.append(creadorNombreBar(element.nombre_bar)); 
@@ -37,11 +37,10 @@ export function creadorTarjeta(data){
         })
         gridTapas.append(tarjetaTapa);
     });
-      
 }
 
 //La principal funcionalidad es la creacion de los botones de la modal
-export function creadorBoton(data){
+export function creadorBoton(){
     let button = document.createElement('button');
     button.type = 'button';
     button.className = 'btn btn-primary';
@@ -54,9 +53,14 @@ export function creadorBoton(data){
 }
 
 //Su funcion es crear el corazon de los favoritos 
-function creadorLike(){
+function creadorLike(favoritos, id_tapa){
     let imgSvg = document.createElement('img');
     imgSvg.src = './svg/corazon.svg';
+    for(let k = 0; k < favoritos.length; k++){
+        if(favoritos[k].favoritos == id_tapa){
+            imgSvg.src = './svg/heart-solid.svg';
+        }
+    }
     imgSvg.alt = 'Me gusta';
     imgSvg.className = 'like';
     imgSvg.addEventListener('click', (e)=>{meGusta(e)});
@@ -66,7 +70,6 @@ function creadorLike(){
 
 //Su funcion es crear el nombre de cada bar en negrita
 function creadorNombreBar(name){
-    
     let nombreBar = document.createElement('p');
     let strong = document.createElement('strong');
     strong.innerText = name.trim();
@@ -106,38 +109,29 @@ function creadorDescripcion(nombre, descripcion){
 // si el corazon esta relleno quiere decir que esta añadido a favoritos 
 function meGusta(e){
     const url = 'http://localhost/DWES/www/proyectoTapasJs/php/favoritos.php';
-    let formData = new formData();
+    let formData = new FormData();
 
     formData.append('nombre', localStorage.getItem('nombre'));
-    formData.append('id_tapa', localStorage.getItem('id_tapa'));
+    formData.append('id_tapa', e.target.parentNode.getAttribute('tpsid'));
     
     let options = {
         method: 'POST',
         mode: 'cors',
-        headers: {
-            'Content-type': 'application/json',
-        },
         body:formData
     }
     fetch(url, options)
     .then(res=>{
-        if(res.status == 201){
+        if(res.status == 201 || res.status == 200){
+            if(e.target.attributes[0].value == './svg/corazon.svg'){
+                e.target.src= './svg/heart-solid.svg';
+            }else{
+                e.target.src = './svg/corazon.svg';
+            }
             return res.json;
         }else{
             alert("No se pudo añadir a favoritos")
         }
     })
-    // for(let user of dataUsuarios){
-    //     if(user.name == localStorage.getItem('nombre')){
-    //         if(e.target.attributes[0].value == './svg/corazon.svg'){
-    //             e.target.src= './svg/heart-solid.svg';
-    //             user.favoritos.push(e.target.parentNode.getAttribute('tpsId'));
-    //         }else{
-    //             e.target.src = './svg/corazon.svg';
-    //             user.favoritos.pop(e.target.parentNode.getAttribute('tpsId'));
-    //         }
-    //     }
-    // }
 }
 
 
@@ -271,12 +265,12 @@ function modalContenido(elemento, data){
 
 
 let option = {
-    method: 'get',
+    method: 'post',
     mode: 'cors',
     headers: {
-        'Content-type': 'Apllication/json',
+        'Content-type': 'Aplication/json',
     },
-    body: JSON.stringify(),
+    body: JSON.stringify({nombre:localStorage.getItem('nombre')}),
 }
 export function render(){
     fetch('http://localhost/DWES/www/proyectoTapasJs/php/landingpage.php', option)
