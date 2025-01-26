@@ -10,8 +10,8 @@ const nombreExp=/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/;
 
 let campo = [
     {campo: nombre, expresion: nombreExp, valor: 0},
-    {campo: correo, expresion: regExp, valor: 1},
-    {campo: contraseña, expresion: passExp, valor: 2},
+    {campo: correo, expresion: regExp, valor: 2},
+    {campo: contraseña, expresion: passExp, valor: 4},
 ];
 
 // Validaciones del nombre
@@ -21,11 +21,11 @@ nombre.addEventListener('blur', ()=>{
 
 // Validaciones del correo
 correo.addEventListener('blur', ()=>{
-    validacionExpresiones(correo, regExp, 1);
+    validacionExpresiones(correo, regExp, 2);
 });
 
 contraseña.addEventListener('blur', ()=>{
-    validacionExpresiones(contraseña, passExp, 2);
+    validacionExpresiones(contraseña, passExp, 4);
 });
 
 
@@ -37,8 +37,9 @@ document.querySelector('#formulario').addEventListener('submit', function(event)
     let valido = true;
     if(comprobacionUsuarios(nombre.value)){
         campo.forEach(({campo, expresion, valor}) => {
-           
-            validacionExpresiones(campo, expresion, valor);
+           if(valido){
+                valido = validacionExpresiones(campo, expresion, valor);
+           }
 
             if(campo.value.trim() === ''){
                 campo.classList.add('incorrecto');
@@ -50,8 +51,8 @@ document.querySelector('#formulario').addEventListener('submit', function(event)
                 
             const formData = new FormData(form);
             const data = Object.fromEntries(formData);
-            // fallo en valido entra siempre cuando entra va a estar un campo true, si esta en true valida y registra corregir campo valido
-            if(nombre.value.trim() !== '' && correo.value.trim() !== '' && contraseña.value.trim() !== ''){
+    
+            if(valido && nombre.value.trim() !== '' && correo.value.trim() !== '' && contraseña.value.trim() !== ''){
                 let options = {
                     method: 'POST',
                     mode: 'cors',
@@ -75,8 +76,6 @@ document.querySelector('#formulario').addEventListener('submit', function(event)
                     if(data){
                         window.location.href = 'login.html'
                     }
-                    // localStorage.setItem('usuario', JSON.stringify(data));
-                    // localStorage.setItem('log', data.nombre)
                 })
 
             }   

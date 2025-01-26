@@ -304,6 +304,8 @@ export function render(){
                 creadorTarjeta(data);
             }
         }
+
+        
         
     })
 }

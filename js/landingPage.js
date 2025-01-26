@@ -37,36 +37,62 @@ insertar.addEventListener('click', ()=>{
 })
 let favoritos = false;
 filtrarFav.addEventListener('click', ()=>{
-    const url = 'http://localhost/DWES/www/proyectoTapasJs/php/landingpage.php'
-    let formData = {
-        nombre : localStorage.getItem('nombre'),
-        enviar : 'enviar'
+    const urlJWT = "http://localhost/DWES/www/proyectoTapasJs/php/jwt.php";
+    let datos = {
+        nombre: localStorage.getItem('nombre'),
+        tipo: localStorage.getItem('tipo'),
+        token: localStorage.getItem('token'),
     }
-    if(favoritos){
-       delete formData.enviar;    
-       favoritos = false;
-       filtrarFav.textContent = 'Ver mis favoritos';
-    }else{
-        favoritos = true;
-        filtrarFav.textContent = 'Ver todas las tapas';
-    }
-    let option = {
+
+    let options = {
         method: 'POST',
         mode: 'cors',
         headers: {
             'Content-type': 'application/json',
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(datos),
     }
-    fetch(url, option)
-    .then(res=>{
-        if(res.status == 200){
-            return res.json();
+
+    fetch(urlJWT, options)
+    .then(res =>{
+        if(res.status === 200){
+            const url = 'http://localhost/DWES/www/proyectoTapasJs/php/landingpage.php'
+            let formData = {
+                nombre : localStorage.getItem('nombre'),
+                enviar : 'enviar'
+            }
+            if(favoritos){
+               delete formData.enviar;    
+               favoritos = false;
+               filtrarFav.textContent = 'Ver mis favoritos';
+            }else{
+                favoritos = true;
+                filtrarFav.textContent = 'Ver todas las tapas';
+            }
+            let option = {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Content-type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            }
+            fetch(url, option)
+            .then(res=>{
+                if(res.status == 200){
+                    return res.json();
+                }
+            })
+            .then((data)=>{ 
+                creadorTarjeta(data);
+            })
+        }else{
+            alert("Se a producido un error, recarge la pagina");
+            logOut();
+            window.location.href = 'index.html';
         }
     })
-    .then((data)=>{ 
-        creadorTarjeta(data);
-    })
+
 })
 
 export function comprobarUsuario(){
@@ -140,4 +166,19 @@ function identificadorUsuario(){
     logout.addEventListener('click', logOut);
 }
 
+window.addEventListener('DOMContentLoaded', function(){
+
+    if(localStorage.getItem('tipo') === 'admin' || localStorage.getItem('tipo') === 'user'){
+        let tiempo = setInterval(() => {
+            if(!confirm('Se a expirado la sesion, ¿Desea renovar la sesion?')){
+                clearInterval(tiempo);
+                location.reload();
+                localStorage.removeItem('nombre');
+                localStorage.removeItem('tipo');
+                localStorage.removeItem('token');
+                alert("Se ha cerrado la sesion, inicie sesion de nuevo");
+            }
+        }, 1000 * 60 * 60);
+    }
+})
 

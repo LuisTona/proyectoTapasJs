@@ -32,6 +32,7 @@ form.addEventListener('submit', (e)=>{
         window.location.href = 'index.html';
         localStorage.setItem('nombre', data.nombre);
         localStorage.setItem('tipo', data.rol);
+       
     })
 
 })

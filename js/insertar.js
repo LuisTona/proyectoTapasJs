@@ -55,38 +55,6 @@ export function volver(){
     tapas.style.display = 'block';
 }
 
-// añadirIngrediente.addEventListener('click', (e)=>{
-//     e.preventDefault();
-//     añadidorIngredientes();
-// });
-
-//Esta funcion permite añadir ingredientes a las tapas que queramos insertar
-// export function añadidorIngredientes(){
-    
-//     let label = document.createElement('label');
-//     label.for = `ingrediente${Math.floor((insertarIngredientes.children.length + 1)/2)+1}`;
-//     label.textContent = 'ingrediente ' + (Math.floor((insertarIngredientes.children.length + 1)/2)+1)
-//     let input = document.createElement('input');
-//     input.type = 'text';
-//     input.name = `ingrediente${Math.floor((insertarIngredientes.children.length + 1)/2)+1}`;
-//     input.setAttribute('id', 'ingrediente' + (Math.floor((insertarIngredientes.children.length + 1)/2)+1))
-//     insertarIngredientes.append(label);
-//     insertarIngredientes.append(input);
-// }
-
-//Con esta funcion confirmamos los ingredientes que se han añadido
-// export function ingredientesAñadidos(){
-//     let lista = insertarIngredientes.children
-//     let arreglo = []
-//     for(let k = 1; k < lista.length; k +=2){
-//         if(lista[k].value.trim() !== ''){
-//             arreglo.push(lista[k].value)
-//         }
-        
-//     }
-//     return arreglo;
-// }
-
 //Con esta funcion limpiamos el formulario
 export function limpiarFormulario(){
     nombreBar.value = ' ';

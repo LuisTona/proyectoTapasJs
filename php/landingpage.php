@@ -7,7 +7,9 @@
 
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $datos = json_decode(file_get_contents('php://input'), true);
+        
         if($datos["nombre"] != null){
+
             try{
                 try {
                     $nombre = $datos["nombre"];
