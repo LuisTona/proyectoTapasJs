@@ -262,8 +262,6 @@ function modalContenido(elemento, data){
     }
 }
 
-
-
 let option = {
     method: 'post',
     mode: 'cors',
@@ -304,11 +302,7 @@ export function render(){
                 creadorTarjeta(data);
             }
         }
-
-        
-        
     })
 }
-
 
 render();

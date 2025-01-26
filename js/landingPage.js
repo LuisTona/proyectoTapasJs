@@ -6,7 +6,43 @@ import { limpiarFormulario } from "./insertar.js";
 let insertar = document.getElementById('insertar');
 let filtrarFav = document.getElementById('filtroFav');
 
+window.addEventListener('click', ()=>{
+    comprobacionToken();
+})
 
+window.addEventListener('DOMContentLoaded', ()=>{
+    comprobacionToken()
+})
+
+function comprobacionToken(){
+    
+    if(localStorage.getItem('invitado') === null){
+        const urlJWT = "http://localhost/DWES/www/proyectoTapasJs/php/jwt.php";
+        let datos = {
+            nombre: localStorage.getItem('nombre'),
+            tipo: localStorage.getItem('tipo'),
+            token: localStorage.getItem('token'),
+        }
+    
+        let options = {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify(datos),
+        }
+    
+        fetch(urlJWT, options)
+        .then(res =>{
+            if(res.status !== 200){
+                alert("Se a producido un error, recarge la pagina");
+                logOut();
+                window.location.href = 'index.html';
+            }
+        })
+    }
+}
 insertar.addEventListener('click', ()=>{
     let formInsertar = document.getElementById('formInsertar');
     let insertarBotones = document.getElementById('botones');
