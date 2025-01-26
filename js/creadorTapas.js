@@ -104,9 +104,29 @@ function creadorDescripcion(nombre, descripcion){
 // La funcionalidad de esta funcion es el control de los corazones.
 // si el corzon esta en blanco quiere decir que no esta añadida a favoritos 
 // si el corazon esta relleno quiere decir que esta añadido a favoritos 
-function meGusta(){
-    console.log();
-    // fetch()
+function meGusta(e){
+    const url = 'http://localhost/DWES/www/proyectoTapasJs/php/favoritos.php';
+    let formData = new formData();
+
+    formData.append('nombre', localStorage.getItem('nombre'));
+    formData.append('id_tapa', localStorage.getItem('id_tapa'));
+    
+    let options = {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Content-type': 'application/json',
+        },
+        body:formData
+    }
+    fetch(url, options)
+    .then(res=>{
+        if(res.status == 201){
+            return res.json;
+        }else{
+            alert("No se pudo añadir a favoritos")
+        }
+    })
     // for(let user of dataUsuarios){
     //     if(user.name == localStorage.getItem('nombre')){
     //         if(e.target.attributes[0].value == './svg/corazon.svg'){
@@ -205,7 +225,6 @@ function modalContenido(elemento, data){
 
                 formInsertar.style.display = 'flex';
                 tapas.style.display = 'none';
-                
                
                 formulario.onsubmit = (event)=>{
                     event.preventDefault();
