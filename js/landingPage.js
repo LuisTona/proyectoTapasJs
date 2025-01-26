@@ -1,6 +1,6 @@
 // import { render } from "./creadorTapas.js";
 // import { dataUsuarios, dataBares } from "./data.js";
-import { creadorTarjeta } from "./creadorTapas.js";
+import { creadorTarjeta, render, renderPages } from "./creadorTapas.js";
 import { limpiarFormulario } from "./insertar.js";
 
 let insertar = document.getElementById('insertar');
@@ -120,7 +120,8 @@ filtrarFav.addEventListener('click', ()=>{
                 }
             })
             .then((data)=>{ 
-                creadorTarjeta(data);
+                renderPages();
+                render(data);
             })
         }else{
             alert("Se a producido un error, recarge la pagina");

@@ -1,4 +1,4 @@
-import {render} from "./creadorTapas.js"
+import {dataTapas} from "./creadorTapas.js"
 
 let formulario = document.getElementById('formulario');
 let nombreBar = document.getElementById('nombreBar');
@@ -35,7 +35,7 @@ formulario.addEventListener('submit', (event)=>{
             fetch('http://localhost/DWES/www/proyectoTapasJs/php/insertar.php', option)
             .then(res=>{
                 if(res.status === 201){
-                    render();
+                    dataTapas();
                     volver();
                 }else{
                     alert('No se pudo añadir la tapa, rellene los campos vacios');

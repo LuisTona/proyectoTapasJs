@@ -6,11 +6,29 @@ comprobarUsuario();
 
 let numPage = 0;
 let tapasPerPage = 6;
+export function renderPages(){
+    numPage = 0;
+    let numeroPagina = document.getElementById('numPage');
+    numeroPagina.textContent = numPage + 1;
+}
 
 //La principal funcionalidad es la creacion de las targetas de cada tapa
 export function creadorTarjeta(data){
     // vamos a crear las tarjetas
-    
+    console.log(data);
+    let btnAnterior = document.getElementById('btnAnterior');
+    let btnSiguiente = document.getElementById('btnSiguiente');
+    let numeroPagina = document.getElementById('numPage');
+    if(data.length < 8){
+        btnAnterior.style.display = 'none'
+        btnSiguiente.style.display = 'none';
+        numeroPagina.style.display = 'none';
+    }else{
+        btnAnterior.style.display = 'block'
+        btnSiguiente.style.display = 'block';
+        numeroPagina.style.display = 'block';
+    }
+
     let gridTapas = document.getElementById('tapasGrid');
 
     gridTapas.innerHTML = ''; 
@@ -182,18 +200,19 @@ function modalContenido(elemento, data){
                         'Content-type': 'application/json',
                     }
                 }
-    
-                fetch(`http://localhost/DWES/www/proyectoTapasJs/php/eliminar.php?id=${id}`, option)
-                .then(res =>{
-                    if(res.status === 200){
-                        cerrar.click();
-                        alert("Se a eliminado la tapa correctamente");
-                        localStorage.removeItem('id_tapa');
-                        render();
-                    }else{
-                        alert("No se pudo eliminar la tapa")
-                    }
-                })
+                if(confirm('¿Estas seguro que desea eliminarlo?')){
+                    fetch(`http://localhost/DWES/www/proyectoTapasJs/php/eliminar.php?id=${id}`, option)
+                    .then(res =>{
+                        if(res.status === 200){
+                            cerrar.click();
+                            alert("Se a eliminado la tapa correctamente");
+                            localStorage.removeItem('id_tapa');
+                            dataTapas();
+                        }else{
+                            alert("No se pudo eliminar la tapa")
+                        }
+                    })
+                }
             })
             
             btnModalmodificar.addEventListener('click', ()=>{
@@ -246,7 +265,7 @@ function modalContenido(elemento, data){
                         .then(res =>{
                             if(res.status === 200){
                                 volver();
-                                render();
+                                dataTapas();
                                 return res.json();
                             }else{
                                 alert("No se pudo modificar la tapa");
@@ -270,9 +289,9 @@ let option = {
     },
     body: JSON.stringify({nombre:localStorage.getItem('nombre')}),
 }
-export function render(){
+export function dataTapas(){
     fetch('http://localhost/DWES/www/proyectoTapasJs/php/landingpage.php', option)
-
+    
     .then(res =>{
         if(res.status == 200){
             return res.json();
@@ -280,9 +299,14 @@ export function render(){
             alert('No se pudo encontrar ninguna tapa');
         }
     })
-
+    
     .then(data =>{
-        creadorTarjeta(data)
+        renderPages();
+        render(data)
+    })
+}
+export function render(data){
+        creadorTarjeta(data);
         let btnAnterior = document.getElementById('btnAnterior');
         let btnSiguiente = document.getElementById('btnSiguiente');
         let numeroPagina = document.getElementById('numPage');
@@ -302,7 +326,6 @@ export function render(){
                 creadorTarjeta(data);
             }
         }
-    })
 }
 
-render();
+dataTapas();
