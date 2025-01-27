@@ -43,7 +43,7 @@ export function creadorTarjeta(data){
     let inicio = numPage * tapasPerPage;
     let final = (numPage * tapasPerPage) + tapasPerPage;
     if(final >= data.length - 2){
-        final = data.length - 1;
+        final = data.length;
         ocultarBoton('siguiente');
     }else if(inicio <= 0){
         ocultarBoton('atras');
@@ -312,6 +312,13 @@ export function dataTapas(){
     .then(data =>{
         renderPages();
         render(data)
+        let explorador = document.getElementById('buscador');
+        explorador.addEventListener('keyup', ()=>{
+            let buscador = data.map( e => e.nombre_bar.toLocaleLowerCase().includes(explorador.value.toLowerCase()) ? e : '');
+            buscador = buscador.filter(e=> e != "")
+            renderPages();
+            render(buscador);
+        })
     })
 }
 export function render(data){
