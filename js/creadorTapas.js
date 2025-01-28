@@ -326,9 +326,10 @@ export function render(data){
         let btnAnterior = document.getElementById('btnAnterior');
         let btnSiguiente = document.getElementById('btnSiguiente');
         let numeroPagina = document.getElementById('numPage');
-        
+        console.log(data);        
         btnSiguiente.onclick = function(){
-            if(data.slice((numPage + 1) * tapasPerPage, ((numPage + 1) * tapasPerPage) + tapasPerPage).length > 0){
+            console.log(((numPage + 1) * tapasPerPage, ((numPage + 1) * tapasPerPage) + tapasPerPage));
+            if(data.slice((numPage + 1) * tapasPerPage, ((numPage + 1) * tapasPerPage) + tapasPerPage)){
                 numPage++;
                 numeroPagina.textContent++;
                 creadorTarjeta(data);
