@@ -252,34 +252,35 @@ function modalContenido(elemento, data){
                
                 formulario.onsubmit = (event)=>{
                     event.preventDefault();
-                    
-                    if(event.submitter.getAttribute('id') === 'modificar'){
-                        
-                        const formData = new FormData(formulario);
-                        delete formData.foto;
-                        formData.append('id_tapa', localStorage.getItem('id_tapa'));
-                        formData.append("foto", imagen.files[0]);
-                        let informacion = {}
-                        for(let i of formData){
-                            informacion[i] = i[1];
-                        }
-
-                        let option = {
-                            method: 'POST',
-                            mode: 'cors',
-                            body: formData,
-                        }
-
-                        fetch('http://localhost/DWES/www/proyectoTapasJs/php/modificar.php', option)
-                        .then(res =>{
-                            if(res.status === 200){
-                                volver();
-                                dataTapas();
-                                return res.json();
-                            }else{
-                                alert("No se pudo modificar la tapa");
+                    if(confirm('¿Estas seguro que quieres modificarlo?')){
+                        if(event.submitter.getAttribute('id') === 'modificar'){
+                            
+                            const formData = new FormData(formulario);
+                            delete formData.foto;
+                            formData.append('id_tapa', localStorage.getItem('id_tapa'));
+                            formData.append("foto", imagen.files[0]);
+                            let informacion = {}
+                            for(let i of formData){
+                                informacion[i] = i[1];
                             }
-                        });
+    
+                            let option = {
+                                method: 'POST',
+                                mode: 'cors',
+                                body: formData,
+                            }
+    
+                            fetch('http://localhost/DWES/www/proyectoTapasJs/php/modificar.php', option)
+                            .then(res =>{
+                                if(res.status === 200){
+                                    volver();
+                                    dataTapas();
+                                    return res.json();
+                                }else{
+                                    alert("No se pudo modificar la tapa");
+                                }
+                            });
+                        }
                     }
                 }
                 cerrar.click();

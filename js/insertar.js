@@ -44,14 +44,18 @@ formulario.addEventListener('submit', (event)=>{
     }
 })
 
-button.addEventListener('click', volver);
+button.addEventListener('click', ()=>{
+    if(confirm('¿Estas seguro que quieres volver?')){
+        volver();
+    }
+});
 
 //Con esta funcion podemos volver a la galeria de tapas
 export function volver(){
-    let formInsertar = document.getElementById('formInsertar');
-    let tapas = document.getElementById('tapas');
-    formInsertar.style.display = 'none';
-    tapas.style.display = 'block';
+        let formInsertar = document.getElementById('formInsertar');
+        let tapas = document.getElementById('tapas');
+        formInsertar.style.display = 'none';
+        tapas.style.display = 'block';
 }
 
 //Con esta funcion limpiamos el formulario
