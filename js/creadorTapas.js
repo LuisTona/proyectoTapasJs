@@ -57,7 +57,7 @@ export function creadorTarjeta(data){
         }
         
         tarjetaTapa.append(creadorNombreBar(element.nombre_bar)); 
-        tarjetaTapa.append(creadorImagenTapa(element.foto));
+        tarjetaTapa.append(creadorImagenTapa(element.foto, element.nombre_tapa));
         tarjetaTapa.append(creadorDescripcion(element.nombre_tapa, element.descripcion));
         tarjetaTapa.append(creadorBoton(data));
         tarjetaTapa.addEventListener('click', (e)=>{
@@ -108,11 +108,11 @@ function creadorNombreBar(name){
 }
 
 //Esta funcion realiza la creacion de las imagenes de cada tapa
-function creadorImagenTapa(imagen){
+function creadorImagenTapa(imagen, nombre_tapa){
     let a = document.createElement('a');
     let img = document.createElement('img');
     img.src = imagen;
-    img.alt = 'foto de tapas de ' ;
+    img.alt = `foto de tapas de ${nombre_tapa}` ;
     a.append(img);
     return a;
     
