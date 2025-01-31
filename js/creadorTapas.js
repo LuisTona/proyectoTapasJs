@@ -315,7 +315,7 @@ export function dataTapas(){
         render(data)
         let explorador = document.getElementById('buscador');
         explorador.addEventListener('keyup', ()=>{
-            let buscador = data.map( e => e.nombre_bar.toLocaleLowerCase().includes(explorador.value.toLowerCase()) ? e : '');
+            let buscador = data.map( e => e.nombre_bar.toLocaleLowerCase().includes(explorador.value.toLowerCase())  || e.nombre_tapa.toLocaleLowerCase().includes(explorador.value.toLowerCase()) ? e : '');
             buscador = buscador.filter(e=> e != "")
             renderPages();
             render(buscador);
