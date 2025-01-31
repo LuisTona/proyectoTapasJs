@@ -33,15 +33,19 @@ Historia de Usuario 4: Como cliente
 El cliente puede registrarse y loguearse en la aplicación. Una vez logueados este tiene la opción de marcar tapas como favoritos presionando el icono del corazón situado en la esquina superior derecha de cada carta de bar. Una vez añadido podrá pulsar el botón para filtrar varitos y que solo aparezcan aquellas tapas que fueron marcadas previamente como favoritas por el usuario. Si vuelve a pulsar el botón de filtrar favoritos volverá a enseñar todas las tapas de la galería.
  
 Instrucciones de uso:
- 
-1-Clonar el repositorio
- 
-Para poder comenzar a usar el proyecto, debes clonar el repositorio con el siguiente comando:
- 
+1-Crear la estructura
+
+Para poder comenzar a usar el proyecto debe crear la estructura htdocs/DWES/www en un entorno de servidor local como xampp y clonar el repositorio:
+
+2-Clonar el repositorio
+Usar el comando 
 git clone https://github.com/LuisTona/proyectoTapasJs.git
 
-Utilización del proyecto
+3-Instalar composer/vendor
 
+Una vez clonado el repositorio, debe abrir la consola, situarse en la carpeta del proyecto proyectoTapasJs y debe ejecutar el comando
+composer require firebase/php-jwt.
 
-Una vez clonado el repositorio, debe crear la estructura DWES/www/proyectoTapasJs en un entorno de servidor local como xampp,
-abre el archivo index.html en tu navegador. Ahí tendrás todo lo explicado anteriormente.
+4-Utilización del proyecto
+
+Una vez realizados los pasos anteriores abre el archivo index.html en tu navegador y podras disfrutar de la aplicacion web.
