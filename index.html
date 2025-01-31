@@ -9,13 +9,15 @@
       <link rel="stylesheet" href="./css/insertar.css">
       <link rel="shortcut icon" href="./svg/logoTapasFavicon.svg" type="image/x-icon">
    </head>
+   
    <body>
       <!-- Barra de Navegación -->
       <header>
          <nav class="nav">
             <a href="./index.html"><img src="./svg/logoTapas.svg" alt='logos'/></a>
             <div>
-               <input type="text" id="buscador" placeholder="🔎 Buscar...">
+               <label for="buscador"></label>
+               <input type="text" id="buscador" name="buscador" placeholder="🔎 Buscar...">
                <ul class="nav-list" id="menu">
                   <li class="dropdown" id="acceso">
                      <a href="#">Acceder</a>
@@ -139,18 +141,18 @@
                <textarea name="descripcion" id="descripcion" cols="25"></textarea>
                <label for="direccion">Direcion del Bar</label>
                <input type="text" name="direccion" id="direccion" class="direccion" required>
-               <label for="Telefono">Telefono del bar</label>
+               <label for="telefono">Telefono del bar</label>
                <input type="number" name="telefono" id="telefono" class="telefono" required>
                <label for="latitud">latitud del bar</label>
                <input type="number" name="latitud" id="latitud" class="latitud" required>
-               <label for="longitudf">Longitud del bar</label>
+               <label for="longitud">Longitud del bar</label>
                <input type="number" name="longitud" id="longitud" class="longitud" required>
                <label for="hora_apertura">Hora de apertura</label>
                <input type="time" name="hora_apertura" id="hora_apertura" class="hora_apertura" required>
                <label for="hora_cierre">Hora de cierre</label>
                <input type="time" name="hora_cierre" id="hora_cierre" class="hora_cierre" required>
-               <label for="ingredientes">Ingredientes</label>
-               <textarea name="ingredientes" id=" ingredientes" cols="25"></textarea>
+               <label for=" ingredientes">Ingredientes</label>
+               <textarea name=" ingredientes" id=" ingredientes" cols="25"></textarea>
                <p id="mensaje"></p>
                <div id="botones">
                   <!-- <input type="submit" value="Enviar" name="enviar" class="enviar" id="enviar">
