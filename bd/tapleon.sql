@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-01-2025 a las 16:28:14
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Tiempo de generación: 26-01-2025 a las 11:45:16
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,8 +35,7 @@ CREATE TABLE `bares` (
   `latitud` decimal(10,8) DEFAULT NULL,
   `longitud` decimal(11,8) DEFAULT NULL,
   `hora_apertura` time DEFAULT NULL,
-  `hora_cierre` time DEFAULT NULL,
-
+  `hora_cierre` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -44,14 +43,14 @@ CREATE TABLE `bares` (
 --
 
 INSERT INTO `bares` (`id_bar`, `nombre`, `direccion`, `telefono`, `latitud`, `longitud`, `hora_apertura`, `hora_cierre`) VALUES
-(1, 'Bar Las Torres', 'Av. de Álvaro López Núñez, 25, León', '987234567', 42.59820000, -5.56780000, '12:00:00', '23:30:00'),
-(2, 'Restaurante Ezequiel', 'Calle Ancha, 20, León', '987123456', 42.60000000, -5.57100000, '12:00:00', '23:30:00'),
-(3, 'Casa Blas', 'C/ Sampiro, 1, León', '987345678', 42.60330000, -5.57550000, '12:00:00', '23:30:00'),
-(4, 'Bar La Tizona', 'Calle de Ordoño IV, 10, León', '987456789', 42.60500000, -5.57400000, '12:00:00', '23:30:00'),
-(5, 'Camarote Madrid', 'C/ Cervantes, 8, León', '987567890', 42.60350000, -5.57390000, '12:00:00', '23:30:00'),
-(6, 'Bar Genarín', 'Plaza del Espolón, León', '987678901', 42.60170000, -5.57450000, '12:00:00', '23:30:00'),
-(7, 'El Patio', 'Plaza Torres de Omaña, 2, León', '987789012', 42.60300000, -5.57470000, '12:00:00', '23:30:00'),
-(8, 'Café Bar Rúa 11', 'Calle La Rúa, León', '987890123', 42.60180000, -5.57520000, '12:00:00', '23:30:00');
+(1, 'Bar Las Torres', 'Av. de Álvaro López Núñez, 25, León', '987234567', 42.00000000, -5.00000000, '12:00:00', '23:30:00'),
+(2, 'Restaurante Ezequiel', 'Calle Ancha, 20, León', '987123456', 42.00000000, -5.00000000, '12:00:00', '23:30:00'),
+(3, 'Casa Blas', 'C/ Sampiro, 1, León', '987345678', 42.00000000, -5.00000000, '12:00:00', '23:30:00'),
+(4, 'Bar La Tizona', 'Calle de Ordoño IV, 10, León', '987456789', 42.00000000, -5.00000000, '12:00:00', '23:30:00'),
+(5, 'Camarote Madrid', 'C/ Cervantes, 8, León', '987567890', 42.00000000, -5.00000000, '12:00:00', '23:30:00'),
+(6, 'Bar Genarín', 'Plaza del Espolón, León', '987678901', 42.00000000, -5.00000000, '12:00:00', '23:30:00'),
+(7, 'El Patio', 'Plaza Torres de Omaña, 2, León', '987789012', 42.00000000, -5.00000000, '12:00:00', '23:30:00'),
+(8, 'Café Bar Rúa 11', 'Calle La Rúa, León', '987890123', 42.00000000, -5.00000000, '12:00:00', '23:30:00');
 
 -- --------------------------------------------------------
 
@@ -82,40 +81,20 @@ INSERT INTO `clientes` (`id_cliente`, `nombre_usuario`, `contrasena`, `tipo`, `e
 (8, 'user7', 'bfa2c173b6ea6f0231a9695c0dd068c916c40d6f7004eef72c1c84fa8068563ea8a2f24e40ba905e7b44212147fa3fd213e1689a2b14e2660fe3dfec958d61e3', 'user', 'user7@example.com'),
 (9, 'user8', '437fdf2893dc62b6290725e12a91ebfd5ba9d55e33bab0a9f8775edb1a43caa508bde707697d77a3f4248bb9112ce03c93e89ff79470695c2debdeb6919b4def', 'user', 'user8@example.com'),
 (10, 'user9', 'bc2b45060e6b26332b9296dc418858e3ee4bfcccab7309de9630f67ec756d15ad90c762f4fb027a8a57d1735c310537c8ffe7beaf1fb6138be912cd40d8aa0bb', 'user', 'user9@example.com'),
-(11, 'alejandro', '$2y$10$UytYmz1rdnj1oBBiKltJ7OtiZJ8izxP0Qg/k76A57/Xcm6jOh6IIm', 'user', 'alejandro@gmail.com');
+(12, 'gavela_r', '$2y$10$aqcXSwtm2GH6VYD9TLI7qeHPu6hW1vqN/82Ta/Y3qu89wuRgzbEoG', 'user', 'adriangavela09@gmail.com'),
+(13, 'Adrian', '$2y$10$ChCeJT2DkDqv06fm/V.4PuIOcqUppb9Selb6csdmleDsjv9ya22L6', 'admin', 'adrian@gmail.com'),
+(14, 'chiara', '$2y$10$lfVbwzWZVTIgGyRQfGmghe5Xdd53ve8YWEfEOi9hlqGkNZemZqERC', 'admin', 'chiaraparatore07@gmail.com');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `consumos`
+-- Estructura de tabla para la tabla `favoritos`
 --
 
-CREATE TABLE `consumos` (
-  `id_consumo` int(11) NOT NULL,
-  `cliente` int(11) DEFAULT NULL,
-  `tapa` int(11) DEFAULT NULL,
-  `fecha` date DEFAULT NULL,
-  `hora` time DEFAULT NULL,
-  `valoracion` int(11) DEFAULT NULL CHECK (`valoracion` between 1 and 5)
+CREATE TABLE `favoritos` (
+  `id_cliente` int(11) NOT NULL,
+  `id_tapa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `consumos`
---
-
-INSERT INTO `consumos` (`id_consumo`, `cliente`, `tapa`, `fecha`, `hora`, `valoracion`) VALUES
-(1, 1, 1, '2024-10-01', '12:30:00', 5),
-(2, 2, 2, '2024-10-02', '13:15:00', 4),
-(3, 3, 3, '2024-10-03', '14:45:00', 3),
-(4, 4, 4, '2024-10-04', '15:00:00', 5),
-(5, 5, 5, '2024-10-05', '16:00:00', 4),
-(6, 6, 6, '2024-10-06', '17:30:00', 5),
-(7, 7, 7, '2024-10-07', '18:30:00', 3),
-(8, 8, 8, '2024-10-08', '19:30:00', 2),
-(9, 9, 1, '2024-10-09', '20:30:00', 5),
-(10, 10, 2, '2024-10-10', '21:30:00', 4),
-(11, 1, 3, '2024-10-11', '22:30:00', 1),
-(12, 2, 4, '2024-10-12', '23:30:00', 3);
 
 -- --------------------------------------------------------
 
@@ -126,32 +105,33 @@ INSERT INTO `consumos` (`id_consumo`, `cliente`, `tapa`, `fecha`, `hora`, `valor
 CREATE TABLE `tapas` (
   `id_tapa` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
+  `descripcion` varchar(100) NOT NULL,
   `ingredientes` text DEFAULT NULL,
   `bar` int(11) DEFAULT NULL,
-  `descripcion` varchar(100) NOT NULL
+  `foto` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tapas`
 --
 
-INSERT INTO `tapas` (`id_tapa`, `nombre`, `descripcion`, `ingredientes`, `bar`) VALUES
-(1, 'Patatas Bravas', 'Patatas, salsa brava, ajo, pimentón', 1, ''),
-(2, 'Tortilla de Patata', 'Huevos, patatas, cebolla, sal', 2, ''),
-(3, 'Calamares Fritos', 'Calamares, harina, limón', 3, ''),
-(4, 'Figón', 'Carne de cerdo, pan, cebolla, pimientos', 4, ''),
-(5, 'Morcilla de León', 'Morcilla, cebolla, pan', 5, ''),
-(6, 'Mejillones Picantes', 'Mejillones, salsa picante, ajo', 6, ''),
-(7, 'Cecina y Queso', 'Cecina, queso de cabra, aceite de oliva', 7, ''),
-(8, 'Chorizo a la Sidra', 'Chorizo, sidra', 8, ''),
-(9, 'Jamón Asado', 'Jamón, sal, ajo', 1, ''),
-(10, 'Pulpo a la Gallega', 'Pulpo, pimentón, sal, aceite de oliva', 2, ''),
-(11, 'Ensalada de Pimientos', 'Pimientos, aceite de oliva, ajo', 3, ''),
-(12, 'Croquetas Caseras', 'Leche, harina, jamón', 4, ''),
-(13, 'Bocadillo de Lomo', 'Lomo, pan, pimientos', 5, ''),
-(14, 'Ensaladilla Rusa', 'Patata, mayonesa, atún, guisantes', 6, ''),
-(15, 'Montadito de Salchichón', 'Salchichón, pan, queso', 7, ''),
-(16, 'Pincho Moruno', 'Carne de cordero, especias', 8, '');
+INSERT INTO `tapas` (`id_tapa`, `nombre`, `descripcion`, `ingredientes`, `bar`, `foto`) VALUES
+(2, 'Tortilla de Patata', 'Tradicional tortilla española elaborada con huevos, patatas y cebolla.', 'Huevos, patatas, cebolla, sal', 2, './fotosUsuario/1737828519zoom-ed33006354886cff3b7d7b01d3629fb7-920-518.jpg'),
+(3, 'Calamares Fritos', 'Anillas de calamar rebozadas y fritas, servidas con un toque de limón.', 'Calamares, harina, limón', 3, './fotosUsuario/1737828555calamari-ring.jpg'),
+(4, 'Figón', 'Una combinación sabrosa de carne de cerdo, pan y verduras como cebolla y pimientos.', 'Carne de cerdo, pan, cebolla, pimientos', 4, './fotosUsuario/1737828573090520121039.jpg'),
+(5, 'Morcilla de León', 'Una especialidad a base de morcilla, cebolla y pan con un sabor intenso y característico.', 'Morcilla, cebolla, pan', 5, './fotosUsuario/1737828601ganadores-mejor-tapa-de-morcilla-1.jpg'),
+(6, 'Mejillones Picantes', 'Mejillones cocidos en una salsa picante con ajo que realza su sabor.', 'Mejillones, salsa picante, ajo', 6, './fotosUsuario/1737828620images.jpeg'),
+(7, 'Cecina y Queso', 'Finas lonchas de cecina combinadas con queso de cabra y un toque de aceite de oliva.', 'Cecina, queso de cabra, aceite de oliva', 7, './fotosUsuario/1737828635pincho-de-cecina-y-queso-78-80-ud-aproximadas_Id-11436.jpg'),
+(8, 'Chorizo a la Sidra', 'Chorizo cocido en sidra, una receta típica y llena de sabor asturiano.', 'Chorizo, sidra', 8, './fotosUsuario/1737828655Chorizo-a-la-sidra-1.webp'),
+(9, 'Jamón Asado', 'Jugoso jamón cocido al horno con ajo y sal, perfecto para disfrutar con pan.', 'Jamón, sal, ajo', 1, './fotosUsuario/1737828670pincho_cerdo_adobado-scaled.jpg'),
+(10, 'Pulpo a la Gallega', 'Pulpo cocido servido con pimentón, aceite de oliva y un toque de sal gruesa.', 'Pulpo, pimentón, sal, aceite de oliva', 2, './fotosUsuario/1737828693Pulpo-a-la-gallega.jpg'),
+(11, 'Ensalada de Pimientos', 'Pimientos asados acompañados de ajo y un chorrito de aceite de oliva.', 'Pimientos, aceite de oliva, ajo', 3, './fotosUsuario/1737828719B69F94DB-16FA-4622-9229-5490E51EFA3F.jpg'),
+(12, 'Croquetas Caseras', 'Croquetas crujientes por fuera y cremosas por dentro, rellenas de jamón.', 'Leche, harina, jamón', 4, './fotosUsuario/1737828760bowl-with-croquettes-napkin-defused-background.jpg'),
+(13, 'Bocadillo de Lomo', 'Un bocadillo sencillo pero delicioso de lomo de cerdo, pan y pimientos.', 'Lomo, pan, pimientos', 5, './fotosUsuario/1737828781bocadillo-de-lomo-con-pimientos-11.jpg'),
+(14, 'Ensaladilla Rusa', 'Una ensalada fría de patata, mayonesa, atún y guisantes, perfecta como tapa.', 'Patata, mayonesa, atún, guisantes', 6, './fotosUsuario/1737828810mayyonaise-vegetable-salad-salted-tasty-inside-white-plate-along-with-bread-loafs-fork-daytime.jpg'),
+(15, 'Montadito de Salchichón', 'Pequeño bocadillo con salchichón, pan y queso, ideal para picar.', 'Salchichón, pan, queso', 7, './fotosUsuario/1737828832Montadito_de_Salchichon_de_Lomo.jpg'),
+(16, 'Pincho Moruno', 'Brochetas de carne de cordero marinada con especias, asadas a la parrilla.', 'Carne de cordero, especias', 8, './fotosUsuario/1737828849maxresdefault.jpg'),
+(17, ' Patatas Bravas', ' Trozos de patatas fritas acompañadas de una salsa brava ligeramente picante y ajo, con un toque de ', 'Patatas, salsa brava, ajo, pimentón', 1, './fotosUsuario/1737828867patatas-bravas-2.jpg');
 
 --
 -- Índices para tablas volcadas
@@ -172,14 +152,6 @@ ALTER TABLE `clientes`
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indices de la tabla `consumos`
---
-ALTER TABLE `consumos`
-  ADD PRIMARY KEY (`id_consumo`),
-  ADD KEY `cliente` (`cliente`),
-  ADD KEY `tapa` (`tapa`);
-
---
 -- Indices de la tabla `tapas`
 --
 ALTER TABLE `tapas`
@@ -194,36 +166,23 @@ ALTER TABLE `tapas`
 -- AUTO_INCREMENT de la tabla `bares`
 --
 ALTER TABLE `bares`
-  MODIFY `id_bar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_bar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT de la tabla `consumos`
---
-ALTER TABLE `consumos`
-  MODIFY `id_consumo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `tapas`
 --
 ALTER TABLE `tapas`
-  MODIFY `id_tapa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_tapa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Restricciones para tablas volcadas
 --
-
---
--- Filtros para la tabla `consumos`
---
-ALTER TABLE `consumos`
-  ADD CONSTRAINT `consumos_ibfk_1` FOREIGN KEY (`cliente`) REFERENCES `clientes` (`id_cliente`) ON DELETE CASCADE,
-  ADD CONSTRAINT `consumos_ibfk_2` FOREIGN KEY (`tapa`) REFERENCES `tapas` (`id_tapa`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `tapas`
