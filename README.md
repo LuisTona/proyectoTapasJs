@@ -1,12 +1,12 @@
-##Participantes:
+## Participantes:
  
 Luis Alberto, Adrián Gavela, Alejandro Martínez
  
-##Descripción:
+## Descripción:
  
 Este proyecto mejora una aplicación web mediante el uso de AJAX, permitiendo a los usuarios loguearse, cargar la información de bares/tapas, incluir una galería destacada, realizar búsquedas y disponer de paginación.
  
-##Requisitos previos:
+## Requisitos previos:
  
   HTML5: Para la estructura de los formularios y el contenido.
   CSS: Estilos básicos de la página. 
@@ -14,7 +14,7 @@ Este proyecto mejora una aplicación web mediante el uso de AJAX, permitiendo a 
   AJAX: Implementación de AJAX utilizando la API Fetch.
   API: Integración de una API para la obtención de datos.
  
-##Historias de Usuario:
+## Historias de Usuario:
  
   Historia de Usuario 1: Como cliente
  
@@ -34,7 +34,7 @@ Este proyecto mejora una aplicación web mediante el uso de AJAX, permitiendo a 
 derecha de cada carta de bar. Una vez añadido podrá pulsar el botón para filtrar varitos y que solo aparezcan aquellas tapas que fueron marcadas previamente como favoritas por el usuario. Si vuelve a 
 pulsar el botón de filtrar favoritos volverá a enseñar todas las tapas de la galería.
  
-##Instrucciones de uso:
+## Instrucciones de uso:
   1-Crear la estructura
   
   Para poder comenzar a usar el proyecto debe crear la estructura htdocs/DWES/www en un entorno de servidor local como xampp y clonar el repositorio:
